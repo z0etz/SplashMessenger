@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/splash_background_image"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/splash_background_image_description" />
 
     <View
         android:layout_width="match_parent"
@@ -46,20 +47,16 @@
             android:id="@+id/buttonSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/large_margin_top"
             android:textSize="@dimen/title_button"
             android:text="@string/sign_up"
             android:textStyle="bold"
-            android:backgroundTint="@color/blue"
-            android:layout_below="@+id/textViewWelcome"/>
+            android:backgroundTint="@color/blue" />
 
         <Button
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/buttonSignUp"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/small_margin_top"
             android:text="@string/login"
             android:textSize="@dimen/title_button"

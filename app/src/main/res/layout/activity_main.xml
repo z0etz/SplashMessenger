@@ -12,7 +12,11 @@
         android:src="@drawable/splash_background_image"
         android:scaleType="centerCrop" />
 
-
+    <!-- Mörk overlay View -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000" /> <!-- #80 för 50% transparent svart -->
 
     <!-- Your other views go here -->
 

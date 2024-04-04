@@ -15,7 +15,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#A10B0B0B" />
+        android:background="@color/overlay_black" />
 
 
     <LinearLayout
@@ -29,30 +29,30 @@
             android:id="@+id/textViewWelcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome to"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp"
+            android:text="@string/welcome_to"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="splash messenger"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp"
+            android:text="@string/splash_messenger"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title"
             android:textStyle="italic" />
 
         <Button
             android:id="@+id/buttonSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textViewWelcome"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="80dp"
-            android:textSize="18sp"
-            android:text="Sign Up"
+            android:layout_marginTop="@dimen/large_margin_top"
+            android:textSize="@dimen/title_button"
+            android:text="@string/sign_up"
             android:textStyle="bold"
-            android:backgroundTint="#0084FF"/>
+            android:backgroundTint="@color/blue"
+            android:layout_below="@+id/textViewWelcome"/>
 
         <Button
             android:id="@+id/buttonLogin"
@@ -60,10 +60,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/buttonSignUp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="Login"
-            android:textSize="18sp"
-            android:textColor="#0084FF"
+            android:layout_marginTop="@dimen/small_margin_top"
+            android:text="@string/login"
+            android:textSize="@dimen/title_button"
+            android:textColor="@color/blue"
             android:backgroundTint="@color/white"
             android:textStyle="bold" />
 

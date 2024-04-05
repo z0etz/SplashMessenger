@@ -1,12 +1,7 @@
 <resources>
-
-    <!-- Activity_main -->
-
     <string name="app_name">SplashMessenger</string>
-    <string name="welcome_to">Welcome to</string>
-    <string name="splash_messenger">splash messenger</string>
-    <string name="login">Login</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="splash_background_image_description">Sea image</string>
-
+    <string name="login">Log In</string>
+    <string name="loginText">Login to your account</string>
+    <string name="Username">Enter UserName</string>
+    <string name="Password">Enter Password</string>
 </resources>

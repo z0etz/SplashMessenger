@@ -1,8 +1,9 @@
 <resources>
-
-    <!-- Activity_main -->
-
     <string name="app_name">SplashMessenger</string>
+    <string name="login">Log In</string>
+    <string name="loginText">Login to your account</string>
+    <string name="enter_username">Enter UserName</string>
+    <string name="enter_password">Enter Password</string>
     <string name="welcome_to">Welcome to</string>
     <string name="splash_messenger">splash messenger</string>
     <string name="login">Log in</string>
@@ -14,5 +15,4 @@
     <string name="password_confirm">Confirm Password</string>
     <string name="create_your_new_account">Create your new account</string>
     <string name="already_have_an_account">Already have an account?</string>
-
 </resources>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "366896428287",
+    "project_id": "splash-messenger-6e223",
+    "storage_bucket": "splash-messenger-6e223.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:366896428287:android:56940f084b0978e51848ca",
+        "android_client_info": {
+          "package_name": "com.katja.splashmessenger"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZ6ZKZ5hjSGj-LH4G1BldyZ-KsjlDpcGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

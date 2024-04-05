@@ -15,4 +15,6 @@
     <string name="password_confirm">Confirm Password</string>
     <string name="create_your_new_account">Create your new account</string>
     <string name="already_have_an_account">Already have an account?</string>
+    <string name="conversation">Conversation</string>
+    <string name="type_message">Type your message...</string>
 </resources>

@@ -8,7 +8,7 @@
     <View
         android:id="@+id/topView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/view_top_height_sign_up"
+        android:layout_height="250dp"
         android:background="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/dividerView" />
@@ -46,37 +46,34 @@
 
     <EditText
         android:id="@+id/messageEditText"
-        android:layout_width="@dimen/buttons_sign_up_width"
-        android:layout_height="@dimen/buttons_sign_up_height"
-        android:background="@drawable/rounded_edittext_background"
+        android:layout_width="370dp"
+        android:layout_height="60dp"
+        android:background="@drawable/rounded_edittext_gray_background"
         android:gravity="center"
         android:hint="@string/type_message"
-        android:layout_margin="@dimen/margin_small"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.113"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976"
-        android:inputType="text"/>
-
+        app:layout_constraintVertical_bias="0.16" />
 
     <ImageButton
         android:id="@+id/sendButton"
-        android:layout_width="@dimen/buttons_sign_up_height"
-        android:layout_height="@dimen/buttons_sign_up_height"
-        android:background="@drawable/round_button_background"
-        android:src="@drawable/paper_plane"
-        android:scaleType="fitCenter"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_margin="@dimen/margin_small"
+        android:background="@drawable/round_button_background"
+        android:contentDescription="@string/send_message"
+        android:padding="@dimen/margin_small"
+        android:scaleType="fitCenter"
+        android:src="@drawable/paper_plane"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/topView"
-        app:layout_constraintHorizontal_bias="0.914"
+        app:layout_constraintHorizontal_bias="0.944"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976"
-        android:padding="@dimen/margin_small"
-        android:contentDescription="@string/send_message"
-        />
+        app:layout_constraintVertical_bias="0.157" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

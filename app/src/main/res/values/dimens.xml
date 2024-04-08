@@ -7,8 +7,8 @@
     <dimen name="view_top_height_sign_up">110dp</dimen>
     <dimen name="divider_sign_up_height">1dp</dimen>
     <dimen name="view_bottom_height_sign_up">0dp</dimen>
-    <dimen name="buttons_sign_up_height">60</dimen>
-    <dimen name="buttons_sign_up_width">270</dimen>
+    <dimen name="buttons_sign_up_height">60dp</dimen>
+    <dimen name="buttons_sign_up_width">270dp</dimen>
     <dimen name="sign_up_text_size">25sp</dimen>
     <dimen name="create_new_account_text_size">18sp</dimen>
     <dimen name="round_button_size">30dp</dimen>

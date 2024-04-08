@@ -125,7 +125,7 @@
         app:layout_constraintVertical_bias="0.57" />
 
     <Button
-        android:id="@+id/fullNameButton"
+        android:id="@+id/addPersonButton"
         android:layout_width="@dimen/buttons_sign_up_width"
         android:layout_height="@dimen/buttons_sign_up_height"
         android:backgroundTint="@color/blue"

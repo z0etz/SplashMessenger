@@ -16,10 +16,12 @@
         android:layout_margin="30dp">
 
         <ImageView
+            android:id="@+id/profile_drop_image"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginRight="20dp"
             android:src="@drawable/ic_launcher_background"
+
             />
 
         <LinearLayout
@@ -29,6 +31,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/profile_user_name"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:text="Username text"
@@ -36,6 +39,7 @@
                 android:textStyle="bold"
                 />
             <TextView
+                android:id="@+id/profile_user_mail"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:text="UserMail"
@@ -62,6 +66,7 @@
             android:src="@drawable/cloudimage2" />
 
         <Button
+            android:id="@+id/profile_logout_btn"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_marginBottom="20dp"
@@ -71,6 +76,7 @@
             />
 
         <Button
+            android:id="@+id/profile_delete_account_btn"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/red"

@@ -6,4 +6,6 @@
     </style>
 
     <style name="Theme.SplashMessenger" parent="Base.Theme.SplashMessenger" />
+    
+
 </resources>

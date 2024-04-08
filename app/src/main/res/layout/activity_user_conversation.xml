@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ConversationActivity">
+    android:layout_height="match_parent" >
 
     <View
         android:id="@+id/topView"
@@ -15,11 +14,11 @@
         app:layout_constraintBottom_toTopOf="@id/dividerView" />
 
     <TextView
+        android:id="@+id/conversationName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/conversation"
-        android:id="@+id/conversationName"
+        android:text="@string/messeages"
         android:textColor="@color/text_black"
         android:textSize="@dimen/sign_up_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,16 +42,6 @@
         android:background="@color/gray"
         app:layout_constraintTop_toBottomOf="@id/dividerView"
         app:layout_constraintBottom_toBottomOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/messagesRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_medium"
-        app:layout_constraintBottom_toTopOf="@+id/messageEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topView" />
 
 
     <EditText

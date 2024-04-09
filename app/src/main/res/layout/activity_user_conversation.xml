@@ -85,14 +85,14 @@
         android:id="@+id/dropletImageView"
         android:layout_width="@dimen/small_image_width"
         android:layout_height="@dimen/small_image_height"
-        android:src="@drawable/droplet_image"
         android:contentDescription="@string/droplet_image_description"
+        android:src="@drawable/droplet_image"
         app:layout_constraintBottom_toBottomOf="@+id/bottomView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.723"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="@+id/bottomView"
         app:layout_constraintTop_toTopOf="@+id/topView"
-        app:layout_constraintVertical_bias="0.532" />
+        app:layout_constraintVertical_bias="0.523" />
 
     <ImageView
         android:id="@+id/messageImageView"
@@ -102,7 +102,7 @@
         android:src="@drawable/message_image"
         app:layout_constraintBottom_toBottomOf="@id/bottomView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.296"
+        app:layout_constraintHorizontal_bias="0.359"
         app:layout_constraintStart_toStartOf="@+id/bottomView"
         app:layout_constraintTop_toTopOf="@+id/topView"
         app:layout_constraintVertical_bias="0.478" />

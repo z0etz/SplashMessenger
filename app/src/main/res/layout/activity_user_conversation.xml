@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
     <View
         android:id="@+id/topView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/divider_message_height"
         android:background="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/dividerView" />
 
     <TextView
-        android:id="@+id/conversationName"
+        android:id="@+id/messageName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/messeages"
+        android:text="@string/messages"
         android:textColor="@color/text_black"
         android:textSize="@dimen/sign_up_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,13 +27,18 @@
         app:layout_constraintVertical_bias="0.053" />
 
     <EditText
-        android:id="@+id/messageEditText"
-        android:layout_width="370dp"
-        android:layout_height="70dp"
+        android:id="@+id/searchEditText"
+        android:layout_width="@dimen/edit_search_width"
+        android:layout_height="@dimen/buttons_sign_up_height"
+        android:autofillHints="search"
         android:background="@drawable/rounded_edittext_gray_background"
-        android:gravity="center"
         android:hint="@string/search"
+        android:importantForAutofill="yes"
         android:inputType="text"
+        android:paddingStart="@dimen/small_padding"
+        android:paddingEnd="@dimen/small_padding"
+        android:textColor="@color/text_gray_dark"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/bottomView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -42,10 +46,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.16" />
 
+
+
     <ImageButton
-        android:id="@+id/sendButton"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:id="@+id/searchButton"
+        android:layout_width="@dimen/button_search"
+        android:layout_height="@dimen/button_search"
         android:layout_margin="@dimen/margin_small"
         android:background="@drawable/round_button_background"
         android:contentDescription="@string/send_message"
@@ -54,10 +60,10 @@
         android:src="@drawable/search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/topView"
-        app:layout_constraintHorizontal_bias="0.944"
+        app:layout_constraintHorizontal_bias="0.895"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.157" />
+        app:layout_constraintVertical_bias="0.156" />
 
     <View
         android:id="@+id/dividerView"
@@ -67,65 +73,67 @@
         app:layout_constraintTop_toBottomOf="@id/topView"
         app:layout_constraintBottom_toTopOf="@id/bottomView" />
 
-    <!-- Adding the two ImageViews for the images -->
-
-    <!-- Adding the two TextViews for the text -->
-
     <View
         android:id="@+id/bottomView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/view_bottom_height_sign_up"
         android:background="@color/gray"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dividerView"
-        tools:layout_editor_absoluteX="-40dp" />
+        app:layout_constraintTop_toBottomOf="@id/dividerView"/>
 
     <ImageView
         android:id="@+id/dropletImageView"
-        android:layout_width="146dp"
-        android:layout_height="164dp"
-        android:src="@drawable/droplet"
+        android:layout_width="@dimen/small_image_width"
+        android:layout_height="@dimen/small_image_height"
+        android:src="@drawable/droplet_image"
+        android:contentDescription="@string/droplet_image_description"
         app:layout_constraintBottom_toBottomOf="@+id/bottomView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.71"
+        app:layout_constraintHorizontal_bias="0.723"
         app:layout_constraintStart_toStartOf="@+id/bottomView"
         app:layout_constraintTop_toTopOf="@+id/topView"
-        app:layout_constraintVertical_bias="0.615" />
+        app:layout_constraintVertical_bias="0.532" />
 
     <ImageView
         android:id="@+id/messageImageView"
-        android:layout_width="200dp"
-        android:layout_height="183dp"
-        android:src="@drawable/message"
+        android:layout_width="@dimen/small_image_width"
+        android:layout_height="@dimen/small_image_height"
+        android:contentDescription="@string/message_image_description"
+        android:src="@drawable/message_image"
         app:layout_constraintBottom_toBottomOf="@id/bottomView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintHorizontal_bias="0.296"
         app:layout_constraintStart_toStartOf="@+id/bottomView"
         app:layout_constraintTop_toTopOf="@+id/topView"
-        app:layout_constraintVertical_bias="0.571" />
+        app:layout_constraintVertical_bias="0.478" />
 
     <TextView
         android:id="@+id/noMessageTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No Message, Yet"
+        android:text="@string/no_message"
         android:textColor="@color/black"
+        android:textSize="@dimen/title_button"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/bottomView"
         app:layout_constraintEnd_toEndOf="@+id/bottomView"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/bottomView"
         app:layout_constraintTop_toTopOf="@+id/topView"
-        app:layout_constraintVertical_bias="0.755" />
+        app:layout_constraintVertical_bias="0.69" />
 
     <TextView
-        android:id="@+id/searchTextView"
+        android:id="@+id/startConversationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search to start a conversation"
+        android:text="@string/start_conversation"
         android:textColor="@color/text_gray_dark"
+        android:textSize="@dimen/title_button"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/bottomView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/bottomView"
         app:layout_constraintTop_toTopOf="@+id/topView"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintVertical_bias="0.748" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

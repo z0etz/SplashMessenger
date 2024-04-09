@@ -15,5 +15,11 @@
     <dimen name="margin_small">10dp</dimen>
     <dimen name="margin_medium">25dp</dimen>
     <dimen name="margin_large">50dp</dimen>
+    <dimen name="divider_message_height">200dp</dimen>
+    <dimen name="button_search">48dp</dimen>
+    <dimen name="small_padding">16dp</dimen>
+    <dimen name="edit_search_width">336dp</dimen>
+    <dimen name="small_image_width">180dp</dimen>
+    <dimen name="small_image_height">146dp</dimen>
 
 </resources>

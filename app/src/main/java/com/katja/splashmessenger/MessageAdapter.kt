@@ -1,11 +1,14 @@
 package com.katja.splashmessenger
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.katja.splashmessenger.databinding.ItemWaterdropBinding
+import com.katja.splashmessenger.databinding.ItemWatersplashBinding
+import com.katja.splashmessenger.databinding.ItemMessageInBottleBinding
+import com.katja.splashmessenger.databinding.ItemWaterbubbleBinding
 
-class MessageAdapter(private val messageList: List<Message>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val WATERDROP_VIEW_TYPE = 0
     private val WATERSPLASH_VIEW_TYPE = 1
@@ -13,12 +16,31 @@ class MessageAdapter(private val messageList: List<Message>) : RecyclerView.Adap
     private val WATERBUBBLE_VIEW_TYPE = 3
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            WATERDROP_VIEW_TYPE -> WaterdropViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_waterdrop, parent, false))
-            WATERSPLASH_VIEW_TYPE -> WatersplashViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_watersplash, parent, false))
-            MESSAGE_IN_BOTTLE_VIEW_TYPE -> MessageInBottleViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_message_in_bottle, parent, false))
-            WATERBUBBLE_VIEW_TYPE -> WaterbubbleViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_waterbubble, parent, false))
-            else -> throw IllegalArgumentException("Invalid view type")
+            WATERDROP_VIEW_TYPE -> {
+                val view = inflater.inflate(R.layout.item_waterdrop, parent, false)
+                val binding = ItemWaterdropBinding.bind(view)
+                WaterdropViewHolder(binding)
+            }
+            WATERSPLASH_VIEW_TYPE -> {
+                val view = inflater.inflate(R.layout.item_watersplash, parent, false)
+                val binding = ItemWatersplashBinding.bind(view)
+                WatersplashViewHolder(binding)
+            }
+            MESSAGE_IN_BOTTLE_VIEW_TYPE -> {
+                val view = inflater.inflate(R.layout.item_message_in_bottle, parent, false)
+                val binding = ItemMessageInBottleBinding.bind(view)
+                MessageInBottleViewHolder(binding)
+            }
+            WATERBUBBLE_VIEW_TYPE -> {
+                val view = inflater.inflate(R.layout.item_waterbubble, parent, false)
+                val binding = ItemWaterbubbleBinding.bind(view)
+                WaterbubbleViewHolder(binding)
+            }
+            else -> {
+                throw IllegalArgumentException("Invalid view type")
+            }
         }
     }
 
@@ -26,16 +48,16 @@ class MessageAdapter(private val messageList: List<Message>) : RecyclerView.Adap
         val message = messageList[position]
         when (holder.itemViewType) {
             WATERDROP_VIEW_TYPE -> {
-                // Bind data and set up WaterdropViewHolder
+                (holder as WaterdropViewHolder).bind(message)
             }
             WATERSPLASH_VIEW_TYPE -> {
-                // Bind data and set up WatersplashViewHolder
+                (holder as WatersplashViewHolder).bind(message)
             }
             MESSAGE_IN_BOTTLE_VIEW_TYPE -> {
-                // Bind data and set up MessageInBottleViewHolder
+                (holder as MessageInBottleViewHolder).bind(message)
             }
             WATERBUBBLE_VIEW_TYPE -> {
-                // Bind data and set up WaterbubbleViewHolder
+                (holder as WaterbubbleViewHolder).bind(message)
             }
         }
     }
@@ -44,32 +66,33 @@ class MessageAdapter(private val messageList: List<Message>) : RecyclerView.Adap
         return messageList.size
     }
 
-//    override fun getItemViewType(position: Int): Int {
-//        // Return view type based on position or some other criteria
-//        // Example:
-//        return when {
-//            messageList[position].type == MessageType.WATERDROP -> WATERDROP_VIEW_TYPE
-//            messageList[position].type == MessageType.WATERSPLASH -> WATERSPLASH_VIEW_TYPE
-//            messageList[position].type == MessageType.MESSAGE_IN_BOTTLE -> MESSAGE_IN_BOTTLE_VIEW_TYPE
-//            messageList[position].type == MessageType.WATERBUBBLE -> WATERBUBBLE_VIEW_TYPE
-//            else -> throw IllegalArgumentException("Invalid message type")
-//        }
-//    }
+    override fun getItemViewType(position: Int): Int {
+        val messageType = messageList[position].type ?: MessageType.WATERBUBBLE
+        return messageType.ordinal
+    }
 
     // Define view holders for each message type
-    class WaterdropViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // Define views and set up the view holder for waterdrop messages
+    class WaterdropViewHolder(val binding: ItemWaterdropBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(message: Message) {
+            // TODO: Implement binding logic once the view is set up
+        }
     }
 
-    class WatersplashViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // Define views and set up the view holder for watersplash messages
+    class WatersplashViewHolder(val binding: ItemWatersplashBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(message: Message) {
+            // TODO: Implement binding logic once the view is set up
+        }
     }
 
-    class MessageInBottleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // Define views and set up the view holder for message in a bottle messages
+    class MessageInBottleViewHolder(val binding: ItemMessageInBottleBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(message: Message) {
+            // TODO: Implement binding logic once the view is set up
+        }
     }
 
-    class WaterbubbleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // Define views and set up the view holder for waterbubble messages
+    class WaterbubbleViewHolder(val binding: ItemWaterbubbleBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(message: Message) {
+            // TODO: Implement binding logic once the view is set up
+        }
     }
 }

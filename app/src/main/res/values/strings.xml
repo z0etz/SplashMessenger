@@ -17,4 +17,11 @@
     <string name="conversation">Conversation</string>
     <string name="type_message">Type your message...</string>
     <string name="send_message">Send Message</string>
+    <string name="messages">Messages</string>
+    <string name="search">Search...</string>
+    <string name="message_image_description">Message image</string>
+    <string name="droplet_image_description">Droplet image</string>
+    <string name="start_conversation">Search to start a conversation</string>
+    <string name="no_message">No Message, Yet</string>
+
 </resources>

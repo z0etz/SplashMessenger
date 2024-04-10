@@ -40,12 +40,10 @@ class SignUpActivity : AppCompatActivity() {
         val username = binding.fullNameEditText.text.toString()
 
         if (password != confirmPassword) {
-            // Visa ett felmeddelande om lösenorden inte matchar
-            Toast.makeText(this, "Lösenorden matchar inte", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Password need to match", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // Registrera användaren med e-post och lösenord om lösenorden matchar
         auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener { authResult ->
             val user = auth.currentUser
             val profileUpdates = userProfileChangeRequest {
@@ -56,19 +54,17 @@ class SignUpActivity : AppCompatActivity() {
                     val newUser = createUser(username, email, password)
                     userDao.addUser(newUser)
 
-                    // Visa ett framgångsmeddelande
-                    Toast.makeText(this, "Registrering lyckades", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Welcome: ${user?.displayName ?: user?.email}", Toast.LENGTH_SHORT).show()
 
-                    // Starta nästa aktivitet
                     val intent = Intent(this, ConversationActivity::class.java)
                     startActivity(intent)
-                    finish() // Avsluta den aktuella aktiviteten så att användaren inte kan gå tillbaka hit med tillbaka-knappen
+                    finish()
                 } else {
-                    Toast.makeText(this, "Misslyckades med att ställa in användarnamn", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Failed to sign up", Toast.LENGTH_SHORT).show()
                 }
             }
         }.addOnFailureListener { exception ->
-            Toast.makeText(this, "Registrering misslyckades: ${exception.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Failed to sign up: ${exception.message}", Toast.LENGTH_SHORT).show()
         }
     }
 

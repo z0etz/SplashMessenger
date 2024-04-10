@@ -119,7 +119,6 @@
             android:padding="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/imageView2"
-
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="8dp"/>
 

@@ -48,27 +48,26 @@ class SignUpActivity : AppCompatActivity() {
         // Registrera användaren med e-post och lösenord om lösenorden matchar
         auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener { authResult ->
             val user = auth.currentUser
-            // Ställ in användarnamnet för inloggad användare
             val profileUpdates = userProfileChangeRequest {
                 displayName = username
             }
             user?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Skapa ett User-objekt med användarnamn och e-post
                     val newUser = createUser(username, email, password)
-
-                    // Lägg till användaren i databasen
                     userDao.addUser(newUser)
 
                     // Visa ett framgångsmeddelande
                     Toast.makeText(this, "Registrering lyckades", Toast.LENGTH_SHORT).show()
+
+                    // Starta nästa aktivitet
+                    val intent = Intent(this, ConversationActivity::class.java)
+                    startActivity(intent)
+                    finish() // Avsluta den aktuella aktiviteten så att användaren inte kan gå tillbaka hit med tillbaka-knappen
                 } else {
-                    // Visa ett felmeddelande om uppdateringen av användarnamnet misslyckades
                     Toast.makeText(this, "Misslyckades med att ställa in användarnamn", Toast.LENGTH_SHORT).show()
                 }
             }
         }.addOnFailureListener { exception ->
-            // Visa ett felmeddelande om registreringen misslyckades
             Toast.makeText(this, "Registrering misslyckades: ${exception.message}", Toast.LENGTH_SHORT).show()
         }
     }

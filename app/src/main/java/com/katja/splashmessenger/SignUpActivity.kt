@@ -9,7 +9,6 @@ import java.util.UUID
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
-
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
     private lateinit var auth: FirebaseAuth
@@ -21,7 +20,7 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = Firebase.auth
-        userDao = UserDao() // Uppdatera userDao-deklarationen
+        userDao = UserDao()
 
         binding.signUpButton.setOnClickListener {
             registerUser()
@@ -37,35 +36,42 @@ class SignUpActivity : AppCompatActivity() {
     private fun registerUser() {
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEditText.text.toString()
+        val confirmPassword = binding.passwordConfirmEditText.text.toString()
         val username = binding.fullNameEditText.text.toString()
 
-        auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener { authResult ->
-            val firebaseUser = authResult.user
+        if (password != confirmPassword) {
+            // Visa ett felmeddelande om lösenorden inte matchar
+            Toast.makeText(this, "Lösenorden matchar inte", Toast.LENGTH_SHORT).show()
+            return
+        }
 
-            // Skapa ett UserProfileChangeRequest-objekt för att ställa in användarnamnet
+        // Registrera användaren med e-post och lösenord om lösenorden matchar
+        auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener { authResult ->
+            val user = auth.currentUser
+            // Ställ in användarnamnet för inloggad användare
             val profileUpdates = userProfileChangeRequest {
                 displayName = username
             }
+            user?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // Skapa ett User-objekt med användarnamn och e-post
+                    val newUser = createUser(username, email, password)
 
-            // Uppdatera användarprofilen med det nya användarnamnet
-            firebaseUser?.updateProfile(profileUpdates)?.addOnCompleteListener { profileUpdateTask ->
-                if (profileUpdateTask.isSuccessful) {
-                    // Användarnamnet har uppdaterats framgångsrikt
-                    // Fortsätt med att skapa användaren i din databas
-                    val user = createUser(username, email, password)
-                    userDao.addUser(user)
+                    // Lägg till användaren i databasen
+                    userDao.addUser(newUser)
+
+                    // Visa ett framgångsmeddelande
                     Toast.makeText(this, "Registrering lyckades", Toast.LENGTH_SHORT).show()
                 } else {
-                    // Misslyckades med att uppdatera användarnamnet
+                    // Visa ett felmeddelande om uppdateringen av användarnamnet misslyckades
                     Toast.makeText(this, "Misslyckades med att ställa in användarnamn", Toast.LENGTH_SHORT).show()
                 }
             }
         }.addOnFailureListener { exception ->
-            // Registreringen misslyckades
+            // Visa ett felmeddelande om registreringen misslyckades
             Toast.makeText(this, "Registrering misslyckades: ${exception.message}", Toast.LENGTH_SHORT).show()
         }
     }
-
 
 
     private fun createUser(username: String, email: String, password: String): User {

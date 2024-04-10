@@ -35,7 +35,10 @@ class LoginActivity  : AppCompatActivity() {
             startActivity(Intent(this, ConversationActivity:: class.java))
         }
             .addOnSuccessListener {
-                Toast.makeText(this, "failed to login", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "succeeded to login", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "failed to log in", Toast.LENGTH_SHORT).show()
             }
     }
 }

@@ -8,11 +8,12 @@ import com.katja.splashmessenger.databinding.ActivitySignUpBinding
 import java.util.UUID
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 
-
-class SignUpActivity  : AppCompatActivity()  {
+class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
-    lateinit var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
+    private lateinit var userDao: UserDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,40 +21,55 @@ class SignUpActivity  : AppCompatActivity()  {
         setContentView(binding.root)
 
         auth = Firebase.auth
-        val userDao = UserDao() // Flytta userDao initiering till onCreate
+        userDao = UserDao() // Uppdatera userDao-deklarationen
 
-        binding.signUpButton.setOnClickListener{
+        binding.signUpButton.setOnClickListener {
             registerUser()
-            val u = createUser()
-            userDao.addUser(u)
         }
+
         binding.goToLogInTextClick.setOnClickListener {
-            // Start SignUpActivity
+            // Start LoginActivity
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
-
-
     }
 
     private fun registerUser() {
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEditText.text.toString()
+        val username = binding.fullNameEditText.text.toString()
 
-        auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
-            Toast.makeText(this, "sucessfull registration", Toast.LENGTH_SHORT).show()
-        }
-            .addOnFailureListener {
-                Toast.makeText(this, "failed registration", Toast.LENGTH_SHORT).show()
+        auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener { authResult ->
+            val firebaseUser = authResult.user
+
+            // Skapa ett UserProfileChangeRequest-objekt för att ställa in användarnamnet
+            val profileUpdates = userProfileChangeRequest {
+                displayName = username
             }
+
+            // Uppdatera användarprofilen med det nya användarnamnet
+            firebaseUser?.updateProfile(profileUpdates)?.addOnCompleteListener { profileUpdateTask ->
+                if (profileUpdateTask.isSuccessful) {
+                    // Användarnamnet har uppdaterats framgångsrikt
+                    // Fortsätt med att skapa användaren i din databas
+                    val user = createUser(username, email, password)
+                    userDao.addUser(user)
+                    Toast.makeText(this, "Registrering lyckades", Toast.LENGTH_SHORT).show()
+                } else {
+                    // Misslyckades med att uppdatera användarnamnet
+                    Toast.makeText(this, "Misslyckades med att ställa in användarnamn", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }.addOnFailureListener { exception ->
+            // Registreringen misslyckades
+            Toast.makeText(this, "Registrering misslyckades: ${exception.message}", Toast.LENGTH_SHORT).show()
+        }
     }
 
-    private fun createUser(): User {
-        val name = binding.fullNameEditText.text.toString()
-        val email = binding.emailEditText.text.toString()
-        val password = binding.passwordEditText.text.toString()
 
-        val user = User(UUID.randomUUID().toString(), name, email, password)
+
+    private fun createUser(username: String, email: String, password: String): User {
+        val user = User(UUID.randomUUID().toString(), username, email, password)
         return user
     }
 }

@@ -8,7 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.katja.splashmessenger.databinding.ActivityLoginBinding
-import com.katja.splashmessenger.databinding.ActivitySignUpBinding
+
 
 class LoginActivity  : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -39,7 +39,6 @@ class LoginActivity  : AppCompatActivity() {
 
         auth.signInWithEmailAndPassword(email, password)
             .addOnSuccessListener { authResult ->
-                val user = auth.currentUser
                 Toast.makeText(this, "Welcome: ${user?.displayName ?: user?.email}", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, ConversationActivity::class.java))
             }

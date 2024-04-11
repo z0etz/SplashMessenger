@@ -5,13 +5,31 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.katja.splashmessenger.User
 
-class UserAdapter(private val userList: List<User>) :
-    RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+interface OnItemClickListener {
+    fun onItemClick(userId: String)
+}
+
+class UserConversationAdapter(private val userList: List<User>, private val listener: OnItemClickListener) :
+    RecyclerView.Adapter<UserConversationAdapter.UserViewHolder>() {
+
+    private val conversations: List<User> = mutableListOf()
 
     inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textViewUserName: TextView = itemView.findViewById(R.id.textViewUserName)
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val userId = getItem(position).id
+                    listener.onItemClick(userId)
+                }
+            }
+        }
+    }
+
+    private fun getItem(position: Int): User {
+        return conversations[position]
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {

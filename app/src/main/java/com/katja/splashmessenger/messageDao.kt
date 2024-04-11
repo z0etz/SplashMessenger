@@ -31,7 +31,7 @@ class messageDao {
     }
 
 
-    fun getConversation(conversationId: String){
+    fun getConversation(conversationId: String, callback: (List<Message>) -> Unit) {
         val messageList = ArrayList<Message>()
 
         FirebaseFirestore
@@ -39,11 +39,17 @@ class messageDao {
             .collection("messages/$conversationId")
             .get()
             .addOnSuccessListener { result -> for (document in result) {
-
                 val id = document.getString(KEY_ID)
                 val conversationId = document.getString(KEY_CONVERSATION_ID)
                 val senderId = document.getString(KEY_SENDER_ID)
-                val type = document.getString(KEY_TYPE)
+                val typeString = document.getString(KEY_TYPE)
+                val type = when (typeString) {
+                    "WATERDROP" -> MessageType.WATERDROP
+                    "WATERSPLASH" -> MessageType.WATERSPLASH
+                    "MESSAGE_IN_BOTTLE" -> MessageType.MESSAGE_IN_BOTTLE
+                    "WATERBUBBLE" -> MessageType.WATERBUBBLE
+                    else -> MessageType.WATERBUBBLE
+                }
                 val text = document.getString(KEY_TEXT)
                 val timestamp = document.getLong(KEY_TIMESTAMP)
 
@@ -51,9 +57,12 @@ class messageDao {
                 messageList.add(message)
             }
                 Log.i("SUCCESS", "Successfully fetched conversation from Firestore")
-                //TODO return message list
+                callback(messageList)
             }
-            .addOnFailureListener { Log.e("ERROR", "Failed to fetch conversation")}
+            .addOnFailureListener {
+                Log.e("ERROR", "Failed to fetch conversation")
+                callback(emptyList())
+            }
     }
 
     fun deleteMessage(selectedMessage: Message) {

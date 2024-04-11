@@ -16,14 +16,17 @@
             android:name=".ProfilePage"
             android:exported="false"
              />
-
+        <activity
+            android:name=".UserConversationActivity"
+            android:exported="false" />
         <activity
             android:name=".ConversationActivity"
             android:exported="false" />
         <activity
             android:name=".SignUpActivity"
             android:exported="false" />
-        <activity android:name=".LoginActivity"
+        <activity
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

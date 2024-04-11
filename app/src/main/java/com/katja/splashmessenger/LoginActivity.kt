@@ -41,7 +41,7 @@ class LoginActivity  : AppCompatActivity() {
             .addOnSuccessListener { authResult ->
                 val user = auth.currentUser
                 Toast.makeText(this, "Welcome: ${user?.displayName ?: user?.email}", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, ConversationActivity::class.java))
+                startActivity(Intent(this, UserConversationActivity::class.java))
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(this, "Failed to log in: ${exception.message}", Toast.LENGTH_SHORT).show()

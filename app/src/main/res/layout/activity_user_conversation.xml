@@ -73,13 +73,22 @@
         app:layout_constraintTop_toBottomOf="@id/topView"
         app:layout_constraintBottom_toTopOf="@id/bottomView" />
 
-    <View
+    <LinearLayout
         android:id="@+id/bottomView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/view_bottom_height_sign_up"
         android:background="@color/gray"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dividerView"/>
+        app:layout_constraintTop_toBottomOf="@id/dividerView">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_medium"
+        android:id="@+id/recyclerViewUserName"
+        />
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/dropletImageView"
@@ -92,7 +101,8 @@
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="@+id/bottomView"
         app:layout_constraintTop_toTopOf="@+id/topView"
-        app:layout_constraintVertical_bias="0.523" />
+        app:layout_constraintVertical_bias="0.523"
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/messageImageView"
@@ -105,7 +115,8 @@
         app:layout_constraintHorizontal_bias="0.359"
         app:layout_constraintStart_toStartOf="@+id/bottomView"
         app:layout_constraintTop_toTopOf="@+id/topView"
-        app:layout_constraintVertical_bias="0.478" />
+        app:layout_constraintVertical_bias="0.478"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/noMessageTextView"
@@ -120,7 +131,8 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/bottomView"
         app:layout_constraintTop_toTopOf="@+id/topView"
-        app:layout_constraintVertical_bias="0.69" />
+        app:layout_constraintVertical_bias="0.69"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/startConversationTextView"
@@ -134,12 +146,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/bottomView"
         app:layout_constraintTop_toTopOf="@+id/topView"
-        app:layout_constraintVertical_bias="0.748" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recyclerViewUserName"
-        />
+        app:layout_constraintVertical_bias="0.748"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

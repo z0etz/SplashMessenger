@@ -21,8 +21,13 @@ class LoginActivity  : AppCompatActivity() {
 
         auth = Firebase.auth
 
+
         binding.logInButton.setOnClickListener {
             longinUser()
+        }
+        binding.goToSignUpButtton.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
         }
 
     }
@@ -30,12 +35,16 @@ class LoginActivity  : AppCompatActivity() {
     private fun longinUser() {
         val email = binding.edUsername.text.toString()
         val password = binding.edPassword.text.toString()
+        val user = auth.currentUser
 
-        auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
-            startActivity(Intent(this, ConversationActivity:: class.java))
-        }
-            .addOnSuccessListener {
-                Toast.makeText(this, "failed to login", Toast.LENGTH_SHORT).show()
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnSuccessListener { authResult ->
+                val user = auth.currentUser
+                Toast.makeText(this, "Welcome: ${user?.displayName ?: user?.email}", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, ConversationActivity::class.java))
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Failed to log in: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
     }
 }

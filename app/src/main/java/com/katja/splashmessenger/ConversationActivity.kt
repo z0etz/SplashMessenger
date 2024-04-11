@@ -23,7 +23,7 @@ class ConversationActivity : AppCompatActivity() {
 
         val user = auth.currentUser
 
-        binding.userLoggedIn.setText("Logged in as: ${user?.email}")
+        binding.userLoggedIn.text = "Logged in as: ${user?.displayName ?: user?.email}"
 
        binding.signOutButton.setOnClickListener{
            auth.signOut()

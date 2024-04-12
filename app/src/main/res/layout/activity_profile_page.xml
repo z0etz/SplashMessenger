@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ProfilePage">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_margin="30dp"
+        android:paddingTop="10dp">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/profile_drop_image"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/drope"
+
+                />
+
+            <TextView
+                android:id="@+id/water_drop_imgtv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="my text "
+                android:layout_gravity="center"
+                />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="fill"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/profile_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="Username text"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/profile_user_mail"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="UserMail"
+                android:textColor="@color/grey_text"
+                android:textStyle="bold"
+                />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/grey_white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/cloudimage2" />
+
+        <Button
+            android:id="@+id/profile_logout_btn"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/blue"
+            android:text="log out"
+
+            />
+
+        <Button
+            android:id="@+id/profile_delete_account_btn"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/red"
+            android:text="Delete account" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginRight="75dp"
+            android:layout_marginTop="3dp"
+            >
+
+
+
+            <ImageButton
+                android:id="@+id/img_btn_message"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:padding="1dp"
+                android:layout_gravity="center"
+                android:src="@drawable/message"
+                android:background="@android:color/transparent"
+
+            />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="message"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="3dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:padding="4dp"
+                    android:src="@drawable/background_circel"
+                    android:layout_gravity="center"
+
+                    />
+
+                <ImageButton
+                android:id="@+id/img_btn_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:padding="1dp"
+                android:src="@drawable/user_image"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                    />
+
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Profile"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

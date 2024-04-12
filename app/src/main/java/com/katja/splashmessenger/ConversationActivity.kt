@@ -2,18 +2,33 @@ package com.katja.splashmessenger
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.katja.splashmessenger.databinding.ActivityConversationBinding
 
 class ConversationActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityConversationBinding
     lateinit var adapter: MessageAdapter
+    lateinit var auth: FirebaseAuth
     private val dao = messageDao()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityConversationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        auth = Firebase.auth
+
+        val user = auth.currentUser
+
+        binding.userLoggedIn.text = "Logged in as: ${user?.displayName ?: user?.email}"
+
+       binding.signOutButton.setOnClickListener{
+           auth.signOut()
+           finish()
+       }
 
         // Get conversationId from the intent the activity was started with
         val conversationId = intent.getStringExtra("conversation_id")

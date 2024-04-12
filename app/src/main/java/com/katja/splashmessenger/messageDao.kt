@@ -1,5 +1,6 @@
 package com.katja.splashmessenger
 
+import android.content.Context
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -28,6 +29,11 @@ class messageDao {
             .set(dataToStore)
             .addOnSuccessListener { Log.i("SUCCESS", "Added message to Firestore with id: ${message.id}") }
             .addOnFailureListener { Log.i("ERROR", "Failed adding message to Firestore")}
+
+
+
+
+
     }
 
 
@@ -63,6 +69,7 @@ class messageDao {
                 Log.e("ERROR", "Failed to fetch conversation")
                 callback(emptyList())
             }
+
     }
 
     fun deleteMessage(selectedMessage: Message) {

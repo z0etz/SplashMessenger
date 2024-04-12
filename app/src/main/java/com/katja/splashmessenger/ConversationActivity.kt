@@ -13,6 +13,7 @@ class ConversationActivity : AppCompatActivity() {
     lateinit var adapter: MessageAdapter
     lateinit var auth: FirebaseAuth
     private val dao = messageDao()
+    private val spLocal = MessageLocal(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,8 +41,17 @@ class ConversationActivity : AppCompatActivity() {
         // Call messageDao to get the conversation and update the adapter when it's fetched
         if (conversationId != null) {
             dao.getConversation(conversationId) { conversation ->
-                adapter.messageList = conversation
-                adapter.notifyDataSetChanged()
+
+
+                if(!conversation.isEmpty()) {
+
+                    adapter.messageList = conversation
+                    adapter.notifyDataSetChanged()
+                }
+                else{
+                    adapter.messageList = spLocal.loadConversation()
+                    adapter.notifyDataSetChanged()
+                }
             }
         }
     }

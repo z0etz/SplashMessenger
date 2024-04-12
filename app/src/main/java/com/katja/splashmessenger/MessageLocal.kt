@@ -4,6 +4,7 @@ import android.content.Context
 import com.google.gson.Gson
 import java.security.MessageDigest
 import com.google.gson.reflect.TypeToken
+import kotlin.collections.MutableList
 
 class MessageLocal( private val context: Context) {
 
@@ -12,7 +13,7 @@ class MessageLocal( private val context: Context) {
     private val gson = Gson()
 
 
-    fun saveMessages(messages: List<Message>){
+    fun saveMessages(messages: MutableList<Message>){
 
         val conversationJason = gson.toJson(messages)
         val hashValue = getHashValue(conversationJason)
@@ -31,12 +32,12 @@ class MessageLocal( private val context: Context) {
 
     }
 
-    fun loadConversation(): List<Message> {
+    fun loadConversation():MutableList<Message>{
 
         val sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val json = sharedPreferences.getString("conversation", null)
-        val type = object : TypeToken<List<Message>>() {}.type
-        return gson.fromJson(json, type) ?: emptyList()
+        val type = object : TypeToken<MutableList<Message>>() {}.type
+        return gson.fromJson(json, type) ?: mutableListOf()
     }
 
     fun getHashValue(json: String): String {
@@ -44,6 +45,22 @@ class MessageLocal( private val context: Context) {
         val bytes = MessageDigest.getInstance("SHA-256").digest(json.toByteArray())
         return bytes.joinToString("") { "%02x".format(it) }
 
+
+
+    }
+
+    fun addMessage(message: Message){
+
+        var messageList = loadConversation()
+        messageList.add(message)
+        saveMessages(messageList)
+    }
+
+    fun deleteMessage(message: Message ){
+
+        var messageList = loadConversation()
+        messageList.remove(message)
+        saveMessages(messageList)
 
 
     }

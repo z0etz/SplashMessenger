@@ -48,9 +48,9 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener {
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
-    override fun onItemClick(userId: String) {
+    override fun onItemClick(conversationId: String) {
         val intent = Intent(this, ConversationActivity::class.java)
-        intent.putExtra("id", userId)
+        intent.putExtra("conversationId", conversationId)
         startActivity(intent)
     }
 }

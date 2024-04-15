@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 interface OnItemClickListener {
-    fun onItemClick(userId: String)
+    fun onItemClick(conversationId: String)
 }
 
 class UserConversationAdapter(private val userList: List<User>, private val listener: OnItemClickListener) :
@@ -21,8 +21,8 @@ class UserConversationAdapter(private val userList: List<User>, private val list
             itemView.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    val userId = getItem(position).id
-                    listener.onItemClick(userId)
+                    val conversationId = userList[position].id
+                    listener.onItemClick(conversationId)
                 }
             }
         }

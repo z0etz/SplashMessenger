@@ -23,6 +23,9 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="sent_message_image_description">Small raindrops image</string>
+    <string name="received_message_image_description">Large raindrops image</string>
+
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
@@ -77,5 +80,6 @@
     <string name="no_message">No Message, Yet</string>
     <string name="no_user_logged_in">no user logged in</string>
     <string name="sign_out">Sign out</string>
+    <string name="enter_your_message_here">Enter your message here</string>
 
 </resources>

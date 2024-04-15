@@ -8,7 +8,6 @@
 
     <!-- Sent -->
 
-
     <ImageView
         android:id="@+id/imageSentMessage"
         android:layout_width="wrap_content"
@@ -94,7 +93,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.75"
         app:layout_constraintWidth_max="@dimen/medium_constraintWidth" />
-
 
     <TextView
         android:id="@+id/textDateTimeReceived"

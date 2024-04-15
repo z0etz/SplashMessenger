@@ -1,64 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:padding="4dp"
+android:background="@color/gray">
+
+<!-- Sent -->
+
+<TextView
+    android:id="@+id/textMessageSent"
+    android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:padding="4dp"
-    android:background="@color/gray">
+    android:layout_marginTop="68dp"
+    android:layout_marginEnd="8dp"
+    android:background="@drawable/background_sent_message"
+    android:padding="12dp"
+    android:textColor="@color/white"
+    android:textSize="13sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintWidth_percent="0.8" />
 
-    <!-- Sent -->
-    <TextView
-        android:id="@+id/textMessageSent"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_sent_message"
-        android:padding="12dp"
-        android:textColor="@color/white"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.8" />
+<TextView
+    android:id="@+id/textDateTimeSent"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:textColor="@color/white"
+    android:textSize="10sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textMessageSent" />
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:textColor="@color/white"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMessageSent" />
+<!-- Raindrops -->
 
-    <!-- Received -->
+<!-- Received -->
+
+
     <ImageView
-        android:id="@+id/imageProfile"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/drope"
+        android:id="@+id/imageRaindrops"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="52dp"
         android:contentDescription="@null"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMessageReceived" />
+        android:src="@drawable/drope_received_message"
+        app:layout_constraintEnd_toEndOf="@id/textMessageSent"
+        app:layout_constraintTop_toTopOf="@id/textMessageSent" />
 
-    <TextView
-        android:id="@+id/textMessageReceived"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:background="@drawable/background_received_message"
-        android:padding="12dp"
-        android:textColor="@color/white"
-        android:textSize="13sp"
-        app:layout_constraintStart_toEndOf="@+id/imageProfile"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.75" />
+    <ImageView
+    android:id="@+id/imageProfile"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:src="@drawable/drope"
+    android:contentDescription="@null"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textMessageReceived" />
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:textColor="@color/white"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMessageReceived" />
+<TextView
+    android:id="@+id/textMessageReceived"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="4dp"
+    android:layout_marginTop="164dp"
+    android:background="@drawable/background_received_message"
+    android:padding="12dp"
+    android:textColor="@color/white"
+    android:textSize="13sp"
+    app:layout_constraintStart_toEndOf="@+id/imageProfile"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintWidth_percent="0.75" />
+
+<TextView
+    android:id="@+id/textDateTimeReceived"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:textColor="@color/white"
+    android:textSize="10sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textMessageReceived" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

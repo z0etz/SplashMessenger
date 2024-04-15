@@ -33,4 +33,7 @@
     <dimen name="medium_text_size">13sp</dimen>
     <dimen name="extra_small_margin_top">4dp</dimen>
     <dimen name="extra_large_margin_top">276dp</dimen>
+    <dimen name="image_received_message_width">140dp</dimen>
+    <dimen name="image_received_message_height">110dp</dimen>
+    <dimen name="medium_constraintWidth">250dp</dimen>
 </resources>

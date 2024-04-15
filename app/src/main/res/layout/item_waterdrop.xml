@@ -29,6 +29,15 @@
         app:layout_constraintTop_toBottomOf="@+id/textMessageSent" />
 
     <!-- Received -->
+    <ImageView
+        android:id="@+id/imageProfile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/drope"
+        android:contentDescription="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMessageReceived" />
+
     <TextView
         android:id="@+id/textMessageReceived"
         android:layout_width="0dp"

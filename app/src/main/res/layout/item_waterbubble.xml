@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,6 +7,19 @@
     android:background="@color/gray">
 
     <!-- Sent -->
+
+    <ImageView
+        android:id="@+id/imageSentMessage"
+        android:layout_width="313dp"
+        android:layout_height="151dp"
+        android:contentDescription="@string/sent_message_image_description"
+        android:src="@drawable/bubble_sent_message"
+        app:layout_constraintBottom_toTopOf="@+id/textDateTimeSent"
+        app:layout_constraintEnd_toEndOf="@id/textMessageSent"
+        app:layout_constraintHorizontal_bias="0.619"
+        app:layout_constraintStart_toStartOf="@id/textMessageSent"
+        app:layout_constraintTop_toTopOf="@id/textMessageSent"
+        app:layout_constraintVertical_bias="0.571" />
 
     <EditText
         android:id="@+id/textMessageSent"
@@ -29,19 +41,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_max="@dimen/medium_constraintWidth"
         app:layout_constraintWidth_percent="0.8" />
-
-    <ImageView
-        android:id="@+id/imageSentMessage"
-        android:layout_width="88dp"
-        android:layout_height="85dp"
-        android:contentDescription="@string/sent_message_image_description"
-        android:src="@drawable/bubble_sent_message"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.616"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.055" />
 
     <TextView
         android:id="@+id/textDateTimeSent"
@@ -72,10 +71,10 @@
         android:src="@drawable/bubble_received_message"
         app:layout_constraintBottom_toBottomOf="@+id/textMessageReceived"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.274"
+        app:layout_constraintHorizontal_bias="0.261"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.944" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/textMessageReceived"

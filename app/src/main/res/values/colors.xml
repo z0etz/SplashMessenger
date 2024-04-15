@@ -18,5 +18,6 @@
     <color name="grey_white">#e6e5e5</color>
     <color name="grey_text">#9B9B9B </color>
     <color name="red">#FF7474 </color>
+    <color name="blue_message">#69B3F7</color>
 
 </resources>

@@ -52,10 +52,10 @@ class ConversationActivity : AppCompatActivity() {
                     adapter.messageList = conversation
                     adapter.notifyDataSetChanged()
                 }
-                else{
-                    adapter.messageList = spLocal.loadConversation()
-                    adapter.notifyDataSetChanged()
-                }
+//                else{
+//                    adapter.messageList = spLocal.loadConversation()
+//                    adapter.notifyDataSetChanged()
+//                }
             }
         }
     }

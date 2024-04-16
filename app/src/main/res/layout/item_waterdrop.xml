@@ -7,7 +7,6 @@
     android:background="@color/gray">
 
     <!-- Sent -->
-
     <ImageView
         android:id="@+id/imageSentMessage"
         android:layout_width="wrap_content"

@@ -1,5 +1,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/extra_small_margin_top"
@@ -14,12 +15,12 @@
         android:contentDescription="@string/watersplash_sent_message_image_description"
         android:importantForAccessibility="yes"
         android:src="@drawable/watersplash_sent_message"
-        app:layout_constraintBottom_toTopOf="@+id/textDateTimeSent"
+        app:layout_constraintBottom_toBottomOf="@+id/textMessageSent"
         app:layout_constraintEnd_toEndOf="@id/textMessageSent"
-        app:layout_constraintHorizontal_bias="0.206"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="@id/textMessageSent"
-        app:layout_constraintTop_toTopOf="@id/textMessageSent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textMessageSent"
@@ -27,20 +28,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_margin_top"
         android:layout_marginEnd="@dimen/small_margin_end"
+        android:autofillHints="text"
         android:background="@drawable/background_sent_message"
+        android:importantForAccessibility="yes"
         android:minHeight="@dimen/button_search"
         android:padding="@dimen/small_padding"
         android:textColor="@color/white"
         android:textSize="@dimen/medium_text_size"
         app:layout_constraintBottom_toTopOf="@+id/textDateTimeSent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.803"
+        app:layout_constraintHorizontal_bias="0.816"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_max="@dimen/medium_constraintWidth"
-        app:layout_constraintWidth_percent="0.8"
-        android:importantForAccessibility="yes"
-        android:autofillHints="text" />
+        app:layout_constraintWidth_percent="0.8" />
 
     <TextView
         android:id="@+id/textDateTimeSent"
@@ -66,14 +67,14 @@
 
     <ImageView
         android:id="@+id/imageReceivedMessage"
-        android:layout_width="@dimen/large_image_width"
-        android:layout_height="@dimen/large_image_height"
+        android:layout_width="@dimen/large_width"
+        android:layout_height="@dimen/small_height"
         android:contentDescription="@string/watersplash_received_message_image_description"
         android:importantForAccessibility="yes"
         android:src="@drawable/watersplash_received_message"
         app:layout_constraintBottom_toBottomOf="@+id/textMessageReceived"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.32"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
@@ -84,19 +85,20 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/extra_small_margin_top"
         android:layout_marginTop="@dimen/extra_large_margin_top"
+        android:autofillHints="text"
         android:background="@drawable/background_received_message"
+        android:importantForAccessibility="yes"
+        android:minHeight="@dimen/button_search"
         android:padding="@dimen/small_padding"
+        android:text="@string/enter_received_message_here"
         android:textColor="@color/white"
         android:textSize="@dimen/medium_text_size"
-        android:text="@string/enter_received_message_here"
-        android:minHeight="@dimen/button_search"
+        app:layout_constraintBottom_toBottomOf="@+id/imageReceivedMessage"
         app:layout_constraintStart_toEndOf="@+id/imageProfile"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/imageReceivedMessage"
-        app:layout_constraintWidth_percent="0.75"
+        app:layout_constraintVertical_bias="1.0"
         app:layout_constraintWidth_max="@dimen/medium_constraintWidth"
-        android:importantForAccessibility="yes"
-        android:autofillHints="text" />
+        app:layout_constraintWidth_percent="0.75" />
 
     <TextView
         android:id="@+id/textDateTimeReceived"

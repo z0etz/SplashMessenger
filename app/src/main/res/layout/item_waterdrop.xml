@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageSentMessage"
-        android:layout_width="295dp"
-        android:layout_height="195dp"
+        android:layout_width="@dimen/large_width"
+        android:layout_height="@dimen/divider_message_height"
         android:contentDescription="@string/waterballoon_sent_message_image_description"
         android:importantForAccessibility="yes"
         android:src="@drawable/waterdrop_sent_message"
@@ -66,8 +66,8 @@
 
     <ImageView
         android:id="@+id/imageReceivedMessage"
-        android:layout_width="260dp"
-        android:layout_height="136dp"
+        android:layout_width="@dimen/buttons_sign_up_width"
+        android:layout_height="@dimen/image_received_message_width"
         android:contentDescription="@string/watersplash_received_message_image_description"
         android:importantForAccessibility="yes"
         android:src="@drawable/waterdrope_received_message"

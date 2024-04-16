@@ -13,11 +13,18 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener {
     private lateinit var binding: ActivityUserConversationBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var userAdapter: UserConversationAdapter
+    private lateinit var userList: List<User>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUserConversationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.goUser.setOnClickListener {
+            val intent = Intent(this, TestSearchActivity::class.java)
+            startActivity(intent)
+        }
+
 
         recyclerView = binding.recyclerViewUserName
 

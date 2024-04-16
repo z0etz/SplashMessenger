@@ -17,7 +17,7 @@
     <dimen name="margin_large">50dp</dimen>
     <dimen name="divider_message_height">200dp</dimen>
     <dimen name="button_search">48dp</dimen>
-    <dimen name="small_padding">16dp</dimen>
+    <dimen name="medium_padding">16dp</dimen>
     <dimen name="edit_search_width">336dp</dimen>
     <dimen name="small_image_width">180dp</dimen>
     <dimen name="small_image_height">146dp</dimen>
@@ -26,4 +26,18 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="medium_margin_top">68dp</dimen>
+    <dimen name="small_margin_end">8dp</dimen>
+    <dimen name="small_padding">12dp</dimen>
+    <dimen name="small_text_size">10sp</dimen>
+    <dimen name="medium_text_size">13sp</dimen>
+    <dimen name="extra_small_margin_top">4dp</dimen>
+    <dimen name="extra_large_margin_top">276dp</dimen>
+    <dimen name="image_received_message_width">140dp</dimen>
+    <dimen name="image_received_message_height">110dp</dimen>
+    <dimen name="medium_constraintWidth">250dp</dimen>
+    <dimen name="large_width">313dp</dimen>
+    <dimen name="medium_height">151dp</dimen>
+    <dimen name="medium_width">304dp</dimen>
+    <dimen name="small_height">114dp</dimen>
 </resources>

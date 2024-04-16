@@ -40,4 +40,8 @@
     <dimen name="medium_height">151dp</dimen>
     <dimen name="medium_width">304dp</dimen>
     <dimen name="small_height">114dp</dimen>
+    <dimen name="extra_small_image_width">83dp</dimen>
+    <dimen name="medium_image_height">125dp</dimen>
+    <dimen name="large_image_width">361dp</dimen>
+    <dimen name="large_image_height">158dp</dimen>
 </resources>

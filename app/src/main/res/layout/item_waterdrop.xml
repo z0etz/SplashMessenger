@@ -7,12 +7,11 @@
     android:background="@color/gray">
 
     <!-- Sent -->
-
     <ImageView
         android:id="@+id/imageSentMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/sent_message_image_description"
+        android:contentDescription="@string/rain_sent_message_image_description"
         android:src="@drawable/drope_sent_message"
         app:layout_constraintBottom_toTopOf="@+id/textMessageSent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +58,7 @@
         android:layout_width="@dimen/margin_large"
         android:layout_height="@dimen/margin_large"
         android:src="@drawable/drope"
-        android:contentDescription="@null"
+        android:contentDescription="@string/drope_image_profile_description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textMessageReceived" />
 
@@ -67,7 +66,7 @@
         android:id="@+id/imageReceivedMessage"
         android:layout_width="@dimen/image_received_message_width"
         android:layout_height="@dimen/image_received_message_height"
-        android:contentDescription="@null"
+        android:contentDescription="@string/rain_received_message_image_description"
         android:src="@drawable/drope_received_message"
         app:layout_constraintBottom_toTopOf="@+id/textMessageReceived"
         app:layout_constraintEnd_toEndOf="parent"

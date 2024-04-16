@@ -36,8 +36,8 @@
     <dimen name="image_received_message_width">140dp</dimen>
     <dimen name="image_received_message_height">110dp</dimen>
     <dimen name="medium_constraintWidth">250dp</dimen>
-    <dimen name="large_width">313dp</dimen>
-    <dimen name="medium_height">151dp</dimen>
+    <dimen name="large_width">267dp</dimen>
+    <dimen name="medium_height">157dp</dimen>
     <dimen name="medium_width">304dp</dimen>
     <dimen name="small_height">114dp</dimen>
     <dimen name="extra_small_image_width">83dp</dimen>

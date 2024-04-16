@@ -1,6 +1,114 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:padding="@dimen/extra_small_margin_top"
+    android:background="@color/gray">
+
+    <!-- Sent -->
+
+    <ImageView
+        android:id="@+id/imageSentMessage"
+        android:layout_width="@dimen/large_width"
+        android:layout_height="@dimen/medium_height"
+        android:contentDescription="@string/sent_message_image_description"
+        android:src="@drawable/bubble_sent_message"
+        app:layout_constraintBottom_toTopOf="@+id/textDateTimeSent"
+        app:layout_constraintEnd_toEndOf="@id/textMessageSent"
+        app:layout_constraintHorizontal_bias="0.619"
+        app:layout_constraintStart_toStartOf="@id/textMessageSent"
+        app:layout_constraintTop_toTopOf="@id/textMessageSent"
+        app:layout_constraintVertical_bias="0.571"
+        android:importantForAccessibility="yes" />
+
+    <EditText
+        android:id="@+id/textMessageSent"
+        android:layout_width="@dimen/view_bottom_height_sign_up"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_margin_top"
+        android:layout_marginEnd="@dimen/small_margin_end"
+        android:background="@drawable/background_sent_message"
+        android:hint="@string/enter_sent_message_here"
+        android:inputType="text"
+        android:minHeight="@dimen/button_search"
+        android:padding="@dimen/small_padding"
+        android:textColor="@color/white"
+        android:textSize="@dimen/medium_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/textDateTimeSent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.803"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="@dimen/medium_constraintWidth"
+        app:layout_constraintWidth_percent="0.8"
+        android:importantForAccessibility="yes"
+        android:autofillHints="text" />
+
+    <TextView
+        android:id="@+id/textDateTimeSent"
+        android:layout_width="@dimen/view_bottom_height_sign_up"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/extra_small_margin_top"
+        android:textColor="@color/white"
+        android:textSize="@dimen/small_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMessageSent" />
+
+    <!-- Received -->
+
+    <ImageView
+        android:id="@+id/imageProfile"
+        android:layout_width="@dimen/margin_large"
+        android:layout_height="@dimen/margin_large"
+        android:src="@drawable/bubble_image"
+        android:contentDescription="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMessageReceived"
+        android:importantForAccessibility="yes" />
+
+    <ImageView
+        android:id="@+id/imageReceivedMessage"
+        android:layout_width="@dimen/medium_width"
+        android:layout_height="@dimen/small_height"
+        android:contentDescription="@null"
+        android:src="@drawable/bubble_received_message"
+        app:layout_constraintBottom_toBottomOf="@+id/textMessageReceived"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.261"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:importantForAccessibility="yes" />
+
+    <EditText
+        android:id="@+id/textMessageReceived"
+        android:layout_width="@dimen/view_bottom_height_sign_up"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/extra_small_margin_top"
+        android:layout_marginTop="@dimen/extra_large_margin_top"
+        android:background="@drawable/background_received_message"
+        android:padding="@dimen/small_padding"
+        android:textColor="@color/white"
+        android:textSize="@dimen/medium_text_size"
+        android:hint="@string/enter_received_message_here"
+        android:minHeight="@dimen/button_search"
+        android:inputType="text"
+        app:layout_constraintStart_toEndOf="@+id/imageProfile"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageReceivedMessage"
+        app:layout_constraintWidth_percent="0.75"
+        app:layout_constraintWidth_max="@dimen/medium_constraintWidth"
+        android:importantForAccessibility="yes"
+        android:autofillHints="text" />
+
+    <TextView
+        android:id="@+id/textDateTimeReceived"
+        android:layout_width="@dimen/view_bottom_height_sign_up"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/extra_small_margin_top"
+        android:textColor="@color/white"
+        android:textSize="@dimen/small_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMessageReceived" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

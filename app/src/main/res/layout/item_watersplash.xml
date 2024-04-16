@@ -1,5 +1,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/extra_small_margin_top"
@@ -58,27 +59,27 @@
 
     <ImageView
         android:id="@+id/imageProfile"
-        android:layout_width="@dimen/margin_large"
-        android:layout_height="@dimen/margin_large"
-        android:src="@drawable/bubble_image"
+        android:layout_width="83dp"
+        android:layout_height="125dp"
         android:contentDescription="@null"
+        android:importantForAccessibility="yes"
+        android:src="@drawable/balloon_image"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMessageReceived"
-        android:importantForAccessibility="yes" />
+        app:layout_constraintTop_toBottomOf="@+id/textMessageReceived" />
 
     <ImageView
         android:id="@+id/imageReceivedMessage"
-        android:layout_width="@dimen/medium_width"
-        android:layout_height="@dimen/small_height"
+        android:layout_width="361dp"
+        android:layout_height="158dp"
         android:contentDescription="@null"
-        android:src="@drawable/bubble_received_message"
+        android:importantForAccessibility="yes"
+        android:src="@drawable/watersplash_received_message"
         app:layout_constraintBottom_toBottomOf="@+id/textMessageReceived"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.261"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:importantForAccessibility="yes" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/textMessageReceived"

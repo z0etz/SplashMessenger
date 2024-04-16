@@ -18,11 +18,12 @@
         app:layout_constraintHorizontal_bias="0.619"
         app:layout_constraintStart_toStartOf="@id/textMessageSent"
         app:layout_constraintTop_toTopOf="@id/textMessageSent"
-        app:layout_constraintVertical_bias="0.571" />
+        app:layout_constraintVertical_bias="0.571"
+        android:importantForAccessibility="yes" />
 
     <EditText
         android:id="@+id/textMessageSent"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/view_bottom_height_sign_up"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_margin_top"
         android:layout_marginEnd="@dimen/small_margin_end"
@@ -39,7 +40,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_max="@dimen/medium_constraintWidth"
-        app:layout_constraintWidth_percent="0.8" />
+        app:layout_constraintWidth_percent="0.8"
+        android:importantForAccessibility="yes"
+        android:autofillHints="text" />
 
     <TextView
         android:id="@+id/textDateTimeSent"
@@ -60,7 +63,8 @@
         android:src="@drawable/bubble_image"
         android:contentDescription="@null"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMessageReceived" />
+        app:layout_constraintTop_toBottomOf="@+id/textMessageReceived"
+        android:importantForAccessibility="yes" />
 
     <ImageView
         android:id="@+id/imageReceivedMessage"
@@ -73,7 +77,8 @@
         app:layout_constraintHorizontal_bias="0.261"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        android:importantForAccessibility="yes" />
 
     <EditText
         android:id="@+id/textMessageReceived"
@@ -92,7 +97,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/imageReceivedMessage"
         app:layout_constraintWidth_percent="0.75"
-        app:layout_constraintWidth_max="@dimen/medium_constraintWidth" />
+        app:layout_constraintWidth_max="@dimen/medium_constraintWidth"
+        android:importantForAccessibility="yes"
+        android:autofillHints="text" />
 
     <TextView
         android:id="@+id/textDateTimeReceived"

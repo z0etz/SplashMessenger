@@ -23,7 +23,7 @@
 
     <EditText
         android:id="@+id/textMessageSent"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/view_bottom_height_sign_up"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_margin_top"
         android:layout_marginEnd="@dimen/small_margin_end"
@@ -78,7 +78,7 @@
 
     <EditText
         android:id="@+id/textMessageReceived"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/view_bottom_height_sign_up"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/extra_small_margin_top"
         android:layout_marginTop="@dimen/extra_large_margin_top"

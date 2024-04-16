@@ -21,15 +21,13 @@
         app:layout_constraintTop_toTopOf="@id/textMessageSent"
         app:layout_constraintVertical_bias="0.485" />
 
-    <EditText
+    <TextView
         android:id="@+id/textMessageSent"
         android:layout_width="@dimen/view_bottom_height_sign_up"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_margin_top"
         android:layout_marginEnd="@dimen/small_margin_end"
         android:background="@drawable/background_sent_message"
-        android:hint="@string/enter_sent_message_here"
-        android:inputType="text"
         android:minHeight="@dimen/button_search"
         android:padding="@dimen/small_padding"
         android:textColor="@color/white"
@@ -80,7 +78,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.948" />
 
-    <EditText
+    <TextView
         android:id="@+id/textMessageReceived"
         android:layout_width="@dimen/view_bottom_height_sign_up"
         android:layout_height="wrap_content"
@@ -88,9 +86,8 @@
         android:layout_marginTop="@dimen/extra_large_margin_top"
         android:autofillHints="text"
         android:background="@drawable/background_received_message"
-        android:hint="@string/enter_received_message_here"
+        android:text="@string/enter_received_message_here"
         android:importantForAccessibility="yes"
-        android:inputType="text"
         android:minHeight="@dimen/button_search"
         android:padding="@dimen/small_padding"
         android:textColor="@color/white"

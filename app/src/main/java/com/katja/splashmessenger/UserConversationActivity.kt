@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.katja.splashmessenger.databinding.ActivityUserConversationBinding
 
 class UserConversationActivity : AppCompatActivity(), OnItemClickListener {
@@ -21,15 +22,10 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener {
 
         recyclerView = binding.recyclerViewUserName
 
-        // Dummy list of users (replace with actual data)
-        val userList = listOf(
-            User("1", "John Doe", "john@example.com", "password"),
-            User("2", "Jane Smith", "jane@example.com", "password"),
-            User("3", "Alice Wonderland", "alice@example.com", "password")
-            // Add more users as needed
-        )
+        userAdapter = UserConversationAdapter(this)
+        userAdapter.fetchUserConversations()
 
-        if(userList.isEmpty()) {
+        if(userAdapter.conversationList.isEmpty()) {
             binding.startConversationTextView.visibility = View.VISIBLE
             binding.noMessageTextView.visibility = View.VISIBLE
             binding.messageImageView.visibility = View.VISIBLE
@@ -43,14 +39,13 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener {
             binding.recyclerViewUserName.visibility = View.VISIBLE
         }
 
-        userAdapter = UserConversationAdapter(userList, this)
         recyclerView.adapter = userAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
-    override fun onItemClick(userId: String) {
+    override fun onItemClick(conversationId: String) {
         val intent = Intent(this, ConversationActivity::class.java)
-        intent.putExtra("id", userId)
+        intent.putExtra("conversationId", conversationId)
         startActivity(intent)
     }
 }

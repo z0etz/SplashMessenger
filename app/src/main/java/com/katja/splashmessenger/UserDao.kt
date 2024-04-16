@@ -3,7 +3,6 @@ package com.katja.splashmessenger
 import android.content.ContentValues.TAG
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
-import java.util.Objects
 
 class UserDao {
     val ID_KEY = "id"
@@ -28,5 +27,41 @@ class UserDao {
 
     }
 
-
+    // Function to fetch the list of users from Firestore
+    fun fetchUserList(completion: (List<User>) -> Unit) {
+        FirebaseFirestore.getInstance()
+            .collection("users")
+            .get()
+            .addOnSuccessListener { result ->
+                val userList = mutableListOf<User>()
+                for (document in result) {
+                    val id = document.getString(ID_KEY) ?: ""
+                    val fullName = document.getString(FULL_NAME_KEY) ?: ""
+                    val email = document.getString(EMAIL_KEY) ?: ""
+                    val password = document.getString(PASSWORD_KEY) ?: ""
+                    val user = User(id, fullName, email, password)
+                    userList.add(user)
+                }
+                completion(userList)
+            }
+            .addOnFailureListener { exception ->
+                Log.e(TAG, "Failed to fetch user list from Firestore", exception)
+                completion(emptyList())
+            }
+    }
+    // Function to fetch a specific user by ID
+    fun fetchUserById(userId: String, completion: (User?) -> Unit) {
+        FirebaseFirestore.getInstance()
+            .collection("users")
+            .document(userId)
+            .get()
+            .addOnSuccessListener { documentSnapshot ->
+                val user = documentSnapshot.toObject(User::class.java)
+                completion(user)
+            }
+            .addOnFailureListener { exception ->
+                Log.e(TAG, "Failed to fetch user from Firestore", exception)
+                completion(null)
+            }
+    }
 }

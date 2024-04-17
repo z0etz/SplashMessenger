@@ -3,15 +3,14 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
-
 class TestSearchActivity : AppCompatActivity() {
-    private lateinit var listView: ListView
-    private lateinit var searchEditText: EditText
+    private lateinit var autoCompleteTextView: AutoCompleteTextView
     private lateinit var firestore: FirebaseFirestore
     private lateinit var adapter: ArrayAdapter<String>
     private lateinit var originalList: List<String>
@@ -22,14 +21,17 @@ class TestSearchActivity : AppCompatActivity() {
 
         firestore = FirebaseFirestore.getInstance()
 
-        listView = findViewById(R.id.listView)
-        searchEditText = findViewById(R.id.searchEditText)
+        autoCompleteTextView = findViewById(R.id.searchEditTexts)
 
         // Hämta och visa alla användare från Firestore
         getAllUsers()
 
-        // Lägg till en lyssnare för EditText för att hantera sökning i listan
-        searchEditText.addTextChangedListener(object : TextWatcher {
+        // Lägg till en adapter för AutoCompleteTextView
+        adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, mutableListOf())
+        autoCompleteTextView.setAdapter(adapter)
+
+        // Lägg till en lyssnare för AutoCompleteTextView för att hantera sökning i listan
+        autoCompleteTextView.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
@@ -68,6 +70,9 @@ class TestSearchActivity : AppCompatActivity() {
 
                 // Visa användarna i listan
                 showUsers(usersList)
+
+                // Uppdatera adaptern för AutoCompleteTextView med alla användare
+                adapter.addAll(usersList)
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(this, "Failed to fetch users: ${exception.message}", Toast.LENGTH_SHORT).show()
@@ -75,11 +80,10 @@ class TestSearchActivity : AppCompatActivity() {
     }
 
     private fun showUsers(usersList: List<String>) {
-        // Skapa en ArrayAdapter för att visa användarna i listview
-        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, usersList)
-
-        // Tilldela adapter till listview
-        listView.adapter = adapter
+        // Uppdatera adaptern för AutoCompleteTextView med de användare som ska visas
+        adapter.clear()
+        adapter.addAll(usersList)
+        adapter.notifyDataSetChanged()
     }
 
     private fun filterUsers(query: String) {

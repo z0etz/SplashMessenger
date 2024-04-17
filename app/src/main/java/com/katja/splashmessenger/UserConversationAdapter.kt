@@ -10,7 +10,7 @@ interface OnItemClickListener {
     fun onItemClick(userId: String)
 }
 
-class UserConversationAdapter(private val userList: List<User>, private val listener: OnItemClickListener) :
+class UserConversationAdapter(private val userList: List<User>, private val listener: UserConversationActivity) :
     RecyclerView.Adapter<UserConversationAdapter.UserViewHolder>() {
 
     private val conversations: List<User> = mutableListOf()

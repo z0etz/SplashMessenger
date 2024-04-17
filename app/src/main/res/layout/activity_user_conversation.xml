@@ -38,7 +38,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.053" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/searchEditText"
         android:layout_width="@dimen/edit_search_width"
         android:layout_height="@dimen/buttons_sign_up_height"
@@ -53,13 +53,13 @@
         android:textStyle="bold"
         android:imeOptions="actionDone"
         android:layout_margin="8dp"
-        android:onClick="showRecyclerView"
         app:layout_constraintBottom_toBottomOf="@+id/bottomView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.16" />
+
 
 
 
@@ -101,18 +101,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/margin_medium"
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/recyclerViewUserName"
         />
-
-        <ListView
-            android:id="@+id/searchUserList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="25dp"
-            android:visibility="visible"
-            />
-
 
     </LinearLayout>
 

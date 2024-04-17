@@ -12,11 +12,9 @@
         android:layout_width="@dimen/large_width"
         android:layout_height="@dimen/medium_height"
         android:contentDescription="@string/watersplash_sent_message_image_description"
-        android:importantForAccessibility="yes"
         android:src="@drawable/watersplash_sent_message"
         app:layout_constraintBottom_toBottomOf="@+id/textMessageSentWatersplash"
         app:layout_constraintEnd_toEndOf="@id/textMessageSentWatersplash"
-        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="@id/textMessageSentWatersplash"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -27,9 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_margin_top"
         android:layout_marginEnd="@dimen/small_margin_end"
-        android:autofillHints="text"
         android:background="@drawable/background_sent_message"
-        android:importantForAccessibility="yes"
         android:minHeight="@dimen/button_search"
         android:padding="@dimen/small_padding"
         android:textColor="@color/white"
@@ -38,8 +34,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.816"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_max="@dimen/medium_constraintWidth"
         app:layout_constraintWidth_percent="0.8" />
 
     <TextView
@@ -59,7 +53,6 @@
         android:layout_width="@dimen/extra_small_image_width"
         android:layout_height="@dimen/medium_image_height"
         android:contentDescription="@string/watersplash_image_profile_description"
-        android:importantForAccessibility="yes"
         android:src="@drawable/waterballoon_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textMessageReceivedWatersplash" />
@@ -69,14 +62,11 @@
         android:layout_width="@dimen/large_width"
         android:layout_height="@dimen/small_height"
         android:contentDescription="@string/watersplash_received_message_image_description"
-        android:importantForAccessibility="yes"
         android:src="@drawable/watersplash_received_message"
         app:layout_constraintBottom_toBottomOf="@+id/textMessageReceivedWatersplash"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.729"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textMessageReceivedWatersplash"
@@ -84,9 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/extra_small_margin_top"
         android:layout_marginTop="@dimen/extra_large_margin_top"
-        android:autofillHints="text"
         android:background="@drawable/background_received_message"
-        android:importantForAccessibility="yes"
         android:minHeight="@dimen/button_search"
         android:padding="@dimen/small_padding"
         android:textColor="@color/white"
@@ -94,8 +82,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageReceivedMessageWatersplash"
         app:layout_constraintStart_toEndOf="@+id/imageProfileWatersplash"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:layout_constraintWidth_max="@dimen/medium_constraintWidth"
         app:layout_constraintWidth_percent="0.75" />
 
     <TextView

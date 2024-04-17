@@ -13,7 +13,6 @@
         android:layout_height="@dimen/large_image_height"
         android:layout_marginEnd="@dimen/small_margin_end"
         android:background="@drawable/waterbottle_sent_message"
-        android:importantForAccessibility="yes"
         android:minHeight="@dimen/button_search"
         android:padding="@dimen/small_padding"
         android:textColor="@color/white"
@@ -23,9 +22,7 @@
         app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.071"
-        app:layout_constraintWidth_max="@dimen/medium_constraintWidth"
-        app:layout_constraintWidth_percent="0.8" />
+        app:layout_constraintVertical_bias="0.071" />
 
     <TextView
         android:id="@+id/textDateTimeSent"
@@ -63,7 +60,6 @@
         android:textSize="@dimen/medium_text_size"
         app:layout_constraintStart_toEndOf="@+id/imageProfileBottle"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_max="@dimen/medium_constraintWidth"
         app:layout_constraintWidth_percent="0.75" />
 
     <TextView

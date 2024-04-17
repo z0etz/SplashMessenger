@@ -15,11 +15,8 @@
         android:src="@drawable/waterbubble_sent_message"
         app:layout_constraintBottom_toTopOf="@+id/textDateTimeSentWaterbubble"
         app:layout_constraintEnd_toEndOf="@id/textMessageSentWaterbubble"
-        app:layout_constraintHorizontal_bias="0.619"
         app:layout_constraintStart_toStartOf="@id/textMessageSentWaterbubble"
-        app:layout_constraintTop_toTopOf="@id/textMessageSentWaterbubble"
-        app:layout_constraintVertical_bias="0.571"
-        android:importantForAccessibility="yes" />
+        app:layout_constraintTop_toTopOf="@id/textMessageSentWaterbubble" />
 
     <TextView
         android:id="@+id/textMessageSentWaterbubble"
@@ -37,9 +34,7 @@
         app:layout_constraintHorizontal_bias="0.803"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_max="@dimen/medium_constraintWidth"
-        app:layout_constraintWidth_percent="0.8"
-        android:importantForAccessibility="yes" />
+        app:layout_constraintWidth_percent="0.8" />
 
     <TextView
         android:id="@+id/textDateTimeSentWaterbubble"
@@ -60,8 +55,7 @@
         android:src="@drawable/waterbubble_image"
         android:contentDescription="@string/waterballoon_image_profile_description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMessageReceivedWaterbubble"
-        android:importantForAccessibility="yes" />
+        app:layout_constraintTop_toBottomOf="@+id/textMessageReceivedWaterbubble" />
 
     <ImageView
         android:id="@+id/imageReceivedMessageWaterbubble"
@@ -71,11 +65,8 @@
         android:src="@drawable/waterbubble_received_message"
         app:layout_constraintBottom_toBottomOf="@+id/textMessageReceivedWaterbubble"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.261"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:importantForAccessibility="yes" />
+        app:layout_constraintHorizontal_bias="0.579"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textMessageReceivedWaterbubble"
@@ -91,9 +82,7 @@
         app:layout_constraintStart_toEndOf="@+id/imageProfileWaterbubble"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/imageReceivedMessageWaterbubble"
-        app:layout_constraintWidth_percent="0.75"
-        app:layout_constraintWidth_max="@dimen/medium_constraintWidth"
-        android:importantForAccessibility="yes" />
+        app:layout_constraintWidth_percent="0.75" />
 
     <TextView
         android:id="@+id/textDateTimeReceivedWaterbubble"

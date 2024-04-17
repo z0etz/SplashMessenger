@@ -5,24 +5,21 @@
     android:padding="@dimen/extra_small_margin_top"
     android:background="@color/gray">
 
-    <!-- Sent -->
+    <!-- Sent Waterbubble-->
 
     <ImageView
-        android:id="@+id/imageSentMessage"
+        android:id="@+id/imageSentMessageWaterbubble"
         android:layout_width="@dimen/large_width"
         android:layout_height="@dimen/medium_height"
         android:contentDescription="@string/waterballoon_sent_message_image_description"
-        android:src="@drawable/bubble_sent_message"
-        app:layout_constraintBottom_toTopOf="@+id/textDateTimeSent"
-        app:layout_constraintEnd_toEndOf="@id/textMessageSent"
-        app:layout_constraintHorizontal_bias="0.619"
-        app:layout_constraintStart_toStartOf="@id/textMessageSent"
-        app:layout_constraintTop_toTopOf="@id/textMessageSent"
-        app:layout_constraintVertical_bias="0.571"
-        android:importantForAccessibility="yes" />
+        android:src="@drawable/waterbubble_sent_message"
+        app:layout_constraintBottom_toTopOf="@+id/textDateTimeSentWaterbubble"
+        app:layout_constraintEnd_toEndOf="@id/textMessageSentWaterbubble"
+        app:layout_constraintStart_toStartOf="@id/textMessageSentWaterbubble"
+        app:layout_constraintTop_toTopOf="@id/textMessageSentWaterbubble" />
 
     <TextView
-        android:id="@+id/textMessageSent"
+        android:id="@+id/textMessageSentWaterbubble"
         android:layout_width="@dimen/view_bottom_height_sign_up"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_margin_top"
@@ -32,53 +29,47 @@
         android:padding="@dimen/small_padding"
         android:textColor="@color/white"
         android:textSize="@dimen/medium_text_size"
-        app:layout_constraintBottom_toTopOf="@+id/textDateTimeSent"
+        app:layout_constraintBottom_toTopOf="@+id/textDateTimeSentWaterbubble"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.803"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_max="@dimen/medium_constraintWidth"
-        app:layout_constraintWidth_percent="0.8"
-        android:importantForAccessibility="yes" />
+        app:layout_constraintWidth_percent="0.8" />
 
     <TextView
-        android:id="@+id/textDateTimeSent"
+        android:id="@+id/textDateTimeSentWaterbubble"
         android:layout_width="@dimen/view_bottom_height_sign_up"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/extra_small_margin_top"
         android:textColor="@color/white"
         android:textSize="@dimen/small_text_size"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMessageSent" />
+        app:layout_constraintTop_toBottomOf="@+id/textMessageSentWaterbubble" />
 
-    <!-- Received -->
+    <!-- Received Waterbubble-->
 
     <ImageView
-        android:id="@+id/imageProfile"
+        android:id="@+id/imageProfileWaterbubble"
         android:layout_width="@dimen/margin_large"
         android:layout_height="@dimen/margin_large"
-        android:src="@drawable/bubble_image"
+        android:src="@drawable/waterbubble_image"
         android:contentDescription="@string/waterballoon_image_profile_description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMessageReceived"
-        android:importantForAccessibility="yes" />
+        app:layout_constraintTop_toBottomOf="@+id/textMessageReceivedWaterbubble" />
 
     <ImageView
-        android:id="@+id/imageReceivedMessage"
+        android:id="@+id/imageReceivedMessageWaterbubble"
         android:layout_width="@dimen/medium_width"
         android:layout_height="@dimen/small_height"
         android:contentDescription="@string/watersplash_received_message_image_description"
-        android:src="@drawable/bubble_received_message"
-        app:layout_constraintBottom_toBottomOf="@+id/textMessageReceived"
+        android:src="@drawable/waterbubble_received_message"
+        app:layout_constraintBottom_toBottomOf="@+id/textMessageReceivedWaterbubble"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.261"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:importantForAccessibility="yes" />
+        app:layout_constraintHorizontal_bias="0.579"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textMessageReceived"
+        android:id="@+id/textMessageReceivedWaterbubble"
         android:layout_width="@dimen/view_bottom_height_sign_up"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/extra_small_margin_top"
@@ -87,23 +78,20 @@
         android:padding="@dimen/small_padding"
         android:textColor="@color/white"
         android:textSize="@dimen/medium_text_size"
-        android:text="@string/enter_received_message_here"
         android:minHeight="@dimen/button_search"
-        app:layout_constraintStart_toEndOf="@+id/imageProfile"
+        app:layout_constraintStart_toEndOf="@+id/imageProfileWaterbubble"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/imageReceivedMessage"
-        app:layout_constraintWidth_percent="0.75"
-        app:layout_constraintWidth_max="@dimen/medium_constraintWidth"
-        android:importantForAccessibility="yes" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageReceivedMessageWaterbubble"
+        app:layout_constraintWidth_percent="0.75" />
 
     <TextView
-        android:id="@+id/textDateTimeReceived"
+        android:id="@+id/textDateTimeReceivedWaterbubble"
         android:layout_width="@dimen/view_bottom_height_sign_up"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/extra_small_margin_top"
         android:textColor="@color/white"
         android:textSize="@dimen/small_text_size"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMessageReceived" />
+        app:layout_constraintTop_toBottomOf="@+id/textMessageReceivedWaterbubble" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

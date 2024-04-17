@@ -101,16 +101,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/margin_medium"
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/recyclerViewUserName"
         />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/searchUserRecycler"
+        <ListView
+            android:id="@+id/searchUserList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="25dp"
-            android:visibility="gone"
+            android:visibility="visible"
             />
 
 

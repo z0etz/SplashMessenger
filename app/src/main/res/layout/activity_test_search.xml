@@ -7,7 +7,7 @@
 
 
     <EditText
-        android:id="@+id/searchEditText"
+        android:id="@+id/searchEditTexts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -24,7 +24,7 @@
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:layout_below="@id/searchEditText"
+        android:layout_below="@id/searchEditTexts"
         android:divider="@null"
         android:dividerHeight="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

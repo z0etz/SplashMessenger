@@ -8,21 +8,21 @@
     <!-- Sent -->
 
     <ImageView
-        android:id="@+id/imageSentMessage"
+        android:id="@+id/imageSentMessageWaterdrop"
         android:layout_width="@dimen/large_width"
         android:layout_height="@dimen/divider_message_height"
-        android:contentDescription="@string/waterdrope_sent_message_image_description"
+        android:contentDescription="@string/waterdrop_sent_message_image_description"
         android:importantForAccessibility="yes"
         android:src="@drawable/waterdrop_sent_message"
-        app:layout_constraintBottom_toTopOf="@+id/textDateTimeSent"
-        app:layout_constraintEnd_toEndOf="@id/textMessageSent"
+        app:layout_constraintBottom_toTopOf="@+id/textDateTimeSentWaterdrop"
+        app:layout_constraintEnd_toEndOf="@id/textMessageSentWaterdrop"
         app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="@id/textMessageSent"
-        app:layout_constraintTop_toTopOf="@id/textMessageSent"
+        app:layout_constraintStart_toStartOf="@id/textMessageSentWaterdrop"
+        app:layout_constraintTop_toTopOf="@id/textMessageSentWaterdrop"
         app:layout_constraintVertical_bias="0.485" />
 
     <TextView
-        android:id="@+id/textMessageSent"
+        android:id="@+id/textMessageSentWaterdrop"
         android:layout_width="@dimen/view_bottom_height_sign_up"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_margin_top"
@@ -32,7 +32,7 @@
         android:padding="@dimen/small_padding"
         android:textColor="@color/white"
         android:textSize="@dimen/medium_text_size"
-        app:layout_constraintBottom_toTopOf="@+id/textDateTimeSent"
+        app:layout_constraintBottom_toTopOf="@+id/textDateTimeSentWaterdrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.803"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,35 +43,35 @@
         android:autofillHints="text" />
 
     <TextView
-        android:id="@+id/textDateTimeSent"
+        android:id="@+id/textDateTimeSentWaterdrop"
         android:layout_width="@dimen/view_bottom_height_sign_up"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/extra_small_margin_top"
         android:textColor="@color/white"
         android:textSize="@dimen/small_text_size"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMessageSent" />
+        app:layout_constraintTop_toBottomOf="@+id/textMessageSentWaterdrop" />
 
     <!-- Received -->
 
     <ImageView
-        android:id="@+id/imageProfile"
+        android:id="@+id/imageProfileWaterdrop"
         android:layout_width="@dimen/margin_large"
         android:layout_height="@dimen/margin_large"
         android:src="@drawable/droplet_image"
-        android:contentDescription="@string/waterdrope_image_profile_description"
+        android:contentDescription="@string/waterdrop_image_profile_description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMessageReceived"
+        app:layout_constraintTop_toBottomOf="@+id/textMessageReceivedWaterdrop"
         android:importantForAccessibility="yes" />
 
     <ImageView
-        android:id="@+id/imageReceivedMessage"
+        android:id="@+id/imageReceivedMessageWaterdrop"
         android:layout_width="@dimen/buttons_sign_up_width"
         android:layout_height="@dimen/image_received_message_width"
-        android:contentDescription="@string/waterdrope_received_message_image_description"
+        android:contentDescription="@string/waterdrop_received_message_image_description"
         android:importantForAccessibility="yes"
-        android:src="@drawable/waterdrope_received_message"
-        app:layout_constraintBottom_toBottomOf="@+id/textMessageReceived"
+        android:src="@drawable/waterdrop_received_message"
+        app:layout_constraintBottom_toBottomOf="@+id/textMessageReceivedWaterdrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.384"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,34 +79,33 @@
         app:layout_constraintVertical_bias="0.948" />
 
     <TextView
-        android:id="@+id/textMessageReceived"
+        android:id="@+id/textMessageReceivedWaterdrop"
         android:layout_width="@dimen/view_bottom_height_sign_up"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/extra_small_margin_top"
         android:layout_marginTop="@dimen/extra_large_margin_top"
         android:autofillHints="text"
         android:background="@drawable/background_received_message"
-        android:text="@string/enter_received_message_here"
         android:importantForAccessibility="yes"
         android:minHeight="@dimen/button_search"
         android:padding="@dimen/small_padding"
         android:textColor="@color/white"
         android:textSize="@dimen/medium_text_size"
-        app:layout_constraintBottom_toBottomOf="@+id/imageReceivedMessage"
-        app:layout_constraintStart_toEndOf="@+id/imageProfile"
+        app:layout_constraintBottom_toBottomOf="@+id/imageReceivedMessageWaterdrop"
+        app:layout_constraintStart_toEndOf="@+id/imageProfileWaterdrop"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintWidth_max="@dimen/medium_constraintWidth"
         app:layout_constraintWidth_percent="0.75" />
 
     <TextView
-        android:id="@+id/textDateTimeReceived"
+        android:id="@+id/textDateTimeReceivedWaterdrop"
         android:layout_width="@dimen/view_bottom_height_sign_up"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/extra_small_margin_top"
         android:textColor="@color/white"
         android:textSize="@dimen/small_text_size"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMessageReceived" />
+        app:layout_constraintTop_toBottomOf="@+id/textMessageReceivedWaterdrop" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

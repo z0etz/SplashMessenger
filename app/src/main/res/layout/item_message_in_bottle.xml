@@ -1,6 +1,5 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/extra_small_margin_top"
@@ -9,7 +8,7 @@
     <!-- Sent -->
 
     <TextView
-        android:id="@+id/textMessageSent"
+        android:id="@+id/textMessageSentBottle"
         android:layout_width="@dimen/medium_image_height"
         android:layout_height="@dimen/large_image_height"
         android:layout_marginEnd="@dimen/small_margin_end"
@@ -36,22 +35,22 @@
         android:textColor="@color/white"
         android:textSize="@dimen/small_text_size"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMessageSent" />
+        app:layout_constraintTop_toBottomOf="@+id/textMessageSentBottle" />
 
     <!-- Received -->
 
     <ImageView
-        android:id="@+id/imageProfile"
+        android:id="@+id/imageProfileBottle"
         android:layout_width="@dimen/buttons_sign_up_height"
         android:layout_height="@dimen/large_margin_top"
         android:contentDescription="@string/waterballoon_image_profile_description"
         android:importantForAccessibility="yes"
-        android:src="@drawable/bottle_image"
+        android:src="@drawable/waterbottle_image"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMessageReceived" />
+        app:layout_constraintTop_toBottomOf="@+id/textMessageReceivedBottle" />
 
     <TextView
-        android:id="@+id/textMessageReceived"
+        android:id="@+id/textMessageReceivedBottle"
         android:layout_width="@dimen/view_bottom_height_sign_up"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/extra_small_margin_top"
@@ -62,7 +61,7 @@
         android:padding="@dimen/small_padding"
         android:textColor="@color/white"
         android:textSize="@dimen/medium_text_size"
-        app:layout_constraintStart_toEndOf="@+id/imageProfile"
+        app:layout_constraintStart_toEndOf="@+id/imageProfileBottle"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_max="@dimen/medium_constraintWidth"
         app:layout_constraintWidth_percent="0.75" />
@@ -75,6 +74,6 @@
         android:textColor="@color/white"
         android:textSize="@dimen/small_text_size"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMessageReceived" />
+        app:layout_constraintTop_toBottomOf="@+id/textMessageReceivedBottle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

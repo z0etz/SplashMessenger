@@ -5,7 +5,7 @@
     android:padding="@dimen/extra_small_margin_top"
     android:background="@color/gray">
 
-    <!-- Sent -->
+    <!-- Sent Bottle -->
 
     <TextView
         android:id="@+id/textMessageSentBottle"
@@ -34,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textMessageSentBottle" />
 
-    <!-- Received -->
+    <!-- Received Bottle-->
 
     <ImageView
         android:id="@+id/imageProfileBottle"

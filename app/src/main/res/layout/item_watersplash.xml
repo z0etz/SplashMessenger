@@ -5,7 +5,7 @@
     android:padding="@dimen/extra_small_margin_top"
     android:background="@color/gray">
 
-    <!-- Sent -->
+    <!-- Sent Watersplash-->
 
     <ImageView
         android:id="@+id/imageSentMessageWatersplash"
@@ -46,7 +46,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textMessageSentWatersplash" />
 
-    <!-- Received -->
+    <!-- Received Watersplash-->
 
     <ImageView
         android:id="@+id/imageProfileWatersplash"

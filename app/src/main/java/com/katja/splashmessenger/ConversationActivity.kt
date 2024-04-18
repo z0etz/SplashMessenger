@@ -32,7 +32,7 @@ class ConversationActivity : AppCompatActivity() {
        }
 
         // Get conversationId from the intent the activity was started with
-        val conversationId = intent.getStringExtra("conversation_id")
+        val conversationId = intent.getStringExtra("id")
 
         // Initialize the adapter with an empty list
         adapter = MessageAdapter(emptyList())
@@ -53,6 +53,10 @@ class ConversationActivity : AppCompatActivity() {
                     adapter.notifyDataSetChanged()
                 }
             }
+        }
+        binding.sendButton.setOnClickListener {
+            println(user?.uid)
+            println(conversationId)
         }
     }
 }

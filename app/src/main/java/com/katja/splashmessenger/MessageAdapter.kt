@@ -25,6 +25,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
                 val binding = ItemWaterdropBinding.bind(view)
                 WaterdropViewHolder(binding)
             }
+
             WATERSPLASH_VIEW_TYPE -> {
                 val view = inflater.inflate(R.layout.item_watersplash, parent, false)
                 val binding = ItemWatersplashBinding.bind(view)
@@ -76,7 +77,12 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
     // Define view holders for each message type
     class WaterdropViewHolder(val binding: ItemWaterdropBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(message: Message) {
-            // TODO: Implement binding logic once the view is set up
+            val animation = AnimationUtils.loadAnimation(itemView.context, R.anim.waterdrop_animation)
+
+                binding.imageSentMessageWaterdrop.startAnimation(animation)
+                binding.imageReceivedMessageWaterdrop.startAnimation(animation)
+            }
+
         }
     }
 

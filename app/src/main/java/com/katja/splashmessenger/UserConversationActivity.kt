@@ -55,19 +55,17 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
 
         recyclerView = binding.recyclerViewUserName
 
-        autoCompleteTextView.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-
-            override fun afterTextChanged(s: Editable?) {
-                if (s.isNullOrEmpty()) {
-                    showUsers(originalList)
-                } else {
-                    filterUsers(s.toString())
-                }
-            }
-        })
+        autoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
+            val selectedUser = parent.getItemAtPosition(position) as String
+            // Här kan du implementera koden för att navigera till den valda användarens aktivitet
+            // T.ex. skapa en Intent för den aktuella användaren och starta aktiviteten
+            // Nedan är en exempelkod:
+            val intent = Intent(this, ConversationActivity::class.java)
+            // Här kan du skicka användarinformationen till nästa aktivitet om det behövs
+            // Till exempel:
+            // intent.putExtra("selectedUser", selectedUser)
+            startActivity(intent)
+        }
 
         getAllUsers()
         // Dummy list of users (replace with actual data)

@@ -55,6 +55,7 @@ class LoginActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Please enter both email and password", Toast.LENGTH_SHORT).show()
         }
+
     }
 
 

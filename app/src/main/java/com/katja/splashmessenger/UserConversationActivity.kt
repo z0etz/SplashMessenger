@@ -2,8 +2,6 @@ package com.katja.splashmessenger
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -38,11 +36,6 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
         binding = ActivityUserConversationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.goUser.setOnClickListener {
-            val intent = Intent(this, TestSearchActivity::class.java)
-            startActivity(intent)
-        }
-
         firestore = FirebaseFirestore.getInstance()
 
         searchEditText = findViewById(R.id.searchEditText)
@@ -57,12 +50,8 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
 
         autoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
             val selectedUser = parent.getItemAtPosition(position) as String
-            // Här kan du implementera koden för att navigera till den valda användarens aktivitet
-            // T.ex. skapa en Intent för den aktuella användaren och starta aktiviteten
-            // Nedan är en exempelkod:
             val intent = Intent(this, ConversationActivity::class.java)
-            // Här kan du skicka användarinformationen till nästa aktivitet om det behövs
-            // Till exempel:
+            // skicka användarinformationen till nästa aktivitet om det behövs
             // intent.putExtra("selectedUser", selectedUser)
             startActivity(intent)
         }

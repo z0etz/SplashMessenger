@@ -1,5 +1,6 @@
 package com.katja.splashmessenger
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
@@ -24,8 +25,10 @@ class ProfilePageActivity : AppCompatActivity() {
         binding = ActivityProfilePageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.profileLogoutBtn.setOnClickListener{
+        binding.profileLogoutBtn.setOnClickListener {
             auth.signOut()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
             finish()
         }
 
@@ -33,4 +36,5 @@ class ProfilePageActivity : AppCompatActivity() {
         binding.profileUserMail.text = user?.email ?: "No email available"
 
     }
+
 }

@@ -88,6 +88,12 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
                 intent.putExtra("id", userId)
                 startActivity(intent)
            }
+    override fun onResume() {
+        super.onResume()
+        // Rensa sökfältet
+        autoCompleteTextView.setText("")
+    }
+
     private fun getAllUsers() {
         val usersCollection = firestore.collection("users")
 

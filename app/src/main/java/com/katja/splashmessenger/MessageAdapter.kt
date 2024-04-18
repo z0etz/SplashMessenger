@@ -74,7 +74,6 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
         return messageType.ordinal
     }
 
-    // Define view holders for each message type
     class WaterdropViewHolder(val binding: ItemWaterdropBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(message: Message) {
             val animation = AnimationUtils.loadAnimation(itemView.context, R.anim.waterdrop_animation)
@@ -84,7 +83,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
             }
 
         }
-    }
+
 
     class WatersplashViewHolder(val binding: ItemWatersplashBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(message: Message) {

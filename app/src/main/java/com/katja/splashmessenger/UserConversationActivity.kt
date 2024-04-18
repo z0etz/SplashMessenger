@@ -38,23 +38,26 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
 
         firestore = FirebaseFirestore.getInstance()
 
-        searchEditText = findViewById(R.id.searchEditText)
-
         getAllUsers()
 
-        autoCompleteTextView = findViewById(R.id.searchEditText)
         adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, mutableListOf())
-        autoCompleteTextView.setAdapter(adapter)
+        binding.searchEditText.setAdapter(adapter)
 
         recyclerView = binding.recyclerViewUserName
 
-        autoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
+       binding.searchEditText.setOnItemClickListener { parent, view, position, id ->
             val selectedUser = parent.getItemAtPosition(position) as String
             val intent = Intent(this, ConversationActivity::class.java)
             // skicka användarinformationen till nästa aktivitet om det behövs
             // intent.putExtra("selectedUser", selectedUser)
             startActivity(intent)
         }
+
+        binding.btnGoToProfile.setOnClickListener {
+            val intent = Intent(this, ProfilePageActivity::class.java)
+            startActivity(intent)
+        }
+
 
         getAllUsers()
         // Dummy list of users (replace with actual data)
@@ -91,7 +94,7 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
     override fun onResume() {
         super.onResume()
         // Rensa sökfältet
-        autoCompleteTextView.setText("")
+       binding.searchEditText.setText("")
     }
 
     private fun getAllUsers() {

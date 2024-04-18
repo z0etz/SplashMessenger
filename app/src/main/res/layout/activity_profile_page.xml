@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ProfilePage">
+    tools:context=".ProfilePageActivity">
 
 
     <LinearLayout
@@ -49,7 +49,7 @@
                 android:id="@+id/profile_user_name"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:text="Username text"
+                android:hint="Username text"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 />

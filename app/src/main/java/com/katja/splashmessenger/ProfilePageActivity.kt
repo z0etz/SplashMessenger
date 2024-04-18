@@ -29,6 +29,8 @@ class ProfilePageActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.profileUserName.text = "Logged in as: ${user?.displayName ?: user?.email}"
+        binding.profileUserName.text = user?.displayName ?: "No name available"
+        binding.profileUserMail.text = user?.email ?: "No email available"
+
     }
 }

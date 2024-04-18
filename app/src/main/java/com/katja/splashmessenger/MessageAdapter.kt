@@ -7,6 +7,8 @@ import com.katja.splashmessenger.databinding.ItemWaterdropBinding
 import com.katja.splashmessenger.databinding.ItemWatersplashBinding
 import com.katja.splashmessenger.databinding.ItemMessageInBottleBinding
 import com.katja.splashmessenger.databinding.ItemWaterbubbleBinding
+import android.view.animation.AnimationUtils
+
 
 class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -92,7 +94,12 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
     class WaterbubbleViewHolder(val binding: ItemWaterbubbleBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(message: Message) {
-            // TODO: Implement binding logic once the view is set up
+            // Hämta animationsresursen
+            val animation = AnimationUtils.loadAnimation(itemView.context, R.anim.bubble_animation)
+
+            // Tillämpa animationen på din bildvy
+            binding.imageSentMessageWaterbubble.startAnimation(animation)
+            binding.imageReceivedMessageWaterbubble.startAnimation(animation)
         }
     }
 }

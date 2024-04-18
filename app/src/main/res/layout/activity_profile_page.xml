@@ -10,10 +10,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="@dimen/frame_profile_one"
+        android:layout_margin="10dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_margin="30dp"
         android:paddingTop="10dp">
 
         <FrameLayout
@@ -23,20 +23,13 @@
 
             <ImageView
                 android:id="@+id/profile_drop_image"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:src="@drawable/drope"
 
                 />
 
-            <TextView
-                android:id="@+id/water_drop_imgtv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="my text "
-                android:layout_gravity="center"
-                />
         </FrameLayout>
 
         <LinearLayout
@@ -51,16 +44,15 @@
                 android:layout_height="30dp"
                 android:hint="Username text"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/profile_user_mail"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:text="UserMail"
                 android:textColor="@color/grey_text"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
 
         </LinearLayout>
@@ -116,8 +108,6 @@
             android:layout_marginTop="3dp"
             >
 
-
-
             <ImageButton
                 android:id="@+id/img_btn_message"
                 android:layout_width="wrap_content"
@@ -136,47 +126,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="message"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="3dp">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="80dp"
-                    android:padding="4dp"
-                    android:src="@drawable/background_circel"
-                    android:layout_gravity="center"
-
-                    />
-
-                <ImageButton
-                android:id="@+id/img_btn_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:padding="1dp"
-                android:src="@drawable/user_image"
-                android:layout_gravity="center"
-                android:background="@android:color/transparent"
-                    />
-
-
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="Profile"/>
 
         </LinearLayout>
 

@@ -78,9 +78,9 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
         fun bind(message: Message) {
             val animation = AnimationUtils.loadAnimation(itemView.context, R.anim.waterdrop_animation)
 
-                binding.imageSentMessageWaterdrop.startAnimation(animation)
-                binding.imageReceivedMessageWaterdrop.startAnimation(animation)
-            }
+            binding.imageSentMessageWaterdrop.startAnimation(animation)
+            binding.imageReceivedMessageWaterdrop.startAnimation(animation)
+        }
 
         }
 
@@ -99,10 +99,8 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
     class WaterbubbleViewHolder(val binding: ItemWaterbubbleBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(message: Message) {
-            // Hämta animationsresursen
-            val animation = AnimationUtils.loadAnimation(itemView.context, R.anim.bubble_animation)
+            val animation = AnimationUtils.loadAnimation(itemView.context, R.anim.waterbubble_animation)
 
-            // Tillämpa animationen på din bildvy
             binding.imageSentMessageWaterbubble.startAnimation(animation)
             binding.imageReceivedMessageWaterbubble.startAnimation(animation)
         }

@@ -13,9 +13,11 @@
         android:theme="@style/Theme.SplashMessenger"
         tools:targetApi="31">
         <activity
+            android:name=".AppNotice"
+            android:exported="false" />
+        <activity
             android:name=".ProfilePageActivity"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".MobileNoticePageActivity"
             android:exported="false" />

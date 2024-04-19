@@ -123,16 +123,26 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
             val senderId =  message.senderId
             if (user?.uid == senderId) {
 
-               // binding.textMessageSentWaterbubble.text = message.text
-               // binding.textMessageReceivedWaterbubble.visibility = View.GONE
+                binding.textMessageSentWaterbubble.text = message.text
+              //  binding.imageSentMessageWaterbubble.startAnimation(animation)
+
+                binding.textMessageReceivedWaterbubble.visibility = View.GONE
+                binding.imageReceivedMessageWaterbubble.visibility = View.GONE
+                binding.imageProfileWaterbubble.visibility = View.GONE
             }
             else{
+
                 binding.textMessageReceivedWaterbubble.text = message.text
+                //binding.imageReceivedMessageWaterbubble.startAnimation(animation)
+
                 binding.textMessageSentWaterbubble.visibility = View.GONE
+                binding.imageSentMessageWaterbubble.visibility = View.GONE
+                binding.imageProfileWaterbubble.visibility = View.GONE
+
 
             }
-            binding.imageSentMessageWaterbubble.startAnimation(animation)
-            binding.imageReceivedMessageWaterbubble.startAnimation(animation)
+            //binding.imageSentMessageWaterbubble.startAnimation(animation)
+           // binding.imageReceivedMessageWaterbubble.startAnimation(animation)
         }
     }
 }

@@ -33,6 +33,7 @@
     <dimen name="small_padding">12dp</dimen>
     <dimen name="small_text_size">10sp</dimen>
     <dimen name="medium_text_size">13sp</dimen>
+    <dimen name="large_text_size">15sp</dimen>
     <dimen name="extra_small_margin_top">4dp</dimen>
     <dimen name="extra_large_margin_top">276dp</dimen>
     <dimen name="image_received_message_width">140dp</dimen>
@@ -48,4 +49,5 @@
     <dimen name="large_image_height">158dp</dimen>
     <dimen name="NoticeImageW">100dp</dimen>
     <dimen name="NoticeImageH">120dp</dimen>
+    <dimen name="large_padding">20dp</dimen>
 </resources>

@@ -2,6 +2,7 @@ package com.katja.splashmessenger
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -40,6 +41,9 @@ class ConversationActivity : AppCompatActivity() {
         adapter = MessageAdapter(emptyList())
         binding.messagesRecyclerView.adapter = adapter
 
+        // Set layout manager
+        binding.messagesRecyclerView.layoutManager = LinearLayoutManager(this)
+
         // Call messageDao to get the conversation and update the adapter when it's fetched
         if (conversationId != null) {
             dao.getConversation(conversationId) { conversation ->
@@ -50,10 +54,10 @@ class ConversationActivity : AppCompatActivity() {
                     adapter.messageList = conversation
                     adapter.notifyDataSetChanged()
                 }
-                else{
-                    adapter.messageList = spLocal.loadConversation()
-                    adapter.notifyDataSetChanged()
-                }
+//                else{
+//                    adapter.messageList = spLocal.loadConversation()
+//                    adapter.notifyDataSetChanged()
+//                }
             }
         }
         binding.sendButton.setOnClickListener {

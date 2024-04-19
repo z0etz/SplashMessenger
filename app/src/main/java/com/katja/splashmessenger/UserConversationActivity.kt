@@ -60,7 +60,13 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
             startActivity(intent)
         }
 
-       // getAllUsers()
+        binding.btnGoToProfile.setOnClickListener {
+            val intent = Intent(this, ProfilePageActivity::class.java)
+            startActivity(intent)
+        }
+
+
+        getAllUsers()
         // Dummy list of users (replace with actual data)
         val userList = listOf(
                  User("1", "John Doe", "john@example.com", "password"),
@@ -68,6 +74,8 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
                   User("3", "Alice Wonderland", "alice@example.com", "password")
                     // Add more users as needed
         )
+
+
         if(userList.isEmpty()) {
                     binding.startConversationTextView.visibility = View.VISIBLE
                     binding.noMessageTextView.visibility = View.VISIBLE
@@ -82,7 +90,7 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
                     binding.recyclerViewUserName.visibility = View.VISIBLE
                }
 
-                userAdapter = UserConversationAdapter(userList, this)
+                userAdapter = UserConversationAdapter( this)
                 recyclerView.adapter = userAdapter
                 recyclerView.layoutManager = LinearLayoutManager(this)
              }

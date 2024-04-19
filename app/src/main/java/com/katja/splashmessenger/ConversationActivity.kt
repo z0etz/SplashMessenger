@@ -26,13 +26,6 @@ class ConversationActivity : AppCompatActivity() {
 
         val user = auth.currentUser
 
-        binding.conversationName.text = "Logged in as: ${user?.displayName ?: user?.email}"
-
-       binding.signOutButton.setOnClickListener{
-           auth.signOut()
-           finish()
-       }
-
         // Get conversationId from the intent the activity was started with
         val conversationId = intent.getStringExtra("id")
         //val conversationId = intent.getStringExtra("conversationId")

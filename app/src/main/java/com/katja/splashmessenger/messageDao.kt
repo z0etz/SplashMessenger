@@ -42,7 +42,10 @@ class messageDao {
 
         FirebaseFirestore
             .getInstance()
+           // .collection("messages")
             .collection("messages/$conversationId")
+            // why is conversation Id needed ? it is causing a crash
+
             .get()
             .addOnSuccessListener { result -> for (document in result) {
                 val id = document.getString(KEY_ID)

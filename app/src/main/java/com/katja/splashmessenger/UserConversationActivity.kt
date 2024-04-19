@@ -30,6 +30,7 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
     private lateinit var adapter: ArrayAdapter<String>
     private lateinit var originalList: List<String>
     private lateinit var autoCompleteTextView: AutoCompleteTextView
+    val userMap = mutableMapOf<String?, String?>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +40,6 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
         firestore = FirebaseFirestore.getInstance()
 
         searchEditText = findViewById(R.id.searchEditText)
-
         getAllUsers()
 
         autoCompleteTextView = findViewById(R.id.searchEditText)
@@ -50,13 +50,17 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
 
         autoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
             val selectedUser = parent.getItemAtPosition(position) as String
+            val userId2: String? = userMap[selectedUser]
             val intent = Intent(this, ConversationActivity::class.java)
             // skicka användarinformationen till nästa aktivitet om det behövs
-            // intent.putExtra("selectedUser", selectedUser)
+            //intent.putExtra("id2", 3)
+            intent.putExtra("id", userId2)
+            println("This is the id")
+            println(userId2)
             startActivity(intent)
         }
 
-        getAllUsers()
+       // getAllUsers()
         // Dummy list of users (replace with actual data)
         val userList = listOf(
                  User("1", "John Doe", "john@example.com", "password"),
@@ -102,7 +106,9 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
                 val usersList = mutableListOf<String>()
                 for (document in querySnapshot.documents) {
                     val fullName = document.getString("fullName")
+                    val user2Id = document.getString("id")
                     fullName?.let { usersList.add(it) }
+                    userMap[fullName] = user2Id
                 }
                 originalList = usersList
                 showUsers(usersList)

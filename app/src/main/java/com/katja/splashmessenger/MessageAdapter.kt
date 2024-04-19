@@ -83,6 +83,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
         fun bind(message: Message) {
 
+            //Animation
             val animation = AnimationUtils.loadAnimation(itemView.context, R.anim.waterdrop_animation)
             val senderId =  message.senderId
             if (user?.uid == senderId) {
@@ -103,7 +104,12 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
     class WatersplashViewHolder(val binding: ItemWatersplashBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(message: Message) {
-            // TODO: Implement binding logic once the view is set up
+
+            //Animation
+            val animation = AnimationUtils.loadAnimation(itemView.context, R.anim.watersplash_animation)
+
+            binding.imageSentMessageWatersplash.startAnimation(animation)
+            binding.imageReceivedMessageWatersplash.startAnimation(animation)
         }
     }
 

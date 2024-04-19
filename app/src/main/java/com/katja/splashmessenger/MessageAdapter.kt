@@ -76,6 +76,8 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
     class WaterdropViewHolder(val binding: ItemWaterdropBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(message: Message) {
+
+            //Animation
             val animation = AnimationUtils.loadAnimation(itemView.context, R.anim.waterdrop_animation)
 
             binding.imageSentMessageWaterdrop.startAnimation(animation)
@@ -85,6 +87,8 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
     class WatersplashViewHolder(val binding: ItemWatersplashBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(message: Message) {
+
+            //Animation
             val animation = AnimationUtils.loadAnimation(itemView.context, R.anim.watersplash_animation)
 
             binding.imageSentMessageWatersplash.startAnimation(animation)
@@ -100,6 +104,8 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
     class WaterbubbleViewHolder(val binding: ItemWaterbubbleBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(message: Message) {
+
+            //Animation
             val animation = AnimationUtils.loadAnimation(itemView.context, R.anim.waterbubble_animation)
 
             binding.imageSentMessageWaterbubble.startAnimation(animation)

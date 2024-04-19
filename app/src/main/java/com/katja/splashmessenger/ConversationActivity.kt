@@ -6,6 +6,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.katja.splashmessenger.databinding.ActivityConversationBinding
+import java.util.UUID
 
 class ConversationActivity : AppCompatActivity() {
 
@@ -56,7 +57,18 @@ class ConversationActivity : AppCompatActivity() {
             }
         }
         binding.sendButton.setOnClickListener {
-            println(user?.uid)
+            val messageText= binding.messageEditText.text.toString()
+            val senderId = user?.uid
+            val messageID = UUID.randomUUID().toString()
+            val newMessageSender = Message(messageID,conversationId,senderId, MessageType.WATERBUBBLE, messageText, 1L)
+            dao.addMessage(newMessageSender)
+            // add message should take in a user param and add the newmessage for that user, userId,
+            // in the conversation that has the current conversationId
+
+            val newMessageReceiver = Message(messageID,senderId,senderId, MessageType.WATERBUBBLE, messageText, 1L)
+            dao.addMessage(newMessageReceiver)
+
+            println(senderId)
             println(conversationId)
 
         }

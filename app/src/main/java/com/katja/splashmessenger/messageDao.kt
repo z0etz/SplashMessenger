@@ -25,7 +25,8 @@ class messageDao {
 
         FirebaseFirestore
             .getInstance()
-            .document("messages/${message.conversationId}/${message.id}")
+            // it was crashing because firebase wants to get even number of segments in the document path so I added 0
+            .document("messages/${message.conversationId}/0/${message.id}")
             .set(dataToStore)
             .addOnSuccessListener { Log.i("SUCCESS", "Added message to Firestore with id: ${message.id}") }
             .addOnFailureListener { Log.i("ERROR", "Failed adding message to Firestore")}
@@ -42,9 +43,8 @@ class messageDao {
 
         FirebaseFirestore
             .getInstance()
-           // .collection("messages")
-            .collection("messages/$conversationId")
-            // why is conversation Id needed ? it is causing a crash
+            //.collection("messages")
+            .collection("messages/$conversationId/0")
 
             .get()
             .addOnSuccessListener { result -> for (document in result) {

@@ -80,7 +80,7 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
             binding.recyclerViewUserName.visibility = View.VISIBLE
         }
 
-                userAdapter = UserConversationAdapter(userList, this)
+                userAdapter = UserConversationAdapter( this)
                 recyclerView.adapter = userAdapter
                 recyclerView.layoutManager = LinearLayoutManager(this)
              }

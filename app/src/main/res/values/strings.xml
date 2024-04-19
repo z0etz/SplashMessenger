@@ -23,8 +23,16 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="sent_message_image_description">Small raindrops image</string>
-    <string name="received_message_image_description">Large raindrops image</string>
+    <string name="waterdrop_sent_message_image_description">Small raindrops image</string>
+    <string name="waterdrop_received_message_image_description">Large raindrops image</string>
+    <string name="waterdrop_image_profile_description">Drope image</string>
+    <string name="watersplash_image_profile_description">Balloon image</string>
+    <string name="watersplash_sent_message_image_description">Large balloons image</string>
+    <string name="watersplash_received_message_image_description">Watersplash image</string>
+    <string name="waterballoon_sent_message_image_description">Large waterballoons image</string>
+    <string name="waterballoon_received_message_image_description">Small waterballoons image</string>
+    <string name="waterballoon_image_profile_description">Waterballoon image</string>
+
 
 
     <string name="lorem_ipsum">
@@ -80,7 +88,6 @@
     <string name="no_message">No Message, Yet</string>
     <string name="no_user_logged_in">no user logged in</string>
     <string name="sign_out">Sign out</string>
-    <string name="enter_sent_message_here">Enter your message here</string>
-    <string name="enter_received_message_here">Enter your message here</string>
+
 
 </resources>

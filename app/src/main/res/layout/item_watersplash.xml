@@ -1,6 +1,97 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:padding="@dimen/extra_small_margin_top"
+    android:background="@color/gray">
+
+    <!-- Sent Watersplash-->
+
+    <ImageView
+        android:id="@+id/imageSentMessageWatersplash"
+        android:layout_width="@dimen/large_width"
+        android:layout_height="@dimen/medium_height"
+        android:contentDescription="@string/watersplash_sent_message_image_description"
+        android:src="@drawable/watersplash_sent_message"
+        app:layout_constraintBottom_toBottomOf="@+id/textMessageSentWatersplash"
+        app:layout_constraintEnd_toEndOf="@id/textMessageSentWatersplash"
+        app:layout_constraintStart_toStartOf="@id/textMessageSentWatersplash"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textMessageSentWatersplash"
+        android:layout_width="@dimen/view_bottom_height_sign_up"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_margin_top"
+        android:layout_marginEnd="@dimen/small_margin_end"
+        android:background="@drawable/background_sent_message"
+        android:minHeight="@dimen/button_search"
+        android:padding="@dimen/small_padding"
+        android:textColor="@color/white"
+        android:textSize="@dimen/medium_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/textDateTimeSentWatersplash"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.816"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.8" />
+
+    <TextView
+        android:id="@+id/textDateTimeSentWatersplash"
+        android:layout_width="@dimen/view_bottom_height_sign_up"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/extra_small_margin_top"
+        android:textColor="@color/white"
+        android:textSize="@dimen/small_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMessageSentWatersplash" />
+
+    <!-- Received Watersplash-->
+
+    <ImageView
+        android:id="@+id/imageProfileWatersplash"
+        android:layout_width="@dimen/extra_small_image_width"
+        android:layout_height="@dimen/medium_image_height"
+        android:contentDescription="@string/watersplash_image_profile_description"
+        android:src="@drawable/waterballoon_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMessageReceivedWatersplash" />
+
+    <ImageView
+        android:id="@+id/imageReceivedMessageWatersplash"
+        android:layout_width="@dimen/large_width"
+        android:layout_height="@dimen/small_height"
+        android:contentDescription="@string/watersplash_received_message_image_description"
+        android:src="@drawable/watersplash_received_message"
+        app:layout_constraintBottom_toBottomOf="@+id/textMessageReceivedWatersplash"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.729"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textMessageReceivedWatersplash"
+        android:layout_width="@dimen/view_bottom_height_sign_up"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/extra_small_margin_top"
+        android:layout_marginTop="@dimen/extra_large_margin_top"
+        android:background="@drawable/background_received_message"
+        android:minHeight="@dimen/button_search"
+        android:padding="@dimen/small_padding"
+        android:textColor="@color/white"
+        android:textSize="@dimen/medium_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/imageReceivedMessageWatersplash"
+        app:layout_constraintStart_toEndOf="@+id/imageProfileWatersplash"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.75" />
+
+    <TextView
+        android:id="@+id/textDateTimeReceivedWatersplash"
+        android:layout_width="@dimen/view_bottom_height_sign_up"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/extra_small_margin_top"
+        android:textColor="@color/white"
+        android:textSize="@dimen/small_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMessageReceivedWatersplash" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

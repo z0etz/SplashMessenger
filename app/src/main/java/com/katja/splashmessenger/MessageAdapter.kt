@@ -81,13 +81,15 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
             binding.imageSentMessageWaterdrop.startAnimation(animation)
             binding.imageReceivedMessageWaterdrop.startAnimation(animation)
         }
-
-        }
+    }
 
 
     class WatersplashViewHolder(val binding: ItemWatersplashBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(message: Message) {
-            // TODO: Implement binding logic once the view is set up
+            val animation = AnimationUtils.loadAnimation(itemView.context, R.anim.watersplash_animation)
+
+            binding.imageSentMessageWatersplash.startAnimation(animation)
+            binding.imageReceivedMessageWatersplash.startAnimation(animation)
         }
     }
 

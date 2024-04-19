@@ -1,9 +1,9 @@
 package com.katja.splashmessenger
 
 import android.content.Context
+import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
 import java.security.MessageDigest
-import com.google.gson.reflect.TypeToken
 import kotlin.collections.MutableList
 
 class MessageLocal( private val context: Context) {

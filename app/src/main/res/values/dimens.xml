@@ -46,4 +46,6 @@
     <dimen name="medium_image_height">125dp</dimen>
     <dimen name="large_image_width">361dp</dimen>
     <dimen name="large_image_height">158dp</dimen>
+    <dimen name="NoticeImageW">100dp</dimen>
+    <dimen name="NoticeImageH">120dp</dimen>
 </resources>

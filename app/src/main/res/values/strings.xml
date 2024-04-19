@@ -88,6 +88,10 @@
     <string name="no_message">No Message, Yet</string>
     <string name="no_user_logged_in">no user logged in</string>
     <string name="sign_out">Sign out</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="reply">Reply</string>
+    <string name="message_content">Message content</string>
+    <string name="sender_name">Sender Name</string>
 
 
 </resources>

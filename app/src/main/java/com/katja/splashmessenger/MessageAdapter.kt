@@ -1,6 +1,7 @@
 package com.katja.splashmessenger
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.katja.splashmessenger.databinding.ItemWaterdropBinding
@@ -8,6 +9,9 @@ import com.katja.splashmessenger.databinding.ItemWatersplashBinding
 import com.katja.splashmessenger.databinding.ItemMessageInBottleBinding
 import com.katja.splashmessenger.databinding.ItemWaterbubbleBinding
 import android.view.animation.AnimationUtils
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -75,8 +79,20 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
     }
 
     class WaterdropViewHolder(val binding: ItemWaterdropBinding) : RecyclerView.ViewHolder(binding.root) {
+        val user = Firebase.auth.currentUser
+
         fun bind(message: Message) {
+
             val animation = AnimationUtils.loadAnimation(itemView.context, R.anim.waterdrop_animation)
+            val senderId =  message.senderId
+            if (user?.uid == senderId) {
+
+                binding.textMessageSentWaterdrop.text = message.text
+            }
+            else{
+                binding.textMessageReceivedWaterdrop.text = message.text
+            }
+
 
             binding.imageSentMessageWaterdrop.startAnimation(animation)
             binding.imageReceivedMessageWaterdrop.startAnimation(animation)
@@ -98,9 +114,23 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
     }
 
     class WaterbubbleViewHolder(val binding: ItemWaterbubbleBinding) : RecyclerView.ViewHolder(binding.root) {
+        val user = Firebase.auth.currentUser
+
+
         fun bind(message: Message) {
             val animation = AnimationUtils.loadAnimation(itemView.context, R.anim.waterbubble_animation)
 
+            val senderId =  message.senderId
+            if (user?.uid == senderId) {
+
+               // binding.textMessageSentWaterbubble.text = message.text
+               // binding.textMessageReceivedWaterbubble.visibility = View.GONE
+            }
+            else{
+                binding.textMessageReceivedWaterbubble.text = message.text
+                binding.textMessageSentWaterbubble.visibility = View.GONE
+
+            }
             binding.imageSentMessageWaterbubble.startAnimation(animation)
             binding.imageReceivedMessageWaterbubble.startAnimation(animation)
         }

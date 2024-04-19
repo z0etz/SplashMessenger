@@ -3,29 +3,73 @@ package com.katja.splashmessenger
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.EditText
+import android.widget.ListView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.katja.splashmessenger.databinding.ActivityUserConversationBinding
 
-class UserConversationActivity : AppCompatActivity(), OnItemClickListener {
+
+//        android:onClick="showRecyclerView"
+// raderat från xml
+class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
+
 
     private lateinit var binding: ActivityUserConversationBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var userAdapter: UserConversationAdapter
+    private lateinit var userList: List<User>
+    private lateinit var listView: ListView
+    private lateinit var searchEditText: EditText
+    private lateinit var firestore: FirebaseFirestore
+    private lateinit var adapter: ArrayAdapter<String>
+    private lateinit var originalList: List<String>
+    private lateinit var autoCompleteTextView: AutoCompleteTextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUserConversationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        firestore = FirebaseFirestore.getInstance()
+
+        getAllUsers()
+
+        adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, mutableListOf())
+        binding.searchEditText.setAdapter(adapter)
+
         recyclerView = binding.recyclerViewUserName
 
-        userAdapter = UserConversationAdapter(this)
-        userAdapter.fetchUserConversations()
+       binding.searchEditText.setOnItemClickListener { parent, view, position, id ->
+            val selectedUser = parent.getItemAtPosition(position) as String
+            val intent = Intent(this, ConversationActivity::class.java)
+            // skicka användarinformationen till nästa aktivitet om det behövs
+            // intent.putExtra("selectedUser", selectedUser)
+            startActivity(intent)
+        }
 
-        if(userAdapter.conversationList.isEmpty()) {
+        binding.btnGoToProfile.setOnClickListener {
+            val intent = Intent(this, ProfilePageActivity::class.java)
+            startActivity(intent)
+        }
+
+
+        getAllUsers()
+        // Dummy list of users (replace with actual data)
+        val userList = listOf(
+                 User("1", "John Doe", "john@example.com", "password"),
+                  User("2", "Jane Smith", "jane@example.com", "password"),
+                  User("3", "Alice Wonderland", "alice@example.com", "password")
+                    // Add more users as needed
+        )
+
+
+        if(userList.isEmpty()) {
             binding.startConversationTextView.visibility = View.VISIBLE
             binding.noMessageTextView.visibility = View.VISIBLE
             binding.messageImageView.visibility = View.VISIBLE
@@ -39,13 +83,49 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener {
             binding.recyclerViewUserName.visibility = View.VISIBLE
         }
 
-        recyclerView.adapter = userAdapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+                userAdapter = UserConversationAdapter( this)
+                recyclerView.adapter = userAdapter
+                recyclerView.layoutManager = LinearLayoutManager(this)
+             }
+
+                override fun onItemClick(userId: String) {
+                val intent = Intent(this, ConversationActivity::class.java)
+                intent.putExtra("id", userId)
+                startActivity(intent)
+           }
+    override fun onResume() {
+        super.onResume()
+        // Rensa sökfältet
+       binding.searchEditText.setText("")
     }
 
-    override fun onItemClick(conversationId: String) {
-        val intent = Intent(this, ConversationActivity::class.java)
-        intent.putExtra("conversationId", conversationId)
-        startActivity(intent)
+    private fun getAllUsers() {
+        val usersCollection = firestore.collection("users")
+
+        usersCollection.get()
+            .addOnSuccessListener { querySnapshot ->
+                val usersList = mutableListOf<String>()
+                for (document in querySnapshot.documents) {
+                    val fullName = document.getString("fullName")
+                    fullName?.let { usersList.add(it) }
+                }
+                originalList = usersList
+                showUsers(usersList)
+                adapter.addAll(usersList)
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Failed to fetch users: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun showUsers(usersList: List<String>) {
+        adapter.clear()
+        adapter.addAll(usersList)
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun filterUsers(query: String) {
+        val filteredList = originalList.filter { it.contains(query, ignoreCase = true) }
+        showUsers(filteredList)
     }
 }

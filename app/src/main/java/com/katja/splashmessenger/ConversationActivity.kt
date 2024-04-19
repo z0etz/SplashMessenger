@@ -21,17 +21,6 @@ class ConversationActivity : AppCompatActivity() {
         binding = ActivityConversationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        auth = Firebase.auth
-
-        val user = auth.currentUser
-
-        binding.userLoggedIn.text = "Logged in as: ${user?.displayName ?: user?.email}"
-
-       binding.signOutButton.setOnClickListener{
-           auth.signOut()
-           finish()
-       }
-
         // Get conversationId from the intent the activity was started with
         val conversationId = intent.getStringExtra("conversationId")
 

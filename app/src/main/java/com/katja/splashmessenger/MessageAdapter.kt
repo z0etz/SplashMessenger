@@ -83,7 +83,6 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
         }
     }
 
-
     class WatersplashViewHolder(val binding: ItemWatersplashBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(message: Message) {
             val animation = AnimationUtils.loadAnimation(itemView.context, R.anim.watersplash_animation)

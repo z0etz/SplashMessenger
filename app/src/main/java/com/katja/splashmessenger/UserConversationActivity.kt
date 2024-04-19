@@ -30,6 +30,7 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
     private lateinit var adapter: ArrayAdapter<String>
     private lateinit var originalList: List<String>
     private lateinit var autoCompleteTextView: AutoCompleteTextView
+    val userMap = mutableMapOf<String?, String?>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,18 +39,24 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
 
         firestore = FirebaseFirestore.getInstance()
 
+        searchEditText = findViewById(R.id.searchEditText)
         getAllUsers()
 
+        autoCompleteTextView = findViewById(R.id.searchEditText)
         adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, mutableListOf())
-        binding.searchEditText.setAdapter(adapter)
+        autoCompleteTextView.setAdapter(adapter)
 
         recyclerView = binding.recyclerViewUserName
 
-       binding.searchEditText.setOnItemClickListener { parent, view, position, id ->
+        autoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
             val selectedUser = parent.getItemAtPosition(position) as String
+            val userId2: String? = userMap[selectedUser]
             val intent = Intent(this, ConversationActivity::class.java)
             // skicka användarinformationen till nästa aktivitet om det behövs
-            // intent.putExtra("selectedUser", selectedUser)
+            //intent.putExtra("id2", 3)
+            intent.putExtra("id", userId2)
+            println("This is the id")
+            println(userId2)
             startActivity(intent)
         }
 
@@ -70,18 +77,18 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
 
 
         if(userList.isEmpty()) {
-            binding.startConversationTextView.visibility = View.VISIBLE
-            binding.noMessageTextView.visibility = View.VISIBLE
-            binding.messageImageView.visibility = View.VISIBLE
-            binding.dropletImageView.visibility = View.VISIBLE
-            binding.recyclerViewUserName.visibility = View.GONE
-        } else {
-            binding.startConversationTextView.visibility = View.GONE
-            binding.noMessageTextView.visibility = View.GONE
-            binding.messageImageView.visibility = View.GONE
-            binding.dropletImageView.visibility = View.GONE
-            binding.recyclerViewUserName.visibility = View.VISIBLE
-        }
+                    binding.startConversationTextView.visibility = View.VISIBLE
+                    binding.noMessageTextView.visibility = View.VISIBLE
+                    binding.messageImageView.visibility = View.VISIBLE
+                    binding.dropletImageView.visibility = View.VISIBLE
+                    binding.recyclerViewUserName.visibility = View.GONE
+              } else {
+                    binding.startConversationTextView.visibility = View.GONE
+                    binding.noMessageTextView.visibility = View.GONE
+                    binding.messageImageView.visibility = View.GONE
+                    binding.dropletImageView.visibility = View.GONE
+                    binding.recyclerViewUserName.visibility = View.VISIBLE
+               }
 
                 userAdapter = UserConversationAdapter( this)
                 recyclerView.adapter = userAdapter
@@ -96,7 +103,7 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
     override fun onResume() {
         super.onResume()
         // Rensa sökfältet
-       binding.searchEditText.setText("")
+        autoCompleteTextView.setText("")
     }
 
     private fun getAllUsers() {
@@ -107,7 +114,9 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
                 val usersList = mutableListOf<String>()
                 for (document in querySnapshot.documents) {
                     val fullName = document.getString("fullName")
+                    val user2Id = document.getString("id")
                     fullName?.let { usersList.add(it) }
+                    userMap[fullName] = user2Id
                 }
                 originalList = usersList
                 showUsers(usersList)

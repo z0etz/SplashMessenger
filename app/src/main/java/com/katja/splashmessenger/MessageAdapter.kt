@@ -129,8 +129,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
                 binding.textMessageReceivedWaterbubble.visibility = View.GONE
                 binding.imageReceivedMessageWaterbubble.visibility = View.GONE
                 binding.imageProfileWaterbubble.visibility = View.GONE
-            }
-            else{
+            }else{
 
                 binding.textMessageReceivedWaterbubble.text = message.text
                 //binding.imageReceivedMessageWaterbubble.startAnimation(animation)

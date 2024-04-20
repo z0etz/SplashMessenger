@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AppNotice">
+    <View
+        android:id="@+id/topView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_message_height"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/dividerView" />
+
+    <TextView
+        android:id="@+id/messageName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/conversation"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/sign_up_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.053" />
+
+    <EditText
+        android:id="@+id/searchEditText"
+        android:layout_width="@dimen/edit_search_width"
+        android:layout_height="@dimen/buttons_sign_up_height"
+        android:autofillHints="search"
+        android:background="@drawable/rounded_edittext_gray_background"
+        android:hint="@string/search"
+        android:importantForAutofill="yes"
+        android:inputType="text"
+        android:paddingStart="@dimen/small_padding"
+        android:paddingEnd="@dimen/small_padding"
+        android:textColor="@color/text_gray_dark"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.16" />
+
+    <ImageButton
+        android:id="@+id/searchButton"
+        android:layout_width="@dimen/button_search"
+        android:layout_height="@dimen/button_search"
+        android:layout_margin="@dimen/margin_small"
+        android:background="@drawable/round_button_background"
+        android:contentDescription="@string/send_message"
+        android:padding="@dimen/margin_small"
+        android:scaleType="fitCenter"
+        android:src="@drawable/search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/topView"
+        app:layout_constraintHorizontal_bias="0.895"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.156" />
+
+    <View
+        android:id="@+id/dividerView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_sign_up_height"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/topView"
+        app:layout_constraintBottom_toTopOf="@id/bottomView" />
+
+    <View
+        android:id="@+id/bottomView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_bottom_height_sign_up"
+        android:background="@color/grey_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dividerView"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="@color/grey_white"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout">
+
+
+        <!-- RecyclerView for dynamic data -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcNotice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:background="@color/grey_white"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomView">
+
+        <!-- ImageButton with larger touch target and content description -->
+        <ImageButton
+            android:id="@+id/img_btn_message"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:padding="16dp"
+            android:src="@drawable/message"
+          />
+
+
+        <!-- ImageButton with larger touch target and content description -->
+        <ImageButton
+            android:id="@+id/img_btn_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:padding="16dp"
+            android:src="@drawable/user_image"
+         />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.katja.splashmessenger.databinding.ActivityConversationBinding
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.util.Date
 import java.util.UUID
 
 class ConversationActivity : AppCompatActivity() {
@@ -48,13 +51,14 @@ class ConversationActivity : AppCompatActivity() {
         getConversation(conversationIdUser1)
 
         binding.sendButton.setOnClickListener {
+
+
             val messageText= binding.messageEditText.text.toString()
             val senderId = user?.uid
             val messageID = UUID.randomUUID().toString()
-            val newMessageSender = Message(messageID,conversationIdUser1,senderId, MessageType.NORMAL_VIEW_TYPE, messageText, 1L)
+            val currentDate = LocalDateTime.now()
+            val newMessageSender = Message(messageID,conversationIdUser1,senderId, MessageType.NORMAL_VIEW_TYPE, messageText, currentDate)
             dao.addMessage(newMessageSender)
-            // add message should take in a user param and add the newmessage for that user, userId,
-            // in the conversation that has the current conversationId
 
             val newMessageReceiver = Message(messageID,conversationIdUser2,senderId, MessageType.NORMAL_VIEW_TYPE, messageText, 1L)
             dao.addMessage(newMessageReceiver)
@@ -62,11 +66,26 @@ class ConversationActivity : AppCompatActivity() {
 
             getConversation(conversationIdUser1)
 
-          //  adapter.messageList += newMessageSender
-            //adapter.notifyDataSetChanged()
+            binding.messageEditText.text.clear()
 
-            println(senderId)
-            println(conversationIdUser1)
+            // the scrolling seems to be working but test it after adding date and sorting messages accordingly
+            val recyclerView = binding.messagesRecyclerView
+
+            recyclerView.addOnLayoutChangeListener { _, _, _, _, bottom, _, _, _, _ ->
+                if (bottom < recyclerView.height) {
+                    // The layout has been scrolled up, likely due to keyboard being shown
+                    recyclerView.postDelayed({
+                        recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
+                    }, 100) // Adjust the delay as needed
+                } else {
+                    // The layout has not been scrolled up, perform immediate scroll
+                    recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
+                }
+            }
+
+
+           // println(senderId)
+            //println(conversationIdUser1)
 
         }
     }

@@ -63,6 +63,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val message = messageList[position]
         println(message.senderId)
+        println(message.conversationId)
         when (holder.itemViewType) {
             WATERDROP_VIEW_TYPE -> {
                 (holder as WaterdropViewHolder).bind(message)

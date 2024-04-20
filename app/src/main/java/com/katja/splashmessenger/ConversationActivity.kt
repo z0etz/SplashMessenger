@@ -38,6 +38,34 @@ class ConversationActivity : AppCompatActivity() {
         binding.messagesRecyclerView.layoutManager = LinearLayoutManager(this)
 
         // Call messageDao to get the conversation and update the adapter when it's fetched
+        getConversation(conversationId)
+
+        binding.sendButton.setOnClickListener {
+            val messageText= binding.messageEditText.text.toString()
+            val senderId = user?.uid
+            val messageID = UUID.randomUUID().toString()
+            val newMessageSender = Message(messageID,conversationId,senderId, MessageType.NORMAL_VIEW_TYPE, messageText, 1L)
+            dao.addMessage(newMessageSender)
+            // add message should take in a user param and add the newmessage for that user, userId,
+            // in the conversation that has the current conversationId
+
+            val newMessageReceiver = Message(messageID,senderId,senderId, MessageType.NORMAL_VIEW_TYPE, messageText, 1L)
+            dao.addMessage(newMessageReceiver)
+
+
+            getConversation(conversationId)
+
+          //  adapter.messageList += newMessageSender
+            //adapter.notifyDataSetChanged()
+
+            println(senderId)
+            println(conversationId)
+
+        }
+    }
+
+    fun getConversation(conversationId: String?) {
+
         if (conversationId != null) {
             dao.getConversation(conversationId) { conversation ->
 
@@ -53,21 +81,7 @@ class ConversationActivity : AppCompatActivity() {
 //                }
             }
         }
-        binding.sendButton.setOnClickListener {
-            val messageText= binding.messageEditText.text.toString()
-            val senderId = user?.uid
-            val messageID = UUID.randomUUID().toString()
-            val newMessageSender = Message(messageID,conversationId,senderId, MessageType.NORMAL_VIEW_TYPE, messageText, 1L)
-            dao.addMessage(newMessageSender)
-            // add message should take in a user param and add the newmessage for that user, userId,
-            // in the conversation that has the current conversationId
 
-            val newMessageReceiver = Message(messageID,senderId,senderId, MessageType.NORMAL_VIEW_TYPE, messageText, 1L)
-            dao.addMessage(newMessageReceiver)
 
-            println(senderId)
-            println(conversationId)
-
-        }
     }
 }

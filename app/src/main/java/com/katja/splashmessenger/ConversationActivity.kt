@@ -57,12 +57,12 @@ class ConversationActivity : AppCompatActivity() {
             val messageText= binding.messageEditText.text.toString()
             val senderId = user?.uid
             val messageID = UUID.randomUUID().toString()
-            val newMessageSender = Message(messageID,conversationId,senderId, MessageType.WATERBUBBLE, messageText, 1L)
+            val newMessageSender = Message(messageID,conversationId,senderId, MessageType.NORMAL_VIEW_TYPE, messageText, 1L)
             dao.addMessage(newMessageSender)
             // add message should take in a user param and add the newmessage for that user, userId,
             // in the conversation that has the current conversationId
 
-            val newMessageReceiver = Message(messageID,senderId,senderId, MessageType.WATERBUBBLE, messageText, 1L)
+            val newMessageReceiver = Message(messageID,senderId,senderId, MessageType.NORMAL_VIEW_TYPE, messageText, 1L)
             dao.addMessage(newMessageReceiver)
 
             println(senderId)

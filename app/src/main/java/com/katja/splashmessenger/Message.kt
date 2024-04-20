@@ -7,5 +7,6 @@ enum class MessageType {
     WATERDROP,
     WATERSPLASH,
     MESSAGE_IN_BOTTLE,
-    WATERBUBBLE
+    WATERBUBBLE,
+    NORMAL_VIEW_TYPE
 }

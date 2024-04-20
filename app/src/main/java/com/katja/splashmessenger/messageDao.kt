@@ -57,6 +57,7 @@ class messageDao {
                     "WATERSPLASH" -> MessageType.WATERSPLASH
                     "MESSAGE_IN_BOTTLE" -> MessageType.MESSAGE_IN_BOTTLE
                     "WATERBUBBLE" -> MessageType.WATERBUBBLE
+                    "NORMAL_VIEW_TYPE" -> MessageType.NORMAL_VIEW_TYPE
                     else -> MessageType.WATERBUBBLE
                 }
                 val text = document.getString(KEY_TEXT)

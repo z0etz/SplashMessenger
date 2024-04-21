@@ -56,11 +56,11 @@ class ConversationActivity : AppCompatActivity() {
             val messageText= binding.messageEditText.text.toString()
             val senderId = user?.uid
             val messageID = UUID.randomUUID().toString()
-            val currentDate = LocalDateTime.now()
+            val currentDate = System.currentTimeMillis()
             val newMessageSender = Message(messageID,conversationIdUser1,senderId, MessageType.NORMAL_VIEW_TYPE, messageText, currentDate)
             dao.addMessage(newMessageSender)
 
-            val newMessageReceiver = Message(messageID,conversationIdUser2,senderId, MessageType.NORMAL_VIEW_TYPE, messageText, 1L)
+            val newMessageReceiver = Message(messageID,conversationIdUser2,senderId, MessageType.NORMAL_VIEW_TYPE, messageText, currentDate)
             dao.addMessage(newMessageReceiver)
 
 
@@ -98,6 +98,13 @@ class ConversationActivity : AppCompatActivity() {
 
                 if(!conversation.isEmpty()) {
 
+                    conversation.sortedBy{  it.timestamp!! }
+
+                    println("From conversation")
+                    for( i in conversation){
+
+                        println(i.timestamp)
+                    }
                     adapter.messageList = conversation
                     adapter.notifyDataSetChanged()
                 }
@@ -109,5 +116,13 @@ class ConversationActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    // should be moved to a DataManager
+    fun sortMessages(conversation: List<Message>): List<Message>{
+
+
+
+        return emptyList()
     }
 }

@@ -3,6 +3,7 @@ package com.katja.splashmessenger
 import android.content.Context
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import java.time.LocalDateTime
 
 class messageDao {
 
@@ -41,6 +42,7 @@ class messageDao {
     fun getConversation(conversationId: String, callback: (List<Message>) -> Unit) {
         val messageList = ArrayList<Message>()
 
+        println("from messageAdo")
         FirebaseFirestore
             .getInstance()
             //.collection("messages")
@@ -62,6 +64,8 @@ class messageDao {
                 }
                 val text = document.getString(KEY_TEXT)
                 val timestamp = document.getLong(KEY_TIMESTAMP)
+                println(timestamp)
+                //val timestamp = LocalDateTime.now()
 
                 val message = Message(id, conversationId, senderId, type, text, timestamp)
                 messageList.add(message)

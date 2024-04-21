@@ -98,14 +98,14 @@ class ConversationActivity : AppCompatActivity() {
 
                 if(!conversation.isEmpty()) {
 
-                    conversation.sortedBy{  it.timestamp!! }
+                   val conversationSorted = sortMessages(conversation)
 
                     println("From conversation")
-                    for( i in conversation){
+                    for( i in conversationSorted){
 
                         println(i.timestamp)
                     }
-                    adapter.messageList = conversation
+                    adapter.messageList = conversationSorted
                     adapter.notifyDataSetChanged()
                 }
 //                else{
@@ -119,10 +119,24 @@ class ConversationActivity : AppCompatActivity() {
     }
 
     // should be moved to a DataManager
-    fun sortMessages(conversation: List<Message>): List<Message>{
+    fun sortMessages(messages: MutableList<Message>): List<Message>{
+
+        val range = messages.size -2
+
+        for( i in 0..range){
+
+            for (j in 0..range){
+
+                if (messages[j].timestamp!! > messages[j+1].timestamp!! ){
+                    val swapMessage: Message = messages[j]
+                    messages[j] = messages[j + 1 ]
+                    messages[j+1] = swapMessage
+                }
+            }
+        }
 
 
 
-        return emptyList()
+        return messages
     }
 }

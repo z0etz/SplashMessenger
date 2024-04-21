@@ -39,8 +39,8 @@ class messageDao {
     }
 
 
-    fun getConversation(conversationId: String, callback: (List<Message>) -> Unit) {
-        val messageList = ArrayList<Message>()
+    fun getConversation(conversationId: String, callback: (MutableList<Message>) -> Unit) {
+        val messageList: MutableList<Message> = mutableListOf()
 
         println("from messageAdo")
         FirebaseFirestore
@@ -75,7 +75,7 @@ class messageDao {
             }
             .addOnFailureListener {
                 Log.e("ERROR", "Failed to fetch conversation")
-                callback(emptyList())
+                callback(mutableListOf())
             }
 
     }

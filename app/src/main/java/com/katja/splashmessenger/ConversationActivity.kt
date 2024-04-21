@@ -81,14 +81,19 @@ class ConversationActivity : AppCompatActivity() {
                             val recyclerView = binding.messagesRecyclerView
 
                             recyclerView.addOnLayoutChangeListener { _, _, _, _, bottom, _, _, _, _ ->
-                                if (bottom < recyclerView.height) {
-                                    // The layout has been scrolled up, likely due to keyboard being shown
-                                    recyclerView.postDelayed({
+                                if (adapter.itemCount > 0) {
+                                    if (bottom < recyclerView.height) {
+                                        // The layout has been scrolled up, likely due to keyboard being shown
+                                        recyclerView.postDelayed({
+                                            recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
+                                        }, 100) // Adjust the delay as needed
+                                    } else {
+                                        // The layout has not been scrolled up, perform immediate scroll
                                         recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
-                                    }, 100) // Adjust the delay as needed
-                                } else {
-                                    // The layout has not been scrolled up, perform immediate scroll
-                                    recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
+                                    }
+                                }
+                                else{
+                                    println("avoided a crash")
                                 }
                             }
                         }

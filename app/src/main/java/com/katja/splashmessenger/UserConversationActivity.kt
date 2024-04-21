@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.katja.splashmessenger.databinding.ActivityUserConversationBinding
 
@@ -93,7 +94,28 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
                 userAdapter = UserConversationAdapter( this)
                 recyclerView.adapter = userAdapter
                 recyclerView.layoutManager = LinearLayoutManager(this)
-             }
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.item_1 -> {
+                    // MessagesActivity
+                    val intent = Intent(this, UserConversationActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.item_2 -> {
+                    // ProfileActivity
+                    val intent = Intent(this, ProfilePageActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
+
+
+    }
 
                 override fun onItemClick(userId: String) {
                 val intent = Intent(this, ConversationActivity::class.java)
@@ -126,6 +148,9 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
                 Toast.makeText(this, "Failed to fetch users: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
     }
+
+
+
 
     private fun showUsers(usersList: List<String>) {
         adapter.clear()

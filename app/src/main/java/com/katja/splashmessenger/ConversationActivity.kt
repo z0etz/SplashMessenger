@@ -39,7 +39,6 @@ class ConversationActivity : AppCompatActivity() {
         val user = auth.currentUser
 
         // Get conversationId from the intent the activity was started with
-       // val conversationId = intent.getStringExtra("id")
         val user2 = intent.getStringArrayListExtra("userArray")
 
         val user2Id = user2?.get(1)
@@ -143,25 +142,6 @@ class ConversationActivity : AppCompatActivity() {
 
 
             binding.messageEditText.text.clear()
-
-            // the scrolling seems to be working but test it after adding date and sorting messages accordingly
-         /*   val recyclerView = binding.messagesRecyclerView
-
-            recyclerView.addOnLayoutChangeListener { _, _, _, _, bottom, _, _, _, _ ->
-                if (bottom < recyclerView.height) {
-                    // The layout has been scrolled up, likely due to keyboard being shown
-                    recyclerView.postDelayed({
-                        recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
-                    }, 100) // Adjust the delay as needed
-                } else {
-                    // The layout has not been scrolled up, perform immediate scroll
-                    recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
-                }
-            }*/
-
-
-           // println(senderId)
-            //println(conversationIdUser1)
 
         }
 

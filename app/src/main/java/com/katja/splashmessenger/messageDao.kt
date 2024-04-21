@@ -44,7 +44,6 @@ class messageDao {
 
         FirebaseFirestore
             .getInstance()
-            //.collection("messages")
             .collection("messages/$conversationId")
 
             .get()

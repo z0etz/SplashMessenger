@@ -34,7 +34,8 @@
                 android:layout_width="@dimen/NoticeImageH"
                 android:layout_height="@dimen/NoticeImageW"
                 android:layout_gravity="center"
-                android:src="@drawable/droplet_image" />
+                android:src="@drawable/droplet_image"
+                android:contentDescription="@string/droplet_image_description"/>
 
         </FrameLayout>
 
@@ -97,7 +98,8 @@
                 android:layout_width="@dimen/buttons_sign_up_width"
                 android:layout_height="@dimen/divider_message_height"
                 android:layout_marginBottom="@dimen/round_button_size"
-                android:src="@drawable/cloud_image" />
+                android:src="@drawable/cloud_image"
+                android:contentDescription="@string/cloud_image_description" />
 
             <Button
                 android:id="@+id/profile_logout_btn"
@@ -118,7 +120,7 @@
                 android:textSize="@dimen/create_new_account_text_size"
                 android:textStyle="bold"
                 android:backgroundTint="@color/red"
-                android:text="Delete account" />
+                android:text="@string/delete_account" />
 
 
         </LinearLayout>

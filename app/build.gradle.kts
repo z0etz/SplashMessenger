@@ -63,5 +63,6 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.google.android.material:material:<version>")
 
 }

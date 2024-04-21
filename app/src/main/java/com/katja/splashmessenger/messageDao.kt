@@ -42,7 +42,6 @@ class messageDao {
     fun getConversation(conversationId: String, callback: (MutableList<Message>) -> Unit) {
         val messageList: MutableList<Message> = mutableListOf()
 
-        println("from messageAdo")
         FirebaseFirestore
             .getInstance()
             //.collection("messages")
@@ -64,7 +63,6 @@ class messageDao {
                 }
                 val text = document.getString(KEY_TEXT)
                 val timestamp = document.getLong(KEY_TIMESTAMP)
-                println(timestamp)
                 //val timestamp = LocalDateTime.now()
 
                 val message = Message(id, conversationId, senderId, type, text, timestamp)

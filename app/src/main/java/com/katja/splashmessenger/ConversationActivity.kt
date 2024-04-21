@@ -1,16 +1,23 @@
 package com.katja.splashmessenger
 
+import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.katja.splashmessenger.databinding.ActivityConversationBinding
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.Date
 import java.util.UUID
+import android.util.Log
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.ListenerRegistration
+
+
 
 class ConversationActivity : AppCompatActivity() {
 
@@ -19,6 +26,8 @@ class ConversationActivity : AppCompatActivity() {
     lateinit var auth: FirebaseAuth
     private val dao = messageDao()
     private val spLocal = MessageLocal(this)
+    private lateinit var listenerRegistration: ListenerRegistration
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -50,6 +59,70 @@ class ConversationActivity : AppCompatActivity() {
         // Call messageDao to get the conversation and update the adapter when it's fetched
         getConversation(conversationIdUser1)
 
+
+        // here start the firestore changeListner
+
+       val firestore = FirebaseFirestore.getInstance()
+
+         listenerRegistration = firestore.collection("messages/${conversationIdUser1}")
+            .addSnapshotListener { snapshots, e ->
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e)
+                    return@addSnapshotListener
+                }
+
+                for (dc in snapshots?.documentChanges!!) {
+                    when (dc.type) {
+                        DocumentChange.Type.ADDED -> {
+
+                            // A new message has been added
+                           getConversation(conversationIdUser1)
+
+                            val recyclerView = binding.messagesRecyclerView
+
+                            recyclerView.addOnLayoutChangeListener { _, _, _, _, bottom, _, _, _, _ ->
+                                if (bottom < recyclerView.height) {
+                                    // The layout has been scrolled up, likely due to keyboard being shown
+                                    recyclerView.postDelayed({
+                                        recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
+                                    }, 100) // Adjust the delay as needed
+                                } else {
+                                    // The layout has not been scrolled up, perform immediate scroll
+                                    recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
+                                }
+                            }
+                        }
+
+                        DocumentChange.Type.MODIFIED -> {
+                            // Handle modified documents
+                        }
+                        DocumentChange.Type.REMOVED -> {
+                            // Handle removed documents
+                        }
+                    }
+                }
+            }
+
+
+
+
+
+
+
+
+        // Here ends the firestore ChangeListener
+
+
+
+
+
+
+
+
+
+
+
+
         binding.sendButton.setOnClickListener {
 
 
@@ -64,12 +137,10 @@ class ConversationActivity : AppCompatActivity() {
             dao.addMessage(newMessageReceiver)
 
 
-            getConversation(conversationIdUser1)
-
             binding.messageEditText.text.clear()
 
             // the scrolling seems to be working but test it after adding date and sorting messages accordingly
-            val recyclerView = binding.messagesRecyclerView
+         /*   val recyclerView = binding.messagesRecyclerView
 
             recyclerView.addOnLayoutChangeListener { _, _, _, _, bottom, _, _, _, _ ->
                 if (bottom < recyclerView.height) {
@@ -81,13 +152,15 @@ class ConversationActivity : AppCompatActivity() {
                     // The layout has not been scrolled up, perform immediate scroll
                     recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
                 }
-            }
+            }*/
 
 
            // println(senderId)
             //println(conversationIdUser1)
 
         }
+
+
     }
 
     fun getConversation(conversationId: String?) {
@@ -100,11 +173,6 @@ class ConversationActivity : AppCompatActivity() {
 
                    val conversationSorted = sortMessages(conversation)
 
-                    println("From conversation")
-                    for( i in conversationSorted){
-
-                        println(i.timestamp)
-                    }
                     adapter.messageList = conversationSorted
                     adapter.notifyDataSetChanged()
                 }
@@ -139,4 +207,9 @@ class ConversationActivity : AppCompatActivity() {
 
         return messages
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        listenerRegistration.remove()
+    }
 }
+

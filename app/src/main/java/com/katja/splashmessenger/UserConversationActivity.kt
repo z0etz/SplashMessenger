@@ -61,12 +61,6 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
             startActivity(intent)
         }
 
-        binding.btnGoToProfile.setOnClickListener {
-            val intent = Intent(this, ProfilePageActivity::class.java)
-            startActivity(intent)
-        }
-
-
         getAllUsers()
         // Dummy list of users (replace with actual data)
         val userList = listOf(
@@ -100,19 +94,18 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
             when(item.itemId) {
                 R.id.item_1 -> {
                     // MessagesActivity
-                    val intent = Intent(this, UserConversationActivity::class.java)
-                    startActivity(intent)
+                    startActivityIfNeeded(Intent(this, UserConversationActivity::class.java), 0)
                     true
                 }
                 R.id.item_2 -> {
                     // ProfileActivity
-                    val intent = Intent(this, ProfilePageActivity::class.java)
-                    startActivity(intent)
+                    startActivityIfNeeded(Intent(this, ProfilePageActivity::class.java), 0)
                     true
                 }
                 else -> false
             }
         }
+
 
 
     }

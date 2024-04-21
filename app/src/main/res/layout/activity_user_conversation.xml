@@ -29,20 +29,6 @@
         app:layout_constraintVertical_bias="0.065" />
 
 
-    <ImageButton
-        android:id="@+id/btnGoToProfile"
-        android:layout_width="@dimen/profile_button_size"
-        android:layout_height="@dimen/profile_button_size"
-        android:background="@android:color/transparent"
-        android:src="@drawable/user_image"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.956"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
-
-
     <AutoCompleteTextView
         android:id="@+id/searchEditText"
         android:layout_width="@dimen/edit_search_width"
@@ -155,10 +141,14 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottom_navigation_menu"
+        android:background="@color/white"
+        android:padding="@dimen/large_text_size"
+        app:itemIconTint="@color/dark_grey"
+        app:itemTextColor="@color/dark_grey"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:menu="@menu/bottom_navigation_menu" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

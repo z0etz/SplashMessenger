@@ -9,7 +9,7 @@
     <dimen name="view_bottom_height_sign_up">0dp</dimen>
     <dimen name="buttons_sign_up_height">60dp</dimen>
     <dimen name="buttons_sign_up_width">270dp</dimen>
-    <dimen name="sign_up_text_size">25sp</dimen>
+    <dimen name="sign_up_text_size">20sp</dimen>
     <dimen name="create_new_account_text_size">18sp</dimen>
     <dimen name="round_button_size">30dp</dimen>
     <dimen name="margin_small">10dp</dimen>
@@ -33,6 +33,7 @@
     <dimen name="small_padding">12dp</dimen>
     <dimen name="small_text_size">10sp</dimen>
     <dimen name="medium_text_size">13sp</dimen>
+    <dimen name="large_text_size">15sp</dimen>
     <dimen name="extra_small_margin_top">4dp</dimen>
     <dimen name="extra_large_margin_top">276dp</dimen>
     <dimen name="image_received_message_width">140dp</dimen>
@@ -48,4 +49,6 @@
     <dimen name="large_image_height">158dp</dimen>
     <dimen name="NoticeImageW">100dp</dimen>
     <dimen name="NoticeImageH">120dp</dimen>
+    <dimen name="large_padding">20dp</dimen>
+    <dimen name="extra_small_height">69dp</dimen>
 </resources>

@@ -13,32 +13,21 @@
         app:layout_constraintBottom_toTopOf="@id/dividerView" />
 
     <TextView
-        android:id="@+id/messageName"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/messages"
         android:textColor="@color/text_black"
         android:textSize="@dimen/sign_up_text_size"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.053" />
+        app:layout_constraintVertical_bias="0.065" />
 
-
-    <ImageButton
-        android:id="@+id/btnGoToProfile"
-        android:layout_width="@dimen/profile_button_size"
-        android:layout_height="@dimen/profile_button_size"
-        android:background="@android:color/transparent"
-        android:src="@drawable/user_image"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.956"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
 
     <AutoCompleteTextView
         android:id="@+id/searchEditText"
@@ -46,39 +35,21 @@
         android:layout_height="@dimen/buttons_sign_up_height"
         android:autofillHints="search"
         android:background="@drawable/rounded_edittext_gray_background"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="@dimen/margin_small"
         android:hint="@string/search"
+        android:imeOptions="actionDone"
         android:importantForAutofill="yes"
         android:inputType="text"
-        android:paddingStart="@dimen/medium_padding"
-        android:paddingEnd="@dimen/medium_padding"
-        android:textColor="@color/text_gray_dark"
+        android:padding="@dimen/large_padding"
+        android:textSize="@dimen/large_text_size"
         android:textStyle="bold"
-        android:imeOptions="actionDone"
-        android:layout_margin="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.16" />
-
-
-    <ImageButton
-        android:id="@+id/searchButton"
-        android:layout_width="@dimen/button_search"
-        android:layout_height="@dimen/button_search"
-        android:layout_margin="@dimen/margin_small"
-        android:background="@drawable/round_button_background"
-        android:contentDescription="@string/send_message"
-        android:padding="@dimen/margin_small"
-        android:scaleType="fitCenter"
-        android:src="@drawable/search"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/topView"
-        app:layout_constraintHorizontal_bias="0.895"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.165" />
+        app:layout_constraintVertical_bias="0.159" />
 
     <View
         android:id="@+id/dividerView"
@@ -165,5 +136,19 @@
         app:layout_constraintTop_toTopOf="@+id/topView"
         app:layout_constraintVertical_bias="0.748"
         android:visibility="gone"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/large_text_size"
+        app:itemIconTint="@color/dark_grey"
+        app:itemTextColor="@color/dark_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

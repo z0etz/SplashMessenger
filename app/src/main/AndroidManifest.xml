@@ -23,7 +23,8 @@
             android:exported="false" />
         <activity
             android:name=".UserConversationActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".ConversationActivity"
             android:exported="false" />

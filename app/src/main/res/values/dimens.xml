@@ -50,4 +50,5 @@
     <dimen name="NoticeImageW">100dp</dimen>
     <dimen name="NoticeImageH">120dp</dimen>
     <dimen name="large_padding">20dp</dimen>
+    <dimen name="extra_small_height">69dp</dimen>
 </resources>

@@ -31,11 +31,10 @@
 
             <ImageView
                 android:id="@+id/profile_drop_image"
-                android:layout_width="@dimen/NoticeImageH"
-                android:layout_height="@dimen/NoticeImageW"
-                android:layout_gravity="center"
-                android:src="@drawable/droplet_image"
-                android:contentDescription="@string/droplet_image_description"/>
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/extra_small_height"
+                android:contentDescription="@string/droplet_image_description"
+                android:src="@drawable/droplet_image" />
 
         </FrameLayout>
 

@@ -34,11 +34,6 @@ class ProfilePageActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.imgBtnMessage.setOnClickListener {
-            val intent = Intent(this, UserConversationActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
 
         binding.profileUserName.text = user?.displayName ?: "No name available"
         binding.profileUserMail.text = user?.email ?: "No email available"

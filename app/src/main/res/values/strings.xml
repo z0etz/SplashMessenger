@@ -92,6 +92,8 @@
     <string name="message_content">Message content</string>
     <string name="sender_name">Sender Name</string>
     <string name="don_t_have_an_account">Don´t have an account?</string>
+    <string name="username_text">Username text</string>
+    <string name="usermail">UserMail</string>
 
 
 </resources>

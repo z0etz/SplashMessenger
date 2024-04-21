@@ -146,6 +146,7 @@ tools:context=".MainActivity">
     android:backgroundTint="@color/blue"
     android:text="@string/sign_up"
     android:textColor="@color/white"
+    android:textStyle="bold"
     android:textSize="@dimen/create_new_account_text_size"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="@+id/topView"

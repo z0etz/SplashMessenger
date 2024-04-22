@@ -70,6 +70,8 @@
         android:textStyle="bold"
         android:drawablePadding="@dimen/margin_small"
         android:padding="@dimen/large_padding"
+        android:autofillHints="username"
+        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -90,12 +92,14 @@
         android:drawablePadding="@dimen/margin_small"
         android:padding="@dimen/large_padding"
         android:inputType="textPassword"
+        android:autofillHints="password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.448" />
+
 
     <Button
         android:id="@+id/logInButton"

@@ -1,11 +1,10 @@
 package com.katja.splashmessenger
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import com.katja.splashmessenger.databinding.ItemUserNameBinding
 
 interface OnItemClickListener {
     fun onItemClick(userArray: ArrayList<String?>)
@@ -14,87 +13,85 @@ interface OnItemClickListener {
 class UserConversationAdapter(private val listener: OnItemClickListener) :
     RecyclerView.Adapter<UserConversationAdapter.ConversationViewHolder>() {
 
-    val conversationList = mutableListOf<Conversation>()
-    val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
-    val userDao = UserDao()
-    val conversationDao = ConversationDao()
+     val conversationList = mutableListOf<Conversation>()
+     val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
+     val userDao = UserDao()
+     val conversationDao = ConversationDao()
 
-    inner class ConversationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textViewUserName: TextView = itemView.findViewById(R.id.textViewUserName)
+    inner class ConversationViewHolder(private val binding: ItemUserNameBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         init {
-            itemView.setOnClickListener {
+            binding.root.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val conversation = conversationList[position]
                     val otherUserId = conversation.senderIds.find { it != currentUserId }
                     if (otherUserId != null) {
                         userDao.fetchUserById(otherUserId) { otherUser ->
-
                             val otherUserName = otherUser?.fullName
-                            val userArray = arrayListOf<String?>(otherUserName, otherUserId)
+                            val userArray = arrayListOf(otherUserName, otherUserId)
                             listener.onItemClick(userArray)
-
                         }
                     }
                 }
             }
         }
-    }
 
-        private fun getItem(position: Int): Conversation {
-            return conversationList[position]
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConversationViewHolder {
-            val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_user_name, parent, false)
-            return ConversationViewHolder(itemView)
-        }
-
-        override fun onBindViewHolder(holder: ConversationViewHolder, position: Int) {
-            val conversation = conversationList[position]
-
-            // Find the user that is not the current user
+        fun bind(conversation: Conversation, position: Int) {
             val otherUserId = conversation.senderIds.find { it != currentUserId }
             if (otherUserId != null) {
                 userDao.fetchUserById(otherUserId) { otherUser ->
-                    // Once the user data is fetched, update the UI accordingly
-                    // Assuming holder.textViewUserName is the TextView where you want to display the user's name
-                    holder.textViewUserName.text = otherUser?.fullName ?: "Unknown User"
+                    val otherUserName = otherUser?.fullName ?: "Unknown User"
+                    binding.textViewUserName.text = otherUserName
                 }
             }
-
-
-
+            binding.userConversationDeleteButton.setOnClickListener {
+                deleteConversation(position)
+                conversationDao.deleteConversation(currentUserId, conversation.id)
+            }
         }
+
+        private fun deleteConversation(position: Int){
+            conversationList.removeAt(position)
+            notifyDataSetChanged()
+        }
+
+    }
+
+    private fun getItem(position: Int): Conversation {
+        return conversationList[position]
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConversationViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = ItemUserNameBinding.inflate(inflater, parent, false)
+        return ConversationViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: ConversationViewHolder, position: Int) {
+        holder.bind(conversationList[position], position)
+    }
 
     override fun getItemCount(): Int {
         return conversationList.size
     }
 
-    private fun deleteConversation(position: Int){
-        conversationList.removeAt(position)
+
+    fun updateList(newList: List<Conversation>) {
+        conversationList.clear()
+        conversationList.addAll(newList)
         notifyDataSetChanged()
     }
 
-        // Function to update the conversation list
-    // these are not needed anymore, other methods with similar functionalities have been implemented in the userConversationActivity
-        fun updateList(newList: List<Conversation>) {
-            conversationList.clear()
-            conversationList.addAll(newList)
-            notifyDataSetChanged()
-        }
-
-        fun fetchUserConversations() {
-            if (currentUserId != null) {
-                conversationDao.fetchConversationsForUser(currentUserId) { conversations ->
-                    conversationList.clear()
-                    conversationList.addAll(conversations)
-                    notifyDataSetChanged()
-                    println(conversations)
-                }
+    fun fetchUserConversations() {
+        if (currentUserId != null) {
+            conversationDao.fetchConversationsForUser(currentUserId) { conversations ->
+                conversationList.clear()
+                conversationList.addAll(conversations)
+                notifyDataSetChanged()
+                println(conversations)
             }
         }
     }
-
+}

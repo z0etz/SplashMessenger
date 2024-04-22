@@ -67,5 +67,32 @@ class ConversationDao {
 
 
     }
+
+    fun deleteConversation(userId: String?, conversationId: String?){
+        FirebaseFirestore.getInstance()
+            .document("conversations/${userId}/${conversationId}")
+            .delete()
+            .addOnSuccessListener{  Log.i("SUCCESS", "Conversation deleted from Firestore with id: $conversationId")
+            }
+
+            .addOnFailureListener { e ->
+                Log.e("ERROR", "Failed to delete conversation from Firestore with id: $conversationId", e)
+            }
+        FirebaseFirestore.getInstance()
+            .collection("messages/${conversationId}")
+            .get()
+
+            // still working on deleting the messages from the message/conversationId
+            .addOnSuccessListener{results ->
+                for(doument in results){
+                   // doument.
+                }
+            }
+
+            .addOnFailureListener { e ->
+                Log.e("ERROR", "Failed to delete messages in conversation from Firestore with id: $conversationId", e)
+            }
+
+    }
 }
 

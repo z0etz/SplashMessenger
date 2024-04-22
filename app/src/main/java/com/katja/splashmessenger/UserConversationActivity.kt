@@ -1,7 +1,9 @@
 package com.katja.splashmessenger
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -14,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.ktx.Firebase
 import com.katja.splashmessenger.databinding.ActivityUserConversationBinding
 
@@ -35,17 +39,16 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
     private lateinit var originalList: List<String>
     private lateinit var autoCompleteTextView: AutoCompleteTextView
     lateinit var auth: FirebaseAuth
-
     val userMap = mutableMapOf<String?, String?>()
+    private val conversationDao = ConversationDao()
+    private lateinit var listenerRegistration: ListenerRegistration
+    private var thereIsNoConversations: Boolean = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUserConversationBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        auth = Firebase.auth
-
-        val currentUser = auth.currentUser
-        val currentUserId = currentUser?.uid
 
         firestore = FirebaseFirestore.getInstance()
 
@@ -70,16 +73,22 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
         }
 
         getAllUsers()
-        // Dummy list of users (replace with actual data)
-        val userList = listOf(
-                 User("1", "John Doe", "john@example.com", "password"),
-                  User("2", "Jane Smith", "jane@example.com", "password"),
-                  User("3", "Alice Wonderland", "alice@example.com", "password")
-                    // Add more users as needed
-        )
 
 
-        if(userList.isEmpty()) {
+        auth = Firebase.auth
+        val currentUser = auth.currentUser
+        val currentUserId = currentUser?.uid
+
+        userAdapter = UserConversationAdapter( this)
+        recyclerView.adapter = userAdapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+       getConversations(currentUserId)
+
+
+        // needs to be initilized
+
+        if(thereIsNoConversations) {
                     binding.startConversationTextView.visibility = View.VISIBLE
                     binding.noMessageTextView.visibility = View.VISIBLE
                     binding.messageImageView.visibility = View.VISIBLE
@@ -93,9 +102,38 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
                     binding.recyclerViewUserName.visibility = View.VISIBLE
                }
 
-                userAdapter = UserConversationAdapter( this)
-                recyclerView.adapter = userAdapter
-                recyclerView.layoutManager = LinearLayoutManager(this)
+
+       // on change listener should be added here
+        listenerRegistration = firestore.collection("conversations/${currentUserId}/${currentUserId}")
+            .addSnapshotListener { snapshots, e ->
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e)
+                    return@addSnapshotListener
+                }
+
+
+                for (dc in snapshots?.documentChanges!!) {
+                    when (dc.type) {
+                        DocumentChange.Type.ADDED -> {
+
+                            // A new message has been added
+                            getConversations(currentUserId)
+
+                        }
+
+                        DocumentChange.Type.MODIFIED -> {
+                            // Handle modified documents
+                        }
+                        DocumentChange.Type.REMOVED -> {
+                            // Handle removed documents
+                        }
+                    }
+                }
+            }
+
+        // on change listener should be added here
+
+
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigationView.setOnItemSelectedListener { item ->
@@ -117,12 +155,11 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
 
 
     }
-
-                override fun onItemClick(userId: String) {
-                val intent = Intent(this, ConversationActivity::class.java)
-                intent.putExtra("id", userId)
-                startActivity(intent)
-           }
+    override fun onItemClick(userArray: ArrayList<String?>) {
+        val intent = Intent(this, ConversationActivity::class.java)
+        intent.putExtra("userArray", userArray)
+        startActivity(intent)
+    }
     override fun onResume() {
         super.onResume()
         // Rensa sökfältet
@@ -165,15 +202,16 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
     }
 
     //Added the fetch thing here to test
-   /* fun fetchUserConversations(currentUserId: String?, conversationDao: ConversationDao) {
-        if (currentUserId != null) {
-            conversationDao.fetchConversationsForUser(currentUserId) { conversations ->
-                conversationList.clear()
-                conversationList.addAll(conversations)
-                notifyDataSetChanged()
-                println(conversations)
+
+    fun getConversations(userId: String?){
+        if (userId != null) {
+            conversationDao.fetchConversationsForUser(userId) { conversations ->
+                userAdapter.conversationList.clear()
+                userAdapter.conversationList.addAll(conversations)
+                userAdapter.notifyDataSetChanged()
+                thereIsNoConversations = conversations.isEmpty()
+
             }
         }
-    }*/
-
+    }
 }

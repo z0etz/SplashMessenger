@@ -94,11 +94,11 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="@dimen/buttons_sign_up_width"
-                android:layout_height="@dimen/divider_message_height"
+                android:layout_width="305dp"
+                android:layout_height="228dp"
                 android:layout_marginBottom="@dimen/round_button_size"
-                android:src="@drawable/cloud_image"
-                android:contentDescription="@string/cloud_image_description" />
+                android:contentDescription="@string/cloud_image_description"
+                android:src="@drawable/cloud_image" />
 
             <Button
                 android:id="@+id/profile_logout_btn"

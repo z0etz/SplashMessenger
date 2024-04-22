@@ -85,7 +85,7 @@
     <string name="droplet_image_description">Droplet image</string>
     <string name="cloud_image_description">Cloud image</string>
     <string name="start_conversation">Search to start a conversation</string>
-    <string name="no_message">No Message, Yet</string>
+    <string name="no_message">No Messages, Yet</string>
     <string name="no_user_logged_in">no user logged in</string>
     <string name="sign_out">Sign out</string>
     <string name="dismiss">Dismiss</string>

@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.katja.splashmessenger.databinding.ActivityUserConversationBinding
 
@@ -64,34 +65,37 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
 
 
         getAllUsers()
-        // Dummy list of users (replace with actual data)
-        val userList = listOf(
-                 User("1", "John Doe", "john@example.com", "password"),
-                  User("2", "Jane Smith", "jane@example.com", "password"),
-                  User("3", "Alice Wonderland", "alice@example.com", "password")
-                    // Add more users as needed
-        )
 
-
-        if(userList.isEmpty()) {
-                    binding.startConversationTextView.visibility = View.VISIBLE
-                    binding.noMessageTextView.visibility = View.VISIBLE
-                    binding.messageImageView.visibility = View.VISIBLE
-                    binding.dropletImageView.visibility = View.VISIBLE
-                    binding.recyclerViewUserName.visibility = View.GONE
-              } else {
-                    binding.startConversationTextView.visibility = View.GONE
-                    binding.noMessageTextView.visibility = View.GONE
-                    binding.messageImageView.visibility = View.GONE
-                    binding.dropletImageView.visibility = View.GONE
-                    binding.recyclerViewUserName.visibility = View.VISIBLE
-               }
-
-                userAdapter = UserConversationAdapter( this)
-                recyclerView.adapter = userAdapter
-                recyclerView.layoutManager = LinearLayoutManager(this)
+        val conversations =
+        // Call fetchConversationsForUser to check if there are no current conversations
+        ConversationDao().fetchConversationsForUser(
+            FirebaseAuth.getInstance().currentUser?.uid.toString()
+        ) { conversationList ->
+            // Handle the result inside the callback
+            if (conversationList.isEmpty()) {
+                // Conversations list is empty
+                // Update UI accordingly
+                binding.startConversationTextView.visibility = View.VISIBLE
+                binding.noMessageTextView.visibility = View.VISIBLE
+                binding.messageImageView.visibility = View.VISIBLE
+                binding.dropletImageView.visibility = View.VISIBLE
+                binding.recyclerViewUserName.visibility = View.GONE
+            } else {
+                // Conversations list is not empty
+                // Update UI accordingly
+                binding.startConversationTextView.visibility = View.GONE
+                binding.noMessageTextView.visibility = View.GONE
+                binding.messageImageView.visibility = View.GONE
+                binding.dropletImageView.visibility = View.GONE
+                binding.recyclerViewUserName.visibility = View.VISIBLE
+            }
+        }
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+        // Set the selected item to messages by default
+        bottomNavigationView.selectedItemId = R.id.item_1
+
         bottomNavigationView.setOnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.item_1 -> {

@@ -3,6 +3,8 @@ package com.katja.splashmessenger
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
@@ -72,6 +74,8 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
             startActivity(intent)
         }
 
+
+
         getAllUsers()
 
 
@@ -136,6 +140,10 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
 
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+        // Set the selected item to messages by default
+        bottomNavigationView.selectedItemId = R.id.item_1
+
         bottomNavigationView.setOnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.item_1 -> {
@@ -179,15 +187,15 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
                     userMap[fullName] = user2Id
                 }
                 originalList = usersList
+                if (adapter.isEmpty) {
+                    adapter.addAll(usersList)
+                }
                 showUsers(usersList)
-                adapter.addAll(usersList)
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(this, "Failed to fetch users: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
     }
-
-
 
 
     private fun showUsers(usersList: List<String>) {

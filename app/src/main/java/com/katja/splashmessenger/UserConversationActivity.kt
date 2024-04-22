@@ -133,15 +133,15 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
                     userMap[fullName] = user2Id
                 }
                 originalList = usersList
+                if (adapter.isEmpty) {
+                    adapter.addAll(usersList)
+                }
                 showUsers(usersList)
-                adapter.addAll(usersList)
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(this, "Failed to fetch users: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
     }
-
-
 
 
     private fun showUsers(usersList: List<String>) {

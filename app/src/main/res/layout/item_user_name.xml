@@ -25,12 +25,11 @@
 
         <ImageButton
             android:id="@+id/user_conversation_delete_button"
-            android:src="@drawable/recycle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/recycle3"
 
-
-            android:layout_gravity="end">
+            >
 
         </ImageButton>
 

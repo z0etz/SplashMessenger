@@ -65,6 +65,8 @@ class UserConversationAdapter(private val listener: OnItemClickListener) :
                 }
             }
 
+
+
         }
 
     override fun getItemCount(): Int {

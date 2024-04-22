@@ -64,13 +64,20 @@ class UserConversationAdapter(private val listener: OnItemClickListener) :
                     holder.textViewUserName.text = otherUser?.fullName ?: "Unknown User"
                 }
             }
+
         }
 
-        override fun getItemCount(): Int {
-            return conversationList.size
-        }
+    override fun getItemCount(): Int {
+        return conversationList.size
+    }
+
+    private fun deleteConversation(position: Int){
+        conversationList.removeAt(position)
+        notifyDataSetChanged()
+    }
 
         // Function to update the conversation list
+    // these are not needed anymore, other methods with similar functionalities have been implemented in the userConversationActivity
         fun updateList(newList: List<Conversation>) {
             conversationList.clear()
             conversationList.addAll(newList)

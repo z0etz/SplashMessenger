@@ -74,6 +74,7 @@ class UserConversationAdapter(private val listener: OnItemClickListener) :
                 conversationList.clear()
                 conversationList.addAll(conversations)
                 notifyDataSetChanged()
+                println(conversations)
             }
         }
     }

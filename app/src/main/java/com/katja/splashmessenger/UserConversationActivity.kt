@@ -12,7 +12,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.katja.splashmessenger.databinding.ActivityUserConversationBinding
 
 
@@ -31,12 +34,18 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
     private lateinit var adapter: ArrayAdapter<String>
     private lateinit var originalList: List<String>
     private lateinit var autoCompleteTextView: AutoCompleteTextView
+    lateinit var auth: FirebaseAuth
+
     val userMap = mutableMapOf<String?, String?>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUserConversationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        auth = Firebase.auth
+
+        val currentUser = auth.currentUser
+        val currentUserId = currentUser?.uid
 
         firestore = FirebaseFirestore.getInstance()
 
@@ -154,4 +163,17 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
         val filteredList = originalList.filter { it.contains(query, ignoreCase = true) }
         showUsers(filteredList)
     }
+
+    //Added the fetch thing here to test
+   /* fun fetchUserConversations(currentUserId: String?, conversationDao: ConversationDao) {
+        if (currentUserId != null) {
+            conversationDao.fetchConversationsForUser(currentUserId) { conversations ->
+                conversationList.clear()
+                conversationList.addAll(conversations)
+                notifyDataSetChanged()
+                println(conversations)
+            }
+        }
+    }*/
+
 }

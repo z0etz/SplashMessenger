@@ -2,6 +2,8 @@ package com.katja.splashmessenger
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -53,12 +55,13 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
             val selectedUser = parent.getItemAtPosition(position) as String
             val userId2: String? = userMap[selectedUser]
             val userArray = arrayListOf<String?>(selectedUser, userId2)
-            // [userName , userId]
             val intent = Intent(this, ConversationActivity::class.java)
 
             intent.putExtra("userArray", userArray)
             startActivity(intent)
         }
+
+
 
         getAllUsers()
         // Dummy list of users (replace with actual data)

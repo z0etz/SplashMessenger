@@ -3,6 +3,7 @@ package com.katja.splashmessenger
 import android.content.Context
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import java.time.LocalDateTime
 
 class messageDao {
 
@@ -26,7 +27,7 @@ class messageDao {
         FirebaseFirestore
             .getInstance()
             // it was crashing because firebase wants to get even number of segments in the document path so I added 0
-            .document("messages/${message.conversationId}/0/${message.id}")
+            .document("messages/${message.conversationId}/${message.id}")
             .set(dataToStore)
             .addOnSuccessListener { Log.i("SUCCESS", "Added message to Firestore with id: ${message.id}") }
             .addOnFailureListener { Log.i("ERROR", "Failed adding message to Firestore")}
@@ -38,13 +39,12 @@ class messageDao {
     }
 
 
-    fun getConversation(conversationId: String, callback: (List<Message>) -> Unit) {
-        val messageList = ArrayList<Message>()
+    fun getConversation(conversationId: String, callback: (MutableList<Message>) -> Unit) {
+        val messageList: MutableList<Message> = mutableListOf()
 
         FirebaseFirestore
             .getInstance()
-            //.collection("messages")
-            .collection("messages/$conversationId/0")
+            .collection("messages/$conversationId")
 
             .get()
             .addOnSuccessListener { result -> for (document in result) {
@@ -57,10 +57,12 @@ class messageDao {
                     "WATERSPLASH" -> MessageType.WATERSPLASH
                     "MESSAGE_IN_BOTTLE" -> MessageType.MESSAGE_IN_BOTTLE
                     "WATERBUBBLE" -> MessageType.WATERBUBBLE
+                    "NORMAL_VIEW_TYPE" -> MessageType.NORMAL_VIEW_TYPE
                     else -> MessageType.WATERBUBBLE
                 }
                 val text = document.getString(KEY_TEXT)
                 val timestamp = document.getLong(KEY_TIMESTAMP)
+                //val timestamp = LocalDateTime.now()
 
                 val message = Message(id, conversationId, senderId, type, text, timestamp)
                 messageList.add(message)
@@ -70,7 +72,7 @@ class messageDao {
             }
             .addOnFailureListener {
                 Log.e("ERROR", "Failed to fetch conversation")
-                callback(emptyList())
+                callback(mutableListOf())
             }
 
     }

@@ -1,13 +1,23 @@
 package com.katja.splashmessenger
 
+import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.katja.splashmessenger.databinding.ActivityConversationBinding
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.util.Date
 import java.util.UUID
+import android.util.Log
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.ListenerRegistration
+
+
 
 class ConversationActivity : AppCompatActivity() {
 
@@ -16,6 +26,8 @@ class ConversationActivity : AppCompatActivity() {
     lateinit var auth: FirebaseAuth
     private val dao = messageDao()
     private val spLocal = MessageLocal(this)
+    private lateinit var listenerRegistration: ListenerRegistration
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,8 +39,14 @@ class ConversationActivity : AppCompatActivity() {
         val user = auth.currentUser
 
         // Get conversationId from the intent the activity was started with
-        val conversationId = intent.getStringExtra("id")
-        //val conversationId = intent.getStringExtra("conversationId")
+        val user2 = intent.getStringArrayListExtra("userArray")
+
+        val user2Id = user2?.get(1)
+        binding.conversationName.text = user2?.get(0)
+
+        // the conversation ID should be currentUserId/otherUserID
+        val conversationIdUser1 = "${user?.uid}/${user2Id}"
+        val conversationIdUser2 = "${user2Id}/${user?.uid}"
 
         // Initialize the adapter with an empty list
         adapter = MessageAdapter(emptyList())
@@ -38,13 +56,109 @@ class ConversationActivity : AppCompatActivity() {
         binding.messagesRecyclerView.layoutManager = LinearLayoutManager(this)
 
         // Call messageDao to get the conversation and update the adapter when it's fetched
+        getConversation(conversationIdUser1)
+
+
+        // here start the firestore changeListner
+
+       val firestore = FirebaseFirestore.getInstance()
+
+         listenerRegistration = firestore.collection("messages/${conversationIdUser1}")
+            .addSnapshotListener { snapshots, e ->
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e)
+                    return@addSnapshotListener
+                }
+
+                for (dc in snapshots?.documentChanges!!) {
+                    when (dc.type) {
+                        DocumentChange.Type.ADDED -> {
+
+                            // A new message has been added
+                           getConversation(conversationIdUser1)
+
+                            val recyclerView = binding.messagesRecyclerView
+
+                            recyclerView.addOnLayoutChangeListener { _, _, _, _, bottom, _, _, _, _ ->
+                                if (adapter.itemCount > 0) {
+                                    if (bottom < recyclerView.height) {
+                                        // The layout has been scrolled up, likely due to keyboard being shown
+                                        recyclerView.postDelayed({
+                                            recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
+                                        }, 100) // Adjust the delay as needed
+                                    } else {
+                                        // The layout has not been scrolled up, perform immediate scroll
+                                        recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
+                                    }
+                                }
+                                else{
+                                    println("avoided a crash")
+                                }
+                            }
+                        }
+
+                        DocumentChange.Type.MODIFIED -> {
+                            // Handle modified documents
+                        }
+                        DocumentChange.Type.REMOVED -> {
+                            // Handle removed documents
+                        }
+                    }
+                }
+            }
+
+
+
+
+
+
+
+
+        // Here ends the firestore ChangeListener
+
+
+
+
+
+
+
+
+
+
+
+
+        binding.sendButton.setOnClickListener {
+
+
+            val messageText= binding.messageEditText.text.toString()
+            val senderId = user?.uid
+            val messageID = UUID.randomUUID().toString()
+            val currentDate = System.currentTimeMillis()
+            val newMessageSender = Message(messageID,conversationIdUser1,senderId, MessageType.NORMAL_VIEW_TYPE, messageText, currentDate)
+            dao.addMessage(newMessageSender)
+
+            val newMessageReceiver = Message(messageID,conversationIdUser2,senderId, MessageType.NORMAL_VIEW_TYPE, messageText, currentDate)
+            dao.addMessage(newMessageReceiver)
+
+
+            binding.messageEditText.text.clear()
+
+        }
+
+
+    }
+
+    fun getConversation(conversationId: String?) {
+
         if (conversationId != null) {
             dao.getConversation(conversationId) { conversation ->
 
 
                 if(!conversation.isEmpty()) {
 
-                    adapter.messageList = conversation
+                   val conversationSorted = sortMessages(conversation)
+
+                    adapter.messageList = conversationSorted
                     adapter.notifyDataSetChanged()
                 }
 //                else{
@@ -53,21 +167,34 @@ class ConversationActivity : AppCompatActivity() {
 //                }
             }
         }
-        binding.sendButton.setOnClickListener {
-            val messageText= binding.messageEditText.text.toString()
-            val senderId = user?.uid
-            val messageID = UUID.randomUUID().toString()
-            val newMessageSender = Message(messageID,conversationId,senderId, MessageType.WATERBUBBLE, messageText, 1L)
-            dao.addMessage(newMessageSender)
-            // add message should take in a user param and add the newmessage for that user, userId,
-            // in the conversation that has the current conversationId
 
-            val newMessageReceiver = Message(messageID,senderId,senderId, MessageType.WATERBUBBLE, messageText, 1L)
-            dao.addMessage(newMessageReceiver)
 
-            println(senderId)
-            println(conversationId)
+    }
 
+    // should be moved to a DataManager
+    fun sortMessages(messages: MutableList<Message>): List<Message>{
+
+        val range = messages.size -2
+
+        for( i in 0..range){
+
+            for (j in 0..range){
+
+                if (messages[j].timestamp!! > messages[j+1].timestamp!! ){
+                    val swapMessage: Message = messages[j]
+                    messages[j] = messages[j + 1 ]
+                    messages[j+1] = swapMessage
+                }
+            }
         }
+
+
+
+        return messages
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        listenerRegistration.remove()
     }
 }
+

@@ -52,12 +52,11 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
         autoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
             val selectedUser = parent.getItemAtPosition(position) as String
             val userId2: String? = userMap[selectedUser]
+            val userArray = arrayListOf<String?>(selectedUser, userId2)
+            // [userName , userId]
             val intent = Intent(this, ConversationActivity::class.java)
-            // skicka användarinformationen till nästa aktivitet om det behövs
-            //intent.putExtra("id2", 3)
-            intent.putExtra("id", userId2)
-            println("This is the id")
-            println(userId2)
+
+            intent.putExtra("userArray", userArray)
             startActivity(intent)
         }
 

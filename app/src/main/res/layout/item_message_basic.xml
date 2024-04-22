@@ -1,0 +1,53 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/extra_small_margin_top"
+    android:background="@color/gray">
+
+    <!-- Sent message-->
+
+
+    <!-- Received message-->
+
+    <TextView
+        android:id="@+id/textMessageSent"
+        android:layout_width="@dimen/view_bottom_height_sign_up"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_margin_top"
+        android:layout_marginEnd="@dimen/small_margin_end"
+        android:background="@drawable/background_sent_message"
+        android:minHeight="@dimen/button_search"
+        android:padding="@dimen/small_padding"
+        android:textColor="@color/white"
+        android:textSize="@dimen/medium_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/textMessageReceived"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.725"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.156"
+        app:layout_constraintWidth_percent="0.8" />
+
+
+    <TextView
+        android:id="@+id/textMessageReceived"
+        android:layout_width="@dimen/view_bottom_height_sign_up"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="176dp"
+        android:background="@drawable/background_received_message"
+        android:minHeight="@dimen/button_search"
+        android:padding="@dimen/small_padding"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/medium_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.368"
+        app:layout_constraintWidth_percent="0.75" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

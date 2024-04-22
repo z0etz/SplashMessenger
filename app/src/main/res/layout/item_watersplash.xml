@@ -77,7 +77,7 @@
         android:background="@drawable/background_received_message"
         android:minHeight="@dimen/button_search"
         android:padding="@dimen/small_padding"
-        android:textColor="@color/white"
+        android:textColor="@color/blue"
         android:textSize="@dimen/medium_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/imageReceivedMessageWatersplash"
         app:layout_constraintStart_toEndOf="@+id/imageProfileWatersplash"

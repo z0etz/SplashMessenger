@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.katja.splashmessenger"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -63,5 +63,6 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.google.android.material:material:<version>")
 
 }

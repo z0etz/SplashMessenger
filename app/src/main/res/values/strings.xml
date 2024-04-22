@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">SplashMessenger</string>
-    <string name="login">Log In</string>
+    <string name="login">Login</string>
     <string name="loginText">Login to your account</string>
     <string name="enter_username">Enter UserName</string>
     <string name="enter_password">Enter Password</string>
@@ -17,7 +17,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="title_activity_profile_page">ProfilePage</string>
+    <string name="title_activity_profile_page">Profile</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -32,7 +32,6 @@
     <string name="waterballoon_sent_message_image_description">Large waterballoons image</string>
     <string name="waterballoon_received_message_image_description">Small waterballoons image</string>
     <string name="waterballoon_image_profile_description">Waterballoon image</string>
-
 
 
     <string name="lorem_ipsum">
@@ -84,6 +83,7 @@
     <string name="search">Search...</string>
     <string name="message_image_description">Message image</string>
     <string name="droplet_image_description">Droplet image</string>
+    <string name="cloud_image_description">Cloud image</string>
     <string name="start_conversation">Search to start a conversation</string>
     <string name="no_message">No Message, Yet</string>
     <string name="no_user_logged_in">no user logged in</string>
@@ -92,6 +92,10 @@
     <string name="reply">Reply</string>
     <string name="message_content">Message content</string>
     <string name="sender_name">Sender Name</string>
+    <string name="don_t_have_an_account">Don´t have an account?</string>
+    <string name="username_text">Username text</string>
+    <string name="usermail">UserMail</string>
+    <string name="delete_account">Delete account</string>
 
 
 </resources>

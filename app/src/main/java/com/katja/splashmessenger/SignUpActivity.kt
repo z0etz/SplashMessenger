@@ -51,7 +51,7 @@ class SignUpActivity : AppCompatActivity() {
             }
             user?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val newUser = createUser(username, email, password)
+                    var newUser = createUser(user?.uid.toString(),username, email, password)
                     userDao.addUser(newUser)
 
                     Toast.makeText(this, "Welcome: ${user?.displayName ?: user?.email}", Toast.LENGTH_SHORT).show()
@@ -69,8 +69,9 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 
-    private fun createUser(username: String, email: String, password: String): User {
-        val user = User(UUID.randomUUID().toString(), username, email, password)
+    // made a small change so that the user id is the same in auth and in the firestore
+    private fun createUser(userId: String , username: String, email: String, password: String): User {
+        val user = User( userId,username, email, password)
         return user
     }
 }

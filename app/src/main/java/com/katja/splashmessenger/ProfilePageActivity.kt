@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -62,6 +63,26 @@ class ProfilePageActivity : AppCompatActivity() {
             confirmDialog.show()
         }
 
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+        // Set the selected item to profile by default
+        bottomNavigationView.selectedItemId = R.id.item_2
+
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.item_1 -> {
+                    // MessagesActivity
+                    startActivityIfNeeded(Intent(this, UserConversationActivity::class.java), 0)
+                    true
+                }
+                R.id.item_2 -> {
+                    // ProfileActivity
+                    startActivityIfNeeded(Intent(this, ProfilePageActivity::class.java), 0)
+                    true
+                }
+                else -> false
+            }
+        }
 
     }
 

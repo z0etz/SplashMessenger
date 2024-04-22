@@ -63,6 +63,7 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
 
         getAllUsers()
 
+        val conversations =
         // Call fetchConversationsForUser to check if there are no current conversations
         ConversationDao().fetchConversationsForUser(
             FirebaseAuth.getInstance().currentUser?.uid.toString()
@@ -88,6 +89,10 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
         }
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+        // Set the selected item to messages by default
+        bottomNavigationView.selectedItemId = R.id.item_1
+
         bottomNavigationView.setOnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.item_1 -> {

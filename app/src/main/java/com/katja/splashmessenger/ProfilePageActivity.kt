@@ -5,11 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.katja.splashmessenger.databinding.ActivityConversationBinding
 import com.katja.splashmessenger.databinding.ActivityProfilePageBinding
 
 class ProfilePageActivity : AppCompatActivity() {
@@ -19,7 +17,6 @@ class ProfilePageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile_page)
 
         auth = Firebase.auth
 
@@ -63,7 +60,7 @@ class ProfilePageActivity : AppCompatActivity() {
             confirmDialog.show()
         }
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        val bottomNavigationView = binding.bottomNavigation
 
         // Set the selected item to profile by default
         bottomNavigationView.selectedItemId = R.id.item_2

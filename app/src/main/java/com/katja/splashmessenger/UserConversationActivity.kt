@@ -3,19 +3,15 @@ package com.katja.splashmessenger
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
-import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentChange
@@ -33,8 +29,6 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
     private lateinit var binding: ActivityUserConversationBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var userAdapter: UserConversationAdapter
-    private lateinit var userList: List<User>
-    private lateinit var listView: ListView
     private lateinit var searchEditText: EditText
     private lateinit var firestore: FirebaseFirestore
     private lateinit var adapter: ArrayAdapter<String>
@@ -54,10 +48,10 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
 
         firestore = FirebaseFirestore.getInstance()
 
-        searchEditText = findViewById(R.id.searchEditText)
+        searchEditText = binding.searchEditText
         getAllUsers()
 
-        autoCompleteTextView = findViewById(R.id.searchEditText)
+        autoCompleteTextView = binding.searchEditText
         adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, mutableListOf())
         autoCompleteTextView.setAdapter(adapter)
 
@@ -139,7 +133,7 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
 
 
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        val bottomNavigationView = binding.bottomNavigation
 
         // Set the selected item to messages by default
         bottomNavigationView.selectedItemId = R.id.item_1

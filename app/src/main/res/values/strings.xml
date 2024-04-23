@@ -96,6 +96,7 @@
     <string name="username_text">Username text</string>
     <string name="usermail">UserMail</string>
     <string name="delete_account">Delete account</string>
+    <string name="date_time">Date and time could not be loaded</string>
 
 
 </resources>

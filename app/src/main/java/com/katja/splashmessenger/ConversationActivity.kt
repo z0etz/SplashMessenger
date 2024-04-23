@@ -162,7 +162,7 @@ class ConversationActivity : AppCompatActivity() {
                 messageID,
                 conversationIdUser1,
                 senderId,
-                MessageType.WATERBUBBLE,
+                MessageType.NORMAL_VIEW_TYPE,
                 messageText,
                 currentDate
             )
@@ -172,7 +172,7 @@ class ConversationActivity : AppCompatActivity() {
                 messageID,
                 conversationIdUser2,
                 senderId,
-                MessageType.WATERBUBBLE,
+                MessageType.NORMAL_VIEW_TYPE,
                 messageText,
                 currentDate
             )
@@ -215,7 +215,7 @@ class ConversationActivity : AppCompatActivity() {
 
             for (j in 0..range) {
 
-                if (messages[j].timestamp!! > messages[j + 1].timestamp!!) {
+                if (messages[j].timestamp > messages[j + 1].timestamp) {
                     val swapMessage: Message = messages[j]
                     messages[j] = messages[j + 1]
                     messages[j + 1] = swapMessage

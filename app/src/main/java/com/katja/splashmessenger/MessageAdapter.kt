@@ -9,12 +9,9 @@ import com.katja.splashmessenger.databinding.ItemWatersplashBinding
 import com.katja.splashmessenger.databinding.ItemMessageInBottleBinding
 import com.katja.splashmessenger.databinding.ItemWaterbubbleBinding
 import android.view.animation.AnimationUtils
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.katja.splashmessenger.databinding.ItemMessageBinding
-import com.katja.splashmessenger.databinding.ItemMessageBasicBinding
-import com.katja.splashmessenger.databinding.ItemMessageTextBinding
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.TimeZone
@@ -125,8 +122,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
             if (user?.uid == senderId) {
 
                 binding.textMessageSentWaterdrop.text = message.text
-                binding.textMessageSentWaterdrop.visibility = View.VISIBLE
-                binding.imageSentMessageWaterdrop.visibility = View.VISIBLE
+                binding.sentMessageWaterdrop.visibility = View.VISIBLE
 
 
                 binding.textDateTimeSentWaterdrop.text = getMessageDate(message.timestamp)
@@ -134,28 +130,16 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
                 binding.imageSentMessageWaterdrop.startAnimation(animation)
 
-                binding.textMessageReceivedWaterdrop.visibility = View.GONE
-                binding.imageReceivedMessageWaterdrop.visibility = View.GONE
-                binding.textDateTimeReceivedWaterdrop.visibility = View.GONE
-
-
-
+                binding.recivedMessageWaterdrop.visibility = View.GONE
             }
             else{
 
                 binding.textMessageReceivedWaterdrop.text = message.text
-                binding.textMessageReceivedWaterdrop.visibility = View.VISIBLE
-                binding.imageReceivedMessageWaterdrop.visibility = View.VISIBLE
-
-                binding.textDateTimeReceivedWaterdrop.text = getMessageDate(message.timestamp)
-                binding.textDateTimeReceivedWaterdrop.visibility = View.VISIBLE
+                binding.recivedMessageWaterdrop.visibility = View.VISIBLE
 
                 binding.imageReceivedMessageWaterdrop.startAnimation(animation)
 
-
-                binding.textMessageSentWaterdrop.visibility = View.GONE
-                binding.imageSentMessageWaterdrop.visibility = View.GONE
-                binding.textDateTimeSentWaterdrop.visibility = View.GONE
+                binding.sentMessageWaterdrop.visibility = View.GONE
             }
 
 
@@ -164,7 +148,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
         }
 
 
-   inner class WatersplashViewHolder(val binding: ItemWatersplashBinding) : RecyclerView.ViewHolder(binding.root) {
+    class WatersplashViewHolder(val binding: ItemWatersplashBinding) : RecyclerView.ViewHolder(binding.root) {
         val user = Firebase.auth.currentUser
 
         fun bind(message: Message) {
@@ -178,34 +162,20 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
             if (user?.uid == senderId) {
 
                 binding.textMessageSentWatersplash.text = message.text
-                binding.textMessageSentWatersplash.visibility = View.VISIBLE
-                binding.imageSentMessageWatersplash.visibility = View.VISIBLE
-
-                binding.textDateTimeSentWatersplash.text = getMessageDate(message.timestamp)
-                binding.textDateTimeSentWatersplash.visibility = View.VISIBLE
+                binding.sentMessageWatersplash.visibility = View.VISIBLE
 
                 binding.imageSentMessageWatersplash.startAnimation(animation)
 
-                binding.textMessageReceivedWatersplash.visibility = View.GONE
-                binding.imageReceivedMessageWatersplash.visibility = View.GONE
-                binding.textDateTimeReceivedWatersplash.visibility = View.GONE
+                binding.sentMessageWatersplash.visibility = View.GONE
+
             }else{
 
                 binding.textMessageReceivedWatersplash.text = message.text
-                binding.textMessageReceivedWatersplash.visibility = View.VISIBLE
-                binding.imageReceivedMessageWatersplash.visibility = View.VISIBLE
-
-                binding.textDateTimeReceivedWatersplash.text = getMessageDate(message.timestamp)
-                binding.textDateTimeReceivedWatersplash.visibility = View.VISIBLE
+                binding.recievedMessageWatersplash.visibility = View.VISIBLE
 
                 binding.imageReceivedMessageWatersplash.startAnimation(animation)
 
-
-                binding.textMessageSentWatersplash.visibility = View.GONE
-                binding.imageSentMessageWatersplash.visibility = View.GONE
-                binding.textDateTimeSentWatersplash.visibility = View.GONE
-
-
+                binding.sentMessageWatersplash.visibility = View.GONE
             }
 
         }
@@ -220,26 +190,14 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
             if (user?.uid == senderId) {
 
                 binding.textMessageSentWaterbottle.text = message.text
-                binding.textMessageSentWaterbottle.visibility = View.VISIBLE
-
-                binding.textDateTimeSentWaterbottle.text = getMessageDate(message.timestamp)
-                binding.textDateTimeSentWaterbottle.visibility = View.VISIBLE
-
-
-                binding.textMessageReceivedWaterbottle.visibility = View.GONE
-                binding.textDateTimeReceivedWaterbottle.visibility = View.GONE
+                binding.sentMessageBottle.visibility = View.VISIBLE
+                binding.recivedMessageBottle.visibility = View.GONE
 
             }else{
 
                 binding.textMessageReceivedWaterbottle.text = message.text
                 binding.textMessageReceivedWaterbottle.visibility = View.VISIBLE
-
-
-                binding.textDateTimeReceivedWaterbottle.text = getMessageDate(message.timestamp)
-                binding.textDateTimeReceivedWaterbottle.visibility = View.VISIBLE
-
                 binding.textMessageSentWaterbottle.visibility = View.GONE
-                binding.textDateTimeSentWaterbottle.visibility = View.GONE
 
 
 
@@ -260,34 +218,19 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
             if (user?.uid == senderId) {
 
                 binding.textMessageSentWaterbubble.text = message.text
-                binding.textMessageSentWaterbubble.visibility = View.VISIBLE
-                binding.imageSentMessageWaterbubble.visibility = View.VISIBLE
-
-                binding.textDateTimeSentWaterbubble.text = getMessageDate(message.timestamp)
-                binding.textDateTimeSentWaterbubble.visibility = View.VISIBLE
+                binding.sentMessageWaterbubble.visibility = View.VISIBLE
 
                 binding.imageSentMessageWaterbubble.startAnimation(animation)
 
-                binding.textMessageReceivedWaterbubble.visibility = View.GONE
-                binding.imageReceivedMessageWaterbubble.visibility = View.GONE
-                binding.textDateTimeReceivedWaterbubble.visibility = View.GONE
+                binding.recievedMessageWaterbubble.visibility = View.GONE
             }else{
 
                 binding.textMessageReceivedWaterbubble.text = message.text
-                binding.textMessageReceivedWaterbubble.visibility = View.VISIBLE
-                binding.imageReceivedMessageWaterbubble.visibility = View.VISIBLE
-
-                binding.textDateTimeReceivedWaterbubble.text = getMessageDate(message.timestamp)
-                binding.textDateTimeReceivedWaterbubble.visibility = View.VISIBLE
+                binding.recievedMessageWaterbubble.visibility = View.VISIBLE
 
                 binding.imageReceivedMessageWaterbubble.startAnimation(animation)
 
-
-                binding.textMessageSentWaterbubble.visibility = View.GONE
-                binding.imageSentMessageWaterbubble.visibility = View.GONE
-                binding.textDateTimeSentWaterbubble.visibility = View.GONE
-
-
+                binding.sentMessageWaterbubble.visibility = View.GONE
             }
 
         }
@@ -300,25 +243,13 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
             if (user?.uid == senderId) {
                 binding.textMessageSent.text = message.text
-                binding.textMessageSent.visibility = View.VISIBLE
-
-                binding.textDateTimeSent.text = getMessageDate(message.timestamp)
-                binding.textDateTimeSent.visibility = View.VISIBLE
-
-
-                binding.textMessageReceived.visibility = View.GONE
-                binding.textDateTimeReceived.visibility = View.GONE
+                binding.recivedMessageBasic.visibility = View.GONE
+                binding.sentMessageBasic.visibility = View.VISIBLE
 
             }else{
                 binding.textMessageReceived.text = message.text
-                binding.textMessageReceived.visibility = View.VISIBLE
-
-                binding.textDateTimeReceived.text = getMessageDate(message.timestamp)
-                binding.textDateTimeReceived.visibility = View.VISIBLE
-
-                binding.textMessageSent.visibility = View.GONE
-                binding.textDateTimeSent.visibility = View.GONE
-
+                binding.sentMessageBasic.visibility = View.GONE
+                binding.recivedMessageBasic.visibility = View.VISIBLE
 
 
 
@@ -330,29 +261,3 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
     }
 }
-
-/*
-fun bind(message: Message) {
-    val senderId = message.senderId
-
-    if (user?.uid == senderId) {
-        binding.textMessageSent.text = message.text
-        binding.textMessageReceived.visibility = View.GONE
-        binding.root.removeView(binding.textMessageReceived)
-
-        binding.textMessageSent.visibility = View.VISIBLE  // Make sent message visible
-
-
-    }else{
-        binding.textMessageReceived.text = message.text
-        binding.textMessageSent.visibility = View.GONE
-        binding.root.removeView(binding.textMessageSent)
-
-        binding.textMessageReceived.visibility = View.VISIBLE // Make received message visible
-
-
-    }
-
-}
-
- */

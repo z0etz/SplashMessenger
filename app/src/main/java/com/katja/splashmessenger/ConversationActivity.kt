@@ -144,8 +144,8 @@ class ConversationActivity : AppCompatActivity() {
                 selectedMessageType = when (position) {
                     0 -> MessageType.MESSAGE_IN_BOTTLE
                     1 -> MessageType.WATERBUBBLE
-                    2 -> MessageType.WATERSPLASH
-                    3 -> MessageType.WATERDROP
+                    2 -> MessageType.WATERDROP
+                    3 -> MessageType.WATERSPLASH
                     4 -> MessageType.NORMAL_VIEW_TYPE
                     else -> MessageType.NORMAL_VIEW_TYPE
                 }
@@ -163,38 +163,30 @@ class ConversationActivity : AppCompatActivity() {
             onShowOptionsClicked()
         }
         binding.sendButton.setOnClickListener {
-
             val messageText = binding.messageEditText.text.toString()
             val senderId = user?.uid
             val messageID = UUID.randomUUID().toString()
             val currentDate = System.currentTimeMillis()
+
+            // Update MessageType based on selected layout
             val newMessageSender = Message(
                 messageID,
                 conversationIdUser1,
                 senderId,
-                MessageType.NORMAL_VIEW_TYPE,
+                selectedMessageType, // Use selectedMessageType here
                 messageText,
                 currentDate
             )
+            Log.d("created message: {}", newMessageSender.toString())
             dao.addMessage(newMessageSender)
 
-            val newMessageReceiver = Message(
-                messageID,
-                conversationIdUser2,
-                senderId,
-                MessageType.NORMAL_VIEW_TYPE,
-                messageText,
-                currentDate
-            )
-            dao.addMessage(newMessageReceiver)
+            // Update RecyclerView after sending the message
+            //updateRecyclerView()
+
             binding.messageEditText.text.clear()
-
-
         }
 
-        updateRecyclerView()
     }
-
     private fun updateRecyclerView() {
         Log.d("ConversationActivity", "Updating RecyclerView with message type: $selectedMessageType")
         adapter.setMessageType(selectedMessageType)

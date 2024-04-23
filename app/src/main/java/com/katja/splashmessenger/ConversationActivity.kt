@@ -178,6 +178,8 @@ class ConversationActivity : AppCompatActivity() {
                 currentDate
             )
             dao.addMessage(newMessageSender)
+            spLocal.addMessage(newMessageSender, conversationIdUser1)
+
 
             val newMessageReceiver = Message(
                 messageID,
@@ -190,13 +192,10 @@ class ConversationActivity : AppCompatActivity() {
 
             dao.addMessage(newMessageReceiver)
 
+            spLocal.addMessage(newMessageReceiver, conversationIdUser2)
 
 
 
-
-
-            // Update RecyclerView after sending the message
-            //updateRecyclerView()
 
             binding.messageEditText.text.clear()
         }
@@ -212,6 +211,8 @@ class ConversationActivity : AppCompatActivity() {
     fun getConversation(conversationId: String?) {
 
         if (conversationId != null) {
+
+
             dao.getConversation(conversationId) { conversation ->
 
 
@@ -222,10 +223,10 @@ class ConversationActivity : AppCompatActivity() {
                     adapter.messageList = conversationSorted
                     adapter.notifyDataSetChanged()
                 }
-//                else{
-//                    adapter.messageList = spLocal.loadConversation()
-//                    adapter.notifyDataSetChanged()
-//                }
+             else{
+                   adapter.messageList = spLocal.loadConversation(conversationId)
+                    adapter.notifyDataSetChanged()
+               }
             }
         }
     }
@@ -290,6 +291,8 @@ class ConversationActivity : AppCompatActivity() {
         binding.messagesRecyclerView.visibility =
             if (recyclerViewVisible) View.VISIBLE else View.GONE
     }
+
+
 
 }
 

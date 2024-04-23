@@ -76,8 +76,8 @@
             android:id="@+id/textMessageReceivedWaterbubble"
             android:layout_width="@dimen/view_bottom_height_sign_up"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="46dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="60dp"
             android:background="@drawable/background_received_message"
             android:minHeight="@dimen/button_search"
             android:padding="@dimen/small_padding"
@@ -94,6 +94,7 @@
             android:text="@string/date_time"
             android:textColor="@color/white"
             android:textSize="@dimen/small_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/imageReceivedMessageWaterbubble"
             app:layout_constraintStart_toStartOf="@+id/imageReceivedMessageWaterbubble"
             app:layout_constraintTop_toBottomOf="@+id/textMessageReceivedWaterbubble" />
 

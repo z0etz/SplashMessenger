@@ -60,16 +60,29 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/recived_message_waterdrop"
         android:layout_width="match_parent"
-        android:layout_height="139dp">
+        android:layout_height="130dp">
 
         <!-- Received Waterdrop-->
+
+        <ImageView
+            android:id="@+id/imageReceivedMessageWaterdrop"
+            android:layout_width="@dimen/buttons_sign_up_width"
+            android:layout_height="@dimen/image_received_message_width"
+            android:contentDescription="@string/waterdrop_received_message_image_description"
+            android:src="@drawable/waterdrop_received_message"
+            app:layout_constraintBottom_toBottomOf="@+id/textMessageReceivedWaterdrop"
+            app:layout_constraintEnd_toEndOf="@+id/textMessageReceivedWaterdrop"
+            app:layout_constraintHorizontal_bias="0.562"
+            app:layout_constraintStart_toStartOf="@+id/textMessageReceivedWaterdrop"
+            app:layout_constraintTop_toTopOf="@+id/textMessageReceivedWaterdrop"
+            app:layout_constraintVertical_bias="0.652" />
 
         <TextView
             android:id="@+id/textMessageReceivedWaterdrop"
             android:layout_width="@dimen/view_bottom_height_sign_up"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="46dp"
             android:background="@drawable/background_received_message"
             android:minHeight="@dimen/button_search"
             android:padding="@dimen/small_padding"
@@ -88,19 +101,6 @@
             android:textSize="@dimen/small_text_size"
             app:layout_constraintStart_toStartOf="@+id/textMessageReceivedWaterdrop"
             app:layout_constraintTop_toBottomOf="@+id/textMessageReceivedWaterdrop" />
-
-        <ImageView
-            android:id="@+id/imageReceivedMessageWaterdrop"
-            android:layout_width="@dimen/buttons_sign_up_width"
-            android:layout_height="@dimen/image_received_message_width"
-            android:contentDescription="@string/waterdrop_received_message_image_description"
-            android:src="@drawable/waterdrop_received_message"
-            app:layout_constraintBottom_toTopOf="@+id/textMessageReceivedWaterdrop"
-            app:layout_constraintEnd_toEndOf="@+id/textMessageReceivedWaterdrop"
-            app:layout_constraintHorizontal_bias="0.437"
-            app:layout_constraintStart_toStartOf="@+id/textMessageReceivedWaterdrop"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.294" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

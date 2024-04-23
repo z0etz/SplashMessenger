@@ -245,15 +245,13 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
             if (user?.uid == senderId) {
                 binding.textMessageSent.text = message.text
-                binding.textMessageReceived.visibility = View.GONE
-                binding.textMessageSent.visibility = View.VISIBLE
-
-
+                binding.recivedMessageBasic.visibility = View.GONE
+                binding.sentMessageBasic.visibility = View.VISIBLE
 
             }else{
                 binding.textMessageReceived.text = message.text
-                binding.textMessageSent.visibility = View.GONE
-                binding.textMessageReceived.visibility = View.VISIBLE
+                binding.sentMessageBasic.visibility = View.GONE
+                binding.recivedMessageBasic.visibility = View.VISIBLE
 
 
 

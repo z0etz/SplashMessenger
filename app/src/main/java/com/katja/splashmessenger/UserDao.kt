@@ -56,7 +56,12 @@ class UserDao {
             .document(userId)
             .get()
             .addOnSuccessListener { documentSnapshot ->
-                val user = documentSnapshot.toObject(User::class.java)
+                val id = documentSnapshot.getString(ID_KEY) ?: ""
+                val fullName = documentSnapshot.getString(FULL_NAME_KEY) ?: ""
+                val email = documentSnapshot.getString(EMAIL_KEY) ?: ""
+                val password = documentSnapshot.getString(PASSWORD_KEY) ?: ""
+                val user = User(id, fullName, email, password)
+               // val user = documentSnapshot.toObject(User::class.java)
                 completion(user)
             }
             .addOnFailureListener { exception ->

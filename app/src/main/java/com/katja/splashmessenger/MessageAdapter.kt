@@ -14,6 +14,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.katja.splashmessenger.databinding.ItemMessageBasicBinding
 import com.katja.splashmessenger.databinding.ItemMessageTextBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.TimeZone
 
 
 class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -23,6 +26,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
     private val MESSAGE_IN_BOTTLE_VIEW_TYPE = 2
     private val WATERBUBBLE_VIEW_TYPE = 3
     private val NORMAL_VIEW_TYPE = 4
+    var isTest = true
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -95,12 +99,22 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
         return messageType.ordinal
     }
 
+    fun getMessageDate(timestamp: Long): String{
+
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm")
+        sdf.timeZone = TimeZone.getDefault()
+        val date = Date(timestamp)
+        return sdf.format(date)
+    }
+
 
     // The messages are  being displayed but the animation does not always work
     // sometimes there are big gaps between the messages.
 
-    class WaterdropViewHolder(val binding: ItemWaterdropBinding) : RecyclerView.ViewHolder(binding.root) {
-        val user = Firebase.auth.currentUser
+   inner class WaterdropViewHolder(val binding: ItemWaterdropBinding) : RecyclerView.ViewHolder(binding.root) {
+       val user = Firebase.auth.currentUser
+
+
 
         fun bind(message: Message) {
 
@@ -112,6 +126,10 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
                 binding.textMessageSentWaterdrop.text = message.text
                 binding.textMessageSentWaterdrop.visibility = View.VISIBLE
                 binding.imageSentMessageWaterdrop.visibility = View.VISIBLE
+
+
+                binding.textDateTimeSentWaterdrop.text = getMessageDate(message.timestamp)
+                binding.textDateTimeSentWaterdrop.visibility = View.VISIBLE
 
                 binding.imageSentMessageWaterdrop.startAnimation(animation)
 
@@ -127,6 +145,9 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
                 binding.textMessageReceivedWaterdrop.visibility = View.VISIBLE
                 binding.imageReceivedMessageWaterdrop.visibility = View.VISIBLE
 
+                binding.textDateTimeReceivedWaterdrop.text = getMessageDate(message.timestamp)
+                binding.textDateTimeReceivedWaterdrop.visibility = View.VISIBLE
+
                 binding.imageReceivedMessageWaterdrop.startAnimation(animation)
 
 
@@ -140,7 +161,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
         }
 
 
-    class WatersplashViewHolder(val binding: ItemWatersplashBinding) : RecyclerView.ViewHolder(binding.root) {
+   inner class WatersplashViewHolder(val binding: ItemWatersplashBinding) : RecyclerView.ViewHolder(binding.root) {
         val user = Firebase.auth.currentUser
 
         fun bind(message: Message) {
@@ -157,6 +178,9 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
                 binding.textMessageSentWatersplash.visibility = View.VISIBLE
                 binding.imageSentMessageWatersplash.visibility = View.VISIBLE
 
+                binding.textDateTimeSentWatersplash.text = getMessageDate(message.timestamp)
+                binding.textDateTimeSentWatersplash.visibility = View.VISIBLE
+
                 binding.imageSentMessageWatersplash.startAnimation(animation)
 
                 binding.textMessageReceivedWatersplash.visibility = View.GONE
@@ -166,6 +190,9 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
                 binding.textMessageReceivedWatersplash.text = message.text
                 binding.textMessageReceivedWatersplash.visibility = View.VISIBLE
                 binding.imageReceivedMessageWatersplash.visibility = View.VISIBLE
+
+                binding.textDateTimeReceivedWatersplash.text = getMessageDate(message.timestamp)
+                binding.textDateTimeReceivedWatersplash.visibility = View.VISIBLE
 
                 binding.imageReceivedMessageWatersplash.startAnimation(animation)
 
@@ -179,7 +206,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
         }
     }
 
-    class MessageInBottleViewHolder(val binding: ItemMessageInBottleBinding) : RecyclerView.ViewHolder(binding.root) {
+   inner class MessageInBottleViewHolder(val binding: ItemMessageInBottleBinding) : RecyclerView.ViewHolder(binding.root) {
         val user = Firebase.auth.currentUser
 
         fun bind(message: Message) {
@@ -189,12 +216,20 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
                 binding.textMessageSentBottle.text = message.text
                 binding.textMessageSentBottle.visibility = View.VISIBLE
+
+                binding.textDateTimeSent.text = getMessageDate(message.timestamp)
+                binding.textDateTimeSent.visibility = View.VISIBLE
+
                 binding.textMessageReceivedBottle.visibility = View.GONE
 
             }else{
 
                 binding.textMessageReceivedBottle.text = message.text
                 binding.textMessageReceivedBottle.visibility = View.VISIBLE
+
+                binding.textDateTimeReceived.text = getMessageDate(message.timestamp)
+                binding.textDateTimeReceived.visibility = View.VISIBLE
+
                 binding.textMessageSentBottle.visibility = View.GONE
 
 
@@ -205,7 +240,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
         }
     }
 
-    class WaterbubbleViewHolder(val binding: ItemWaterbubbleBinding) : RecyclerView.ViewHolder(binding.root) {
+   inner class WaterbubbleViewHolder(val binding: ItemWaterbubbleBinding) : RecyclerView.ViewHolder(binding.root) {
         val user = Firebase.auth.currentUser
 
 
@@ -219,15 +254,22 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
                 binding.textMessageSentWaterbubble.visibility = View.VISIBLE
                 binding.imageSentMessageWaterbubble.visibility = View.VISIBLE
 
+                binding.textDateTimeSentWaterbubble.text = getMessageDate(message.timestamp)
+                binding.textDateTimeSentWaterbubble.visibility = View.VISIBLE
+
                 binding.imageSentMessageWaterbubble.startAnimation(animation)
 
                 binding.textMessageReceivedWaterbubble.visibility = View.GONE
                 binding.imageReceivedMessageWaterbubble.visibility = View.GONE
+                binding.textDateTimeReceivedWaterbubble.visibility = View.GONE
             }else{
 
                 binding.textMessageReceivedWaterbubble.text = message.text
                 binding.textMessageReceivedWaterbubble.visibility = View.VISIBLE
                 binding.imageReceivedMessageWaterbubble.visibility = View.VISIBLE
+
+                binding.textDateTimeReceivedWaterbubble.text = getMessageDate(message.timestamp)
+                binding.textDateTimeReceivedWaterbubble.visibility = View.VISIBLE
 
                 binding.imageReceivedMessageWaterbubble.startAnimation(animation)
 
@@ -240,7 +282,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
         }
     }
-    class MessageBasicViewHolder(val binding: ItemMessageBasicBinding) : RecyclerView.ViewHolder(binding.root) {
+   inner class MessageBasicViewHolder(val binding: ItemMessageBasicBinding) : RecyclerView.ViewHolder(binding.root) {
         val user = Firebase.auth.currentUser
         fun bind(message: Message) {
             val senderId = message.senderId

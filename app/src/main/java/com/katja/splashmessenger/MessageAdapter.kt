@@ -136,6 +136,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
                 binding.textMessageReceivedWaterdrop.visibility = View.GONE
                 binding.imageReceivedMessageWaterdrop.visibility = View.GONE
+                binding.textDateTimeReceivedWaterdrop.visibility = View.GONE
 
 
 
@@ -154,6 +155,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
                 binding.textMessageSentWaterdrop.visibility = View.GONE
                 binding.imageSentMessageWaterdrop.visibility = View.GONE
+                binding.textDateTimeSentWaterdrop.visibility = View.GONE
             }
 
 
@@ -186,6 +188,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
                 binding.textMessageReceivedWatersplash.visibility = View.GONE
                 binding.imageReceivedMessageWatersplash.visibility = View.GONE
+                binding.textDateTimeReceivedWatersplash.visibility = View.GONE
             }else{
 
                 binding.textMessageReceivedWatersplash.text = message.text
@@ -200,6 +203,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
                 binding.textMessageSentWatersplash.visibility = View.GONE
                 binding.imageSentMessageWatersplash.visibility = View.GONE
+                binding.textDateTimeSentWatersplash.visibility = View.GONE
 
 
             }
@@ -217,27 +221,25 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
                 binding.textMessageSentWaterbottle.text = message.text
                 binding.textMessageSentWaterbottle.visibility = View.VISIBLE
+
+                binding.textDateTimeSentWaterbottle.text = getMessageDate(message.timestamp)
+                binding.textDateTimeSentWaterbottle.visibility = View.VISIBLE
+
+
                 binding.textMessageReceivedWaterbottle.visibility = View.GONE
-                binding.textMessageSentBottle.text = message.text
-                binding.textMessageSentBottle.visibility = View.VISIBLE
-
-                binding.textDateTimeSent.text = getMessageDate(message.timestamp)
-                binding.textDateTimeSent.visibility = View.VISIBLE
-
-                binding.textMessageReceivedBottle.visibility = View.GONE
+                binding.textDateTimeReceivedWaterbottle.visibility = View.GONE
 
             }else{
 
                 binding.textMessageReceivedWaterbottle.text = message.text
                 binding.textMessageReceivedWaterbottle.visibility = View.VISIBLE
+
+
+                binding.textDateTimeReceivedWaterbottle.text = getMessageDate(message.timestamp)
+                binding.textDateTimeReceivedWaterbottle.visibility = View.VISIBLE
+
                 binding.textMessageSentWaterbottle.visibility = View.GONE
-                binding.textMessageReceivedBottle.text = message.text
-                binding.textMessageReceivedBottle.visibility = View.VISIBLE
-
-                binding.textDateTimeReceived.text = getMessageDate(message.timestamp)
-                binding.textDateTimeReceived.visibility = View.VISIBLE
-
-                binding.textMessageSentBottle.visibility = View.GONE
+                binding.textDateTimeSentWaterbottle.visibility = View.GONE
 
 
 
@@ -283,6 +285,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
                 binding.textMessageSentWaterbubble.visibility = View.GONE
                 binding.imageSentMessageWaterbubble.visibility = View.GONE
+                binding.textDateTimeSentWaterbubble.visibility = View.GONE
 
 
             }
@@ -297,13 +300,25 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
             if (user?.uid == senderId) {
                 binding.textMessageSent.text = message.text
-                binding.recivedMessageBasic.visibility = View.GONE
-                binding.sentMessageBasic.visibility = View.VISIBLE
+                binding.textMessageSent.visibility = View.VISIBLE
+
+                binding.textDateTimeSent.text = getMessageDate(message.timestamp)
+                binding.textDateTimeSent.visibility = View.VISIBLE
+
+
+                binding.textMessageReceived.visibility = View.GONE
+                binding.textDateTimeReceived.visibility = View.GONE
 
             }else{
                 binding.textMessageReceived.text = message.text
-                binding.sentMessageBasic.visibility = View.GONE
-                binding.recivedMessageBasic.visibility = View.VISIBLE
+                binding.textMessageReceived.visibility = View.VISIBLE
+
+                binding.textDateTimeReceived.text = getMessageDate(message.timestamp)
+                binding.textDateTimeReceived.visibility = View.VISIBLE
+
+                binding.textMessageSent.visibility = View.GONE
+                binding.textDateTimeSent.visibility = View.GONE
+
 
 
 

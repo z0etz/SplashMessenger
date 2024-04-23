@@ -29,6 +29,7 @@ class ConversationActivity : AppCompatActivity() {
     var recyclerViewVisible = false
     var listViewVisible = false
     private val spLocal = MessageLocal(this)
+    private val conversationDao = ConversationDao()
     private lateinit var listenerRegistration: ListenerRegistration
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +41,7 @@ class ConversationActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         val user = auth.currentUser
+        val senderId = user?.uid
 
         // Get conversationId from the intent the activity was started with
         val user2 = intent.getStringArrayListExtra("userArray")
@@ -62,7 +64,7 @@ class ConversationActivity : AppCompatActivity() {
         getConversation(conversationIdUser1)
 
 
-        // here start the firestore changeListner
+        // here starts the firestore changeListner
 
         val firestore = FirebaseFirestore.getInstance()
 
@@ -84,6 +86,24 @@ class ConversationActivity : AppCompatActivity() {
 
                             recyclerView.addOnLayoutChangeListener { _, _, _, _, bottom, _, _, _, _ ->
                                 if (adapter.itemCount > 0) {
+                                    if(adapter.itemCount == 1){
+                                            conversationDao.checkIfConversationExists(conversationIdUser1,senderId ){conversationExists ->
+                                                if (!conversationExists){
+
+                                                    val userIdsList = mutableListOf<String?>()
+                                                    userIdsList.add(senderId)
+                                                    userIdsList.add(user2Id)
+
+                                                    val conversation1 = Conversation(conversationIdUser1, userIdsList)
+                                                    conversationDao.addConversation(conversation1, senderId)
+                                                    val conversation2 = Conversation(conversationIdUser2, userIdsList)
+                                                    conversationDao.addConversation(conversation2, user2Id)
+
+                                                }
+                                            }
+
+                                    }
+
                                     if (bottom < recyclerView.height) {
                                         // The layout has been scrolled up, likely due to keyboard being shown
                                         recyclerView.postDelayed({
@@ -134,7 +154,6 @@ class ConversationActivity : AppCompatActivity() {
         }
         binding.sendButton.setOnClickListener {
 
-
             val messageText = binding.messageEditText.text.toString()
             val senderId = user?.uid
             val messageID = UUID.randomUUID().toString()
@@ -158,9 +177,8 @@ class ConversationActivity : AppCompatActivity() {
                 currentDate
             )
             dao.addMessage(newMessageReceiver)
-
-
             binding.messageEditText.text.clear()
+
 
         }
 

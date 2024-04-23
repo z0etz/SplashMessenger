@@ -12,14 +12,15 @@
         android:id="@+id/imageSentMessageWaterBottle"
         android:layout_width="285dp"
         android:layout_height="139dp"
-        android:contentDescription="@string/waterballoon_sent_message_image_description"
+        android:contentDescription="@string/waterbottle_sent_message_image_description"
         android:src="@drawable/waterbottle_sent_message"
         app:layout_constraintBottom_toTopOf="@+id/textDateTimeSentWaterBottle"
         app:layout_constraintEnd_toEndOf="@id/textMessageSentWaterBottle"
         app:layout_constraintHorizontal_bias="0.648"
         app:layout_constraintStart_toStartOf="@id/textMessageSentWaterBottle"
         app:layout_constraintTop_toTopOf="@id/textMessageSentWaterBottle"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        android:animation="@anim/waterbottle_animation" />
 
     <TextView
         android:id="@+id/textMessageSentWaterBottle"
@@ -65,12 +66,13 @@
         android:id="@+id/imageReceivedMessageWaterbottle"
         android:layout_width="@dimen/medium_width"
         android:layout_height="@dimen/small_height"
-        android:contentDescription="@string/watersplash_received_message_image_description"
+        android:contentDescription="@string/waterbottle_received_message_image_description"
         android:src="@drawable/waterbottle_received_message"
         app:layout_constraintBottom_toBottomOf="@+id/textMessageReceivedWaterbottle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.579"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:animation="@anim/waterbottle_animation" />
 
     <TextView
         android:id="@+id/textMessageReceivedWaterbottle"

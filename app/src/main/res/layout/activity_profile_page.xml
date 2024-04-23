@@ -88,27 +88,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/round_button_size"
+            android:layout_marginTop="50dp"
             android:background="@color/grey_white"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="305dp"
-                android:layout_height="228dp"
-                android:layout_marginBottom="@dimen/round_button_size"
+                android:layout_width="213dp"
+                android:layout_height="169dp"
+                android:layout_marginBottom="50dp"
                 android:contentDescription="@string/cloud_image_description"
-                android:src="@drawable/cloud_image" />
+                android:src="@drawable/splash_image" />
 
             <Button
                 android:id="@+id/profile_logout_btn"
                 android:layout_width="@dimen/buttons_sign_up_width"
                 android:layout_height="@dimen/buttons_sign_up_height"
-                android:textStyle="bold"
-                android:textSize="@dimen/create_new_account_text_size"
                 android:layout_marginBottom="@dimen/round_button_size"
                 android:backgroundTint="@color/blue"
                 android:text="@string/sign_out"
+                android:textSize="@dimen/create_new_account_text_size"
+                android:textStyle="bold"
 
                 />
 
@@ -116,10 +116,10 @@
                 android:id="@+id/profile_delete_account_btn"
                 android:layout_width="@dimen/buttons_sign_up_width"
                 android:layout_height="@dimen/buttons_sign_up_height"
-                android:textSize="@dimen/create_new_account_text_size"
-                android:textStyle="bold"
                 android:backgroundTint="@color/red"
-                android:text="@string/delete_account" />
+                android:text="@string/delete_account"
+                android:textSize="@dimen/create_new_account_text_size"
+                android:textStyle="bold" />
 
 
         </LinearLayout>

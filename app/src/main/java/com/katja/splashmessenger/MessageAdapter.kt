@@ -18,68 +18,60 @@ import com.katja.splashmessenger.databinding.ItemMessageTextBinding
 
 class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val WATERDROP_VIEW_TYPE = 0
-    private val WATERSPLASH_VIEW_TYPE = 1
-    private val MESSAGE_IN_BOTTLE_VIEW_TYPE = 2
-    private val WATERBUBBLE_VIEW_TYPE = 3
-    private val NORMAL_VIEW_TYPE = 4
+    private var messageType: MessageType = MessageType.NORMAL_VIEW_TYPE
+
+    fun setMessageType(type: MessageType) {
+        messageType = type
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            WATERDROP_VIEW_TYPE -> {
-                val view = inflater.inflate(R.layout.item_waterdrop, parent, false)
-                val binding = ItemWaterdropBinding.bind(view)
-                WaterdropViewHolder(binding)
-            }
-
-            WATERSPLASH_VIEW_TYPE -> {
-                val view = inflater.inflate(R.layout.item_watersplash, parent, false)
-                val binding = ItemWatersplashBinding.bind(view)
-                WatersplashViewHolder(binding)
-            }
-            MESSAGE_IN_BOTTLE_VIEW_TYPE -> {
+            MessageType.MESSAGE_IN_BOTTLE.ordinal -> {
                 val view = inflater.inflate(R.layout.item_message_in_bottle, parent, false)
                 val binding = ItemMessageInBottleBinding.bind(view)
                 MessageInBottleViewHolder(binding)
             }
-            WATERBUBBLE_VIEW_TYPE -> {
+            MessageType.WATERBUBBLE.ordinal -> {
                 val view = inflater.inflate(R.layout.item_waterbubble, parent, false)
                 val binding = ItemWaterbubbleBinding.bind(view)
                 WaterbubbleViewHolder(binding)
             }
-            NORMAL_VIEW_TYPE -> {
-
+            MessageType.WATERSPLASH.ordinal -> {
+                val view = inflater.inflate(R.layout.item_watersplash, parent, false)
+                val binding = ItemWatersplashBinding.bind(view)
+                WatersplashViewHolder(binding)
+            }
+            MessageType.WATERDROP.ordinal -> {
+                val view = inflater.inflate(R.layout.item_waterdrop, parent, false)
+                val binding = ItemWaterdropBinding.bind(view)
+                WaterdropViewHolder(binding)
+            }
+            else -> {
                 val view = inflater.inflate(R.layout.item_message_basic, parent, false)
                 val binding = ItemMessageBasicBinding.bind(view)
                 MessageBasicViewHolder(binding)
-            }
-            else -> {
-                throw IllegalArgumentException("Invalid view type")
             }
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val message = messageList[position]
-       // println(message.senderId)
-      //  println(message.conversationId)
         when (holder.itemViewType) {
-            WATERDROP_VIEW_TYPE -> {
-                (holder as WaterdropViewHolder).bind(message)
-            }
-            WATERSPLASH_VIEW_TYPE -> {
-                (holder as WatersplashViewHolder).bind(message)
-            }
-            MESSAGE_IN_BOTTLE_VIEW_TYPE -> {
+            MessageType.MESSAGE_IN_BOTTLE.ordinal -> {
                 (holder as MessageInBottleViewHolder).bind(message)
             }
-            WATERBUBBLE_VIEW_TYPE -> {
+            MessageType.WATERBUBBLE.ordinal -> {
                 (holder as WaterbubbleViewHolder).bind(message)
             }
-            NORMAL_VIEW_TYPE -> {
+            MessageType.WATERSPLASH.ordinal -> {
+                (holder as WatersplashViewHolder).bind(message)
+            }
+            MessageType.WATERDROP.ordinal -> {
+                (holder as WaterdropViewHolder).bind(message)
+            }
+            else -> {
                 (holder as MessageBasicViewHolder).bind(message)
-
             }
         }
     }
@@ -89,9 +81,6 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
     }
 
     override fun getItemViewType(position: Int): Int {
-        val messageType = messageList[position].type ?: MessageType.NORMAL_VIEW_TYPE
-        // I was trying to use the basic design but it did not work
-       // println(messageType)
         return messageType.ordinal
     }
 

@@ -31,6 +31,7 @@ class ConversationActivity : AppCompatActivity() {
     private val spLocal = MessageLocal(this)
     private val conversationDao = ConversationDao()
     private lateinit var listenerRegistration: ListenerRegistration
+    private var selectedMessageType: MessageType = MessageType.NORMAL_VIEW_TYPE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -140,14 +141,23 @@ class ConversationActivity : AppCompatActivity() {
 
         binding.listView.onItemClickListener =
             AdapterView.OnItemClickListener { _, _, position, _ ->
-                when (position) {
-                    0 -> onOptionBottleClicked()
-                    1 -> onOptionBubbleClicked()
-                    2 -> optioSplashsClicked()
-                    3 -> onOptionDropClicked()
-                    4 -> onOptionMessageClicked()
+                selectedMessageType = when (position) {
+                    0 -> MessageType.MESSAGE_IN_BOTTLE
+                    1 -> MessageType.WATERBUBBLE
+                    2 -> MessageType.WATERSPLASH
+                    3 -> MessageType.WATERDROP
+                    4 -> MessageType.NORMAL_VIEW_TYPE
+                    else -> MessageType.NORMAL_VIEW_TYPE
                 }
+                updateRecyclerView()
+                // Hide the ListView
+                listViewVisible = false
+                // Log the recyclerViewVisible flag
+                recyclerViewVisible = true
+                Log.d("ConversationActivity", "RecyclerView visibility after selecting option: $recyclerViewVisible")
+                updateViewVisibility()
             }
+
 
         binding.themeButton.setOnClickListener {
             onShowOptionsClicked()
@@ -182,8 +192,15 @@ class ConversationActivity : AppCompatActivity() {
 
         }
 
-
+        updateRecyclerView()
     }
+
+    private fun updateRecyclerView() {
+        Log.d("ConversationActivity", "Updating RecyclerView with message type: $selectedMessageType")
+        adapter.setMessageType(selectedMessageType)
+        adapter.notifyDataSetChanged()
+    }
+
 
     fun getConversation(conversationId: String?) {
 
@@ -238,22 +255,22 @@ class ConversationActivity : AppCompatActivity() {
     }
 
     fun onOptionBottleClicked() {
-
+        MessageType.MESSAGE_IN_BOTTLE
         Toast.makeText(this, "Bottle message", Toast.LENGTH_SHORT).show()
     }
 
     fun onOptionBubbleClicked() {
-
+        MessageType.WATERBUBBLE
         Toast.makeText(this, "Bubble message", Toast.LENGTH_SHORT).show()
     }
 
     fun onOptionMessageClicked() {
-
+        MessageType.NORMAL_VIEW_TYPE
         Toast.makeText(this, "Message", Toast.LENGTH_SHORT).show()
     }
 
     fun onOptionDropClicked() {
-
+        MessageType.WATERDROP
         Toast.makeText(this, "Drop message", Toast.LENGTH_SHORT).show()
     }
 
@@ -262,9 +279,10 @@ class ConversationActivity : AppCompatActivity() {
     }
 
     private fun updateViewVisibility() {
+        Log.d("ConversationActivity", "Updating view visibility - ListView: $listViewVisible, RecyclerView: $recyclerViewVisible")
         binding.listView.visibility = if (listViewVisible) View.VISIBLE else View.GONE
-        binding.messagesRecyclerView.visibility =
-            if (recyclerViewVisible) View.VISIBLE else View.GONE
+        binding.messagesRecyclerView.visibility = if (recyclerViewVisible) View.VISIBLE else View.GONE
     }
+
 }
 

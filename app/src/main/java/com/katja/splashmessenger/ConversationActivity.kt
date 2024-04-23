@@ -149,7 +149,7 @@ class ConversationActivity : AppCompatActivity() {
                     4 -> MessageType.NORMAL_VIEW_TYPE
                     else -> MessageType.NORMAL_VIEW_TYPE
                 }
-                updateRecyclerView()
+                //updateRecyclerView()
                 // Hide the ListView
                 listViewVisible = false
                 // Log the recyclerViewVisible flag
@@ -177,8 +177,25 @@ class ConversationActivity : AppCompatActivity() {
                 messageText,
                 currentDate
             )
-            Log.d("created message: {}", newMessageSender.toString())
+            //Log.d("created message: {}", newMessageSender.toString())
+            println(newMessageSender.type)
             dao.addMessage(newMessageSender)
+
+            val newMessageReceiver = Message(
+                messageID,
+                conversationIdUser2,
+                senderId,
+                selectedMessageType, // Use selectedMessageType here
+                messageText,
+                currentDate
+            )
+
+            dao.addMessage(newMessageReceiver)
+
+
+
+
+
 
             // Update RecyclerView after sending the message
             //updateRecyclerView()

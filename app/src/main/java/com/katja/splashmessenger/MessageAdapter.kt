@@ -22,10 +22,10 @@ import com.katja.splashmessenger.databinding.ItemMessageTextBinding
 
 class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var messageType: MessageType = MessageType.NORMAL_VIEW_TYPE
+    //private var messageType: MessageType = MessageType.NORMAL_VIEW_TYPE
 
     fun setMessageType(type: MessageType) {
-        messageType = type
+        //messageType = type
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -71,7 +71,8 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
     }
 
     override fun getItemViewType(position: Int): Int {
-        return messageType.ordinal
+        val message = messageList[position]
+        return message.type!!.ordinal
     }
 
 
@@ -104,6 +105,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
             when (binding) {
                 is ItemWaterdropBinding -> {
                     if (user?.uid == senderId) {
+
                         binding.textMessageSentWaterdrop.text = message.text
                         binding.textMessageSentWaterdrop.visibility = View.VISIBLE
                         binding.imageSentMessageWaterdrop.visibility = View.VISIBLE
@@ -131,6 +133,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
                         binding.textMessageReceivedWatersplash.visibility = View.GONE
                         binding.imageReceivedMessageWatersplash.visibility = View.GONE
                     } else {
+
                         binding.textMessageReceivedWatersplash.text = message.text
                         binding.textMessageReceivedWatersplash.visibility = View.VISIBLE
                         binding.imageReceivedMessageWatersplash.visibility = View.VISIBLE

@@ -12,6 +12,7 @@ import android.view.animation.AnimationUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.katja.splashmessenger.databinding.ItemMessageBinding
 import com.katja.splashmessenger.databinding.ItemMessageBasicBinding
 import com.katja.splashmessenger.databinding.ItemMessageTextBinding
 import java.text.SimpleDateFormat
@@ -54,8 +55,8 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
             }
             NORMAL_VIEW_TYPE -> {
 
-                val view = inflater.inflate(R.layout.item_message_basic, parent, false)
-                val binding = ItemMessageBasicBinding.bind(view)
+                val view = inflater.inflate(R.layout.item_message, parent, false)
+                val binding = ItemMessageBinding.bind(view)
                 MessageBasicViewHolder(binding)
             }
             else -> {
@@ -214,6 +215,9 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
             val senderId =  message.senderId
             if (user?.uid == senderId) {
 
+                binding.textMessageSentWaterbottle.text = message.text
+                binding.textMessageSentWaterbottle.visibility = View.VISIBLE
+                binding.textMessageReceivedWaterbottle.visibility = View.GONE
                 binding.textMessageSentBottle.text = message.text
                 binding.textMessageSentBottle.visibility = View.VISIBLE
 
@@ -224,6 +228,9 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
             }else{
 
+                binding.textMessageReceivedWaterbottle.text = message.text
+                binding.textMessageReceivedWaterbottle.visibility = View.VISIBLE
+                binding.textMessageSentWaterbottle.visibility = View.GONE
                 binding.textMessageReceivedBottle.text = message.text
                 binding.textMessageReceivedBottle.visibility = View.VISIBLE
 
@@ -283,21 +290,20 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
         }
     }
    inner class MessageBasicViewHolder(val binding: ItemMessageBasicBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MessageBasicViewHolder(val binding: ItemMessageBinding) : RecyclerView.ViewHolder(binding.root) {
         val user = Firebase.auth.currentUser
         fun bind(message: Message) {
             val senderId = message.senderId
 
             if (user?.uid == senderId) {
                 binding.textMessageSent.text = message.text
-                binding.textMessageReceived.visibility = View.GONE
-                binding.textMessageSent.visibility = View.VISIBLE
-
-
+                binding.recivedMessageBasic.visibility = View.GONE
+                binding.sentMessageBasic.visibility = View.VISIBLE
 
             }else{
                 binding.textMessageReceived.text = message.text
-                binding.textMessageSent.visibility = View.GONE
-                binding.textMessageReceived.visibility = View.VISIBLE
+                binding.sentMessageBasic.visibility = View.GONE
+                binding.recivedMessageBasic.visibility = View.VISIBLE
 
 
 

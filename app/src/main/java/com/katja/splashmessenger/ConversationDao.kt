@@ -78,14 +78,17 @@ class ConversationDao {
             .addOnFailureListener { e ->
                 Log.e("ERROR", "Failed to delete conversation from Firestore with id: $conversationId", e)
             }
+
+
+        // Needs to be moved to messageDao as soon as possible
         FirebaseFirestore.getInstance()
             .collection("messages/${conversationId}")
             .get()
 
             // still working on deleting the messages from the message/conversationId
             .addOnSuccessListener{results ->
-                for(doument in results){
-                   // doument.
+                for(doument in results.documents){
+                   doument.reference.delete()
                 }
             }
 

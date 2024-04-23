@@ -5,7 +5,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.ktx.Firebase
 import com.katja.splashmessenger.databinding.ActivitySignUpBinding
-import java.util.UUID
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
@@ -51,10 +50,10 @@ class SignUpActivity : AppCompatActivity() {
             }
             user?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    var newUser = createUser(user?.uid.toString(),username, email, password)
+                    var newUser = createUser(user.uid.toString(),username, email, password)
                     userDao.addUser(newUser)
 
-                    Toast.makeText(this, "Welcome: ${user?.displayName ?: user?.email}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Welcome: ${user.displayName ?: user.email}", Toast.LENGTH_SHORT).show()
 
                     val intent = Intent(this, UserConversationActivity::class.java)
                     startActivity(intent)

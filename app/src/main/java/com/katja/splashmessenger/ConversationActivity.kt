@@ -177,8 +177,6 @@ class ConversationActivity : AppCompatActivity() {
                 messageText,
                 currentDate
             )
-            //Log.d("created message: {}", newMessageSender.toString())
-            println(newMessageSender.type)
             dao.addMessage(newMessageSender)
 
             val newMessageReceiver = Message(
@@ -288,9 +286,9 @@ class ConversationActivity : AppCompatActivity() {
     }
 
     private fun updateViewVisibility() {
-        Log.d("ConversationActivity", "Updating view visibility - ListView: $listViewVisible, RecyclerView: $recyclerViewVisible")
         binding.listView.visibility = if (listViewVisible) View.VISIBLE else View.GONE
-        binding.messagesRecyclerView.visibility = if (recyclerViewVisible) View.VISIBLE else View.GONE
+        binding.messagesRecyclerView.visibility =
+            if (recyclerViewVisible) View.VISIBLE else View.GONE
     }
 
 }

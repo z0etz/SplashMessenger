@@ -60,8 +60,8 @@
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="@dimen/list_view_messeges_widht"
-        android:layout_height="@dimen/list_view_messeges_height"
+        android:layout_width="@dimen/list_view_messages_width"
+        android:layout_height="@dimen/list_view_messages_height"
         android:layout_marginTop="244dp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,8 +93,8 @@
 
     <ImageButton
         android:id="@+id/themeButton"
-        android:layout_width="@dimen/buttons_sign_up_height"
-        android:layout_height="@dimen/buttons_sign_up_height"
+        android:layout_width="@dimen/theme_button_size"
+        android:layout_height="@dimen/theme_button_size"
         android:layout_margin="@dimen/margin_small"
         android:background="@drawable/round_button_background"
         android:contentDescription="@string/send_message"
@@ -102,10 +102,10 @@
         android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/topView"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintVertical_bias="0.963" />
 
     <ImageButton
         android:id="@+id/sendButton"

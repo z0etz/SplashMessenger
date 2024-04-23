@@ -52,6 +52,7 @@
     <dimen name="NoticeImageH">120dp</dimen>
     <dimen name="large_padding">20dp</dimen>
     <dimen name="extra_small_height">69dp</dimen>
-    <dimen name="list_view_messeges_height">385dp</dimen>
-    <dimen name="list_view_messeges_widht">364dp</dimen>
+    <dimen name="list_view_messages_height">385dp</dimen>
+    <dimen name="list_view_messages_width">364dp</dimen>
+    <dimen name="theme_button_size">40dp</dimen>
 </resources>

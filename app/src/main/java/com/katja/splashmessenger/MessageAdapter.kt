@@ -9,12 +9,9 @@ import com.katja.splashmessenger.databinding.ItemWatersplashBinding
 import com.katja.splashmessenger.databinding.ItemMessageInBottleBinding
 import com.katja.splashmessenger.databinding.ItemWaterbubbleBinding
 import android.view.animation.AnimationUtils
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.katja.splashmessenger.databinding.ItemMessageBinding
-import com.katja.splashmessenger.databinding.ItemMessageBasicBinding
-import com.katja.splashmessenger.databinding.ItemMessageTextBinding
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.TimeZone
@@ -264,29 +261,3 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
     }
 }
-
-/*
-fun bind(message: Message) {
-    val senderId = message.senderId
-
-    if (user?.uid == senderId) {
-        binding.textMessageSent.text = message.text
-        binding.textMessageReceived.visibility = View.GONE
-        binding.root.removeView(binding.textMessageReceived)
-
-        binding.textMessageSent.visibility = View.VISIBLE  // Make sent message visible
-
-
-    }else{
-        binding.textMessageReceived.text = message.text
-        binding.textMessageSent.visibility = View.GONE
-        binding.root.removeView(binding.textMessageSent)
-
-        binding.textMessageReceived.visibility = View.VISIBLE // Make received message visible
-
-
-    }
-
-}
-
- */

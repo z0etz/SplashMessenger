@@ -185,15 +185,15 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
             val senderId =  message.senderId
             if (user?.uid == senderId) {
 
-                binding.textMessageSentBottle.text = message.text
-                binding.textMessageSentBottle.visibility = View.VISIBLE
-                binding.textMessageReceivedBottle.visibility = View.GONE
+                binding.textMessageSentWaterbottle.text = message.text
+                binding.textMessageSentWaterbottle.visibility = View.VISIBLE
+                binding.textMessageReceivedWaterbottle.visibility = View.GONE
 
             }else{
 
-                binding.textMessageReceivedBottle.text = message.text
-                binding.textMessageReceivedBottle.visibility = View.VISIBLE
-                binding.textMessageSentBottle.visibility = View.GONE
+                binding.textMessageReceivedWaterbottle.text = message.text
+                binding.textMessageReceivedWaterbottle.visibility = View.VISIBLE
+                binding.textMessageSentWaterbottle.visibility = View.GONE
 
 
 

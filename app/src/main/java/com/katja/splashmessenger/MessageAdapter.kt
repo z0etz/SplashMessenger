@@ -102,7 +102,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
     // The messages are  being displayed but the animation does not always work
     // sometimes there are big gaps between the messages.
 
-    class MessageViewHolder(private val binding: ViewBinding) : RecyclerView.ViewHolder(binding.root) {
+   inner class MessageViewHolder(private val binding: ViewBinding) : RecyclerView.ViewHolder(binding.root) {
 
         private val user = Firebase.auth.currentUser
 
@@ -132,19 +132,33 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
                         binding.textMessageSentWaterdrop.text = message.text
                         binding.textMessageSentWaterdrop.visibility = View.VISIBLE
                         binding.imageSentMessageWaterdrop.visibility = View.VISIBLE
-                        println("Water drop message was recovered")
                         //animation?.let { binding.imageSentMessageWaterdrop.startAnimation(it)
                         //}
+
+                        binding.textDateTimeSentWaterdrop.text = getMessageDate(message.timestamp)
+                        binding.textDateTimeSentWaterdrop.visibility = View.VISIBLE
+
+
+
+
                         binding.textMessageReceivedWaterdrop.visibility = View.GONE
                         binding.imageReceivedMessageWaterdrop.visibility = View.GONE
+                        binding.textDateTimeReceivedWaterdrop.visibility = View.GONE
                     } else {
                         binding.textMessageReceivedWaterdrop.text = message.text
                         binding.textMessageReceivedWaterdrop.visibility = View.VISIBLE
                         binding.imageReceivedMessageWaterdrop.visibility = View.VISIBLE
                         //animation?.let {binding.imageReceivedMessageWaterdrop.startAnimation(it)
                        // }
+
+                        binding.textDateTimeReceivedWaterdrop.text = getMessageDate(message.timestamp)
+                        binding.textDateTimeReceivedWaterdrop.visibility = View.VISIBLE
+
+
+
                         binding.textMessageSentWaterdrop.visibility = View.GONE
                         binding.imageSentMessageWaterdrop.visibility = View.GONE
+                        binding.textDateTimeSentWaterdrop.visibility = View.GONE
                     }
                 }
                 is ItemWatersplashBinding -> {
@@ -153,12 +167,19 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
                         binding.textMessageSentWatersplash.text = message.text
                         binding.textMessageSentWatersplash.visibility = View.VISIBLE
                         binding.imageSentMessageWatersplash.visibility = View.VISIBLE
-                        println("Water splash message was recovered")
 
                         // animation?.let { binding.imageSentMessageWatersplash.startAnimation(it)
                        // }
+
+                        binding.textDateTimeSentWatersplash.text = getMessageDate(message.timestamp)
+                        binding.textDateTimeSentWatersplash.visibility = View.VISIBLE
+
+
+
+
                         binding.textMessageReceivedWatersplash.visibility = View.GONE
                         binding.imageReceivedMessageWatersplash.visibility = View.GONE
+                        binding.textDateTimeReceivedWatersplash.visibility = View.GONE
                     } else {
 
                         binding.textMessageReceivedWatersplash.text = message.text
@@ -166,8 +187,16 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
                         binding.imageReceivedMessageWatersplash.visibility = View.VISIBLE
                        // animation?.let {binding.imageReceivedMessageWatersplash.startAnimation(it)
                        // }
+
+                        binding.textDateTimeReceivedWatersplash.text = getMessageDate(message.timestamp)
+                        binding.textDateTimeReceivedWatersplash.visibility = View.VISIBLE
+
+
+
+
                         binding.textMessageSentWatersplash.visibility = View.GONE
                         binding.imageSentMessageWatersplash.visibility = View.GONE
+                        binding.textDateTimeSentWatersplash.visibility = View.GONE
                     }
                 }
                 is ItemMessageInBottleBinding -> {
@@ -175,13 +204,35 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
                     if (user?.uid == senderId) {
                         binding.textMessageSentWaterbottle.text = message.text
                         binding.textMessageSentWaterbottle.visibility = View.VISIBLE
+                        binding.imageSentMessageWaterBottle.visibility = View.VISIBLE
+
+                        binding.textDateTimeSentWaterbottle.text = getMessageDate(message.timestamp)
+                        binding.textDateTimeSentWaterbottle.visibility = View.VISIBLE
+
+
+
+
+
+
                         binding.textMessageReceivedWaterbottle.visibility = View.GONE
-                        println("Message in bottle was recovered")
+                        binding.imageReceivedMessageWaterbottle.visibility = View.GONE
+                        binding.textDateTimeReceivedWaterbottle.visibility = View.GONE
 
                     } else {
+
                         binding.textMessageReceivedWaterbottle.text = message.text
                         binding.textMessageReceivedWaterbottle.visibility = View.VISIBLE
+                        binding.imageReceivedMessageWaterbottle.visibility = View.VISIBLE
+
+                        binding.textDateTimeReceivedWaterbottle.text = getMessageDate(message.timestamp)
+                        binding.textDateTimeReceivedWaterbottle.visibility = View.VISIBLE
+
+
+
                         binding.textMessageSentWaterbottle.visibility = View.GONE
+                        binding.imageSentMessageWaterBottle.visibility = View.GONE
+                        binding.textDateTimeSentWaterbottle.visibility = View.GONE
+
                     }
                 }
                 is ItemWaterbubbleBinding -> {
@@ -190,36 +241,52 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
                         binding.textMessageSentWaterbubble.text = message.text
                         binding.textMessageSentWaterbubble.visibility = View.VISIBLE
                         binding.imageSentMessageWaterbubble.visibility = View.VISIBLE
-                        println("Water bubble message was recovered")
+
+                        binding.textDateTimeSentWaterbubble.text = getMessageDate(message.timestamp)
+                        binding.textDateTimeSentWaterbubble.visibility = View.VISIBLE
+
 
                         //animation?.let { binding.imageSentMessageWaterbubble.startAnimation(it)
                       //  }
                         binding.textMessageReceivedWaterbubble.visibility = View.GONE
                         binding.imageReceivedMessageWaterbubble.visibility = View.GONE
+                        binding.textDateTimeReceivedWaterbubble.visibility = View.GONE
                     } else {
                         binding.textMessageReceivedWaterbubble.text = message.text
                         binding.textMessageReceivedWaterbubble.visibility = View.VISIBLE
                         binding.imageReceivedMessageWaterbubble.visibility = View.VISIBLE
                         //animation?.let { binding.imageReceivedMessageWaterbubble.startAnimation(it)
                        // }
+
+
+                        binding.textDateTimeReceivedWaterbubble.text = getMessageDate(message.timestamp)
+                        binding.textDateTimeReceivedWaterbubble.visibility = View.VISIBLE
+
+
+
+                        binding.textDateTimeSentWaterbubble.visibility = View.GONE
                         binding.textMessageSentWaterbubble.visibility = View.GONE
                         binding.imageSentMessageWaterbubble.visibility = View.GONE
                     }
                 }
                 is ItemMessageBinding -> {
-                    println("Normal message was recovered")
 
                     // println(binding)
                    if (user?.uid == senderId) {
-                        binding.textMessageSent.text = message.text
-                        binding.textMessageSent.visibility = View.VISIBLE
-                        binding.textDateTimeSent.visibility = View.VISIBLE
+                       binding.textMessageSent.text = message.text
+                       binding.textMessageSent.visibility = View.VISIBLE
 
-                        binding.textMessageReceived.visibility = View.GONE
-                        binding.textDateTimeReceived.visibility = View.GONE
+
+                       binding.textDateTimeSent.text =  getMessageDate(message.timestamp)
+                       binding.textDateTimeSent.visibility = View.VISIBLE
+
+                       binding.textMessageReceived.visibility = View.GONE
+                       binding.textDateTimeReceived.visibility = View.GONE
                     } else {
                         binding.textMessageReceived.text = message.text
                         binding.textMessageReceived.visibility = View.VISIBLE
+
+                        binding.textDateTimeReceived.text = getMessageDate(message.timestamp)
                         binding.textDateTimeReceived.visibility = View.VISIBLE
 
                         binding.textMessageSent.visibility = View.GONE
@@ -231,13 +298,14 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
             }
         }
 
-        companion object {
-            const val VIEW_TYPE_WATERDROP = 0
-            const val VIEW_TYPE_WATERSPLASH = 1
-            const val VIEW_TYPE_MESSAGE_IN_BOTTLE = 2
-            const val VIEW_TYPE_WATERBUBBLE = 3
-            const val VIEW_TYPE_MESSAGE_BASIC = 4
-        }
+
+    }
+    companion object {
+        const val VIEW_TYPE_WATERDROP = 0
+        const val VIEW_TYPE_WATERSPLASH = 1
+        const val VIEW_TYPE_MESSAGE_IN_BOTTLE = 2
+        const val VIEW_TYPE_WATERBUBBLE = 3
+        const val VIEW_TYPE_MESSAGE_BASIC = 4
     }
 }
 

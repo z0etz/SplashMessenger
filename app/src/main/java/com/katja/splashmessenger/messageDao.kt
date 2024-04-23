@@ -64,7 +64,7 @@ class messageDao {
                 val timestamp = document.getLong(KEY_TIMESTAMP)
                 //val timestamp = LocalDateTime.now()
 
-                val message = Message(id, conversationId, senderId, type, text, timestamp)
+                val message = Message(id, conversationId, senderId, type, text, timestamp!!)
                 messageList.add(message)
             }
                 Log.i("SUCCESS", "Successfully fetched conversation from Firestore")

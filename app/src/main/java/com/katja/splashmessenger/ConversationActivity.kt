@@ -162,7 +162,7 @@ class ConversationActivity : AppCompatActivity() {
                 messageID,
                 conversationIdUser1,
                 senderId,
-                MessageType.NORMAL_VIEW_TYPE,
+                MessageType.WATERBUBBLE,
                 messageText,
                 currentDate
             )
@@ -172,7 +172,7 @@ class ConversationActivity : AppCompatActivity() {
                 messageID,
                 conversationIdUser2,
                 senderId,
-                MessageType.NORMAL_VIEW_TYPE,
+                MessageType.WATERBUBBLE,
                 messageText,
                 currentDate
             )

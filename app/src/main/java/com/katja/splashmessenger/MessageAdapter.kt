@@ -289,8 +289,8 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
 
         }
     }
-   inner class MessageBasicViewHolder(val binding: ItemMessageBasicBinding) : RecyclerView.ViewHolder(binding.root) {
-    class MessageBasicViewHolder(val binding: ItemMessageBinding) : RecyclerView.ViewHolder(binding.root) {
+
+   inner class MessageBasicViewHolder(val binding: ItemMessageBinding) : RecyclerView.ViewHolder(binding.root) {
         val user = Firebase.auth.currentUser
         fun bind(message: Message) {
             val senderId = message.senderId

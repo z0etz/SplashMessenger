@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">SplashMessenger</string>
     <string name="login">Login</string>
     <string name="loginText">Login to your account</string>
@@ -32,7 +33,8 @@
     <string name="waterballoon_sent_message_image_description">Large waterballoons image</string>
     <string name="waterballoon_received_message_image_description">Small waterballoons image</string>
     <string name="waterballoon_image_profile_description">Waterballoon image</string>
-
+    <string name="waterbottle_sent_message_image_description">Large waterbottle image</string>
+    <string name="waterbottle_received_message_image_description">Small waterbottle image</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
@@ -70,6 +72,7 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+
     <string name="full_name">Full name</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -97,6 +100,5 @@
     <string name="usermail">UserMail</string>
     <string name="delete_account">Delete account</string>
     <string name="date_time">Date and time could not be loaded</string>
-
 
 </resources>

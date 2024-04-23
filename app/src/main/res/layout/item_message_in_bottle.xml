@@ -14,16 +14,16 @@
         android:layout_height="139dp"
         android:contentDescription="@string/waterbottle_sent_message_image_description"
         android:src="@drawable/waterbottle_sent_message"
-        app:layout_constraintBottom_toTopOf="@+id/textDateTimeSentWaterBottle"
-        app:layout_constraintEnd_toEndOf="@id/textMessageSentWaterBottle"
+        app:layout_constraintBottom_toTopOf="@+id/textDateTimeSentWaterbottle"
+        app:layout_constraintEnd_toEndOf="@id/textMessageSentWaterbottle"
         app:layout_constraintHorizontal_bias="0.648"
-        app:layout_constraintStart_toStartOf="@id/textMessageSentWaterBottle"
-        app:layout_constraintTop_toTopOf="@id/textMessageSentWaterBottle"
+        app:layout_constraintStart_toStartOf="@id/textMessageSentWaterbottle"
+        app:layout_constraintTop_toTopOf="@id/textMessageSentWaterbottle"
         app:layout_constraintVertical_bias="1.0"
         android:animation="@anim/waterbottle_animation" />
 
     <TextView
-        android:id="@+id/textMessageSentWaterBottle"
+        android:id="@+id/textMessageSentWaterbottle"
         android:layout_width="@dimen/view_bottom_height_sign_up"
         android:layout_height="wrap_content"
         android:layout_marginTop="95dp"
@@ -33,7 +33,7 @@
         android:padding="@dimen/small_padding"
         android:textColor="@color/white"
         android:textSize="@dimen/medium_text_size"
-        app:layout_constraintBottom_toTopOf="@+id/textDateTimeSentWaterBottle"
+        app:layout_constraintBottom_toTopOf="@+id/textDateTimeSentWaterbottle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.803"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,14 +41,14 @@
         app:layout_constraintWidth_percent="0.8" />
 
     <TextView
-        android:id="@+id/textDateTimeSentWaterBottle"
+        android:id="@+id/textDateTimeSentWaterbottle"
         android:layout_width="@dimen/view_bottom_height_sign_up"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/extra_small_margin_top"
         android:textColor="@color/white"
         android:textSize="@dimen/small_text_size"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMessageSentWaterBottle" />
+        app:layout_constraintTop_toBottomOf="@+id/textMessageSentWaterbottle" />
 
     <!-- Received Bottle-->
 
@@ -91,7 +91,7 @@
         app:layout_constraintWidth_percent="0.75" />
 
     <TextView
-        android:id="@+id/textDateTimeReceivedWaterBottle"
+        android:id="@+id/textDateTimeReceivedWaterbottle"
         android:layout_width="@dimen/view_bottom_height_sign_up"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/extra_small_margin_top"

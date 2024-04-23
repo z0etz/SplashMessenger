@@ -153,26 +153,20 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
             if (user?.uid == senderId) {
 
                 binding.textMessageSentWatersplash.text = message.text
-                binding.textMessageSentWatersplash.visibility = View.VISIBLE
-                binding.imageSentMessageWatersplash.visibility = View.VISIBLE
+                binding.sentMessageWatersplash.visibility = View.VISIBLE
 
                 binding.imageSentMessageWatersplash.startAnimation(animation)
 
-                binding.textMessageReceivedWatersplash.visibility = View.GONE
-                binding.imageReceivedMessageWatersplash.visibility = View.GONE
+                binding.sentMessageWatersplash.visibility = View.GONE
+
             }else{
 
                 binding.textMessageReceivedWatersplash.text = message.text
-                binding.textMessageReceivedWatersplash.visibility = View.VISIBLE
-                binding.imageReceivedMessageWatersplash.visibility = View.VISIBLE
+                binding.recievedMessageWatersplash.visibility = View.VISIBLE
 
                 binding.imageReceivedMessageWatersplash.startAnimation(animation)
 
-
-                binding.textMessageSentWatersplash.visibility = View.GONE
-                binding.imageSentMessageWatersplash.visibility = View.GONE
-
-
+                binding.sentMessageWatersplash.visibility = View.GONE
             }
 
         }
@@ -187,8 +181,8 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
             if (user?.uid == senderId) {
 
                 binding.textMessageSentWaterbottle.text = message.text
-                binding.textMessageSentWaterbottle.visibility = View.VISIBLE
-                binding.textMessageReceivedWaterbottle.visibility = View.GONE
+                binding.sentMessageBottle.visibility = View.VISIBLE
+                binding.recivedMessageBottle.visibility = View.GONE
 
             }else{
 

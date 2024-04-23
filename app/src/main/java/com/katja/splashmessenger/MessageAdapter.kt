@@ -148,7 +148,7 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
         }
 
 
-    class WatersplashViewHolder(val binding: ItemWatersplashBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class WatersplashViewHolder(val binding: ItemWatersplashBinding) : RecyclerView.ViewHolder(binding.root) {
         val user = Firebase.auth.currentUser
 
         fun bind(message: Message) {
@@ -198,10 +198,6 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
                 binding.textMessageReceivedWaterbottle.text = message.text
                 binding.textMessageReceivedWaterbottle.visibility = View.VISIBLE
                 binding.textMessageSentWaterbottle.visibility = View.GONE
-
-
-
-
             }
 
         }
@@ -250,14 +246,8 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
                 binding.textMessageReceived.text = message.text
                 binding.sentMessageBasic.visibility = View.GONE
                 binding.recivedMessageBasic.visibility = View.VISIBLE
-
-
-
-
             }
 
         }
-
-
     }
 }

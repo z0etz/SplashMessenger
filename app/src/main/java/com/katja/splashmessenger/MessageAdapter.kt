@@ -109,28 +109,20 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
             if (user?.uid == senderId) {
 
                 binding.textMessageSentWaterdrop.text = message.text
-                binding.textMessageSentWaterdrop.visibility = View.VISIBLE
-                binding.imageSentMessageWaterdrop.visibility = View.VISIBLE
+                binding.sentMessageWaterdrop.visibility = View.VISIBLE
 
                 binding.imageSentMessageWaterdrop.startAnimation(animation)
 
-                binding.textMessageReceivedWaterdrop.visibility = View.GONE
-                binding.imageReceivedMessageWaterdrop.visibility = View.GONE
-
-
-
+                binding.recivedMessageWaterdrop.visibility = View.GONE
             }
             else{
 
                 binding.textMessageReceivedWaterdrop.text = message.text
-                binding.textMessageReceivedWaterdrop.visibility = View.VISIBLE
-                binding.imageReceivedMessageWaterdrop.visibility = View.VISIBLE
+                binding.recivedMessageWaterdrop.visibility = View.VISIBLE
 
                 binding.imageReceivedMessageWaterdrop.startAnimation(animation)
 
-
-                binding.textMessageSentWaterdrop.visibility = View.GONE
-                binding.imageSentMessageWaterdrop.visibility = View.GONE
+                binding.sentMessageWaterdrop.visibility = View.GONE
             }
 
 
@@ -209,26 +201,19 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
             if (user?.uid == senderId) {
 
                 binding.textMessageSentWaterbubble.text = message.text
-                binding.textMessageSentWaterbubble.visibility = View.VISIBLE
-                binding.imageSentMessageWaterbubble.visibility = View.VISIBLE
+                binding.sentMessageWaterbubble.visibility = View.VISIBLE
 
                 binding.imageSentMessageWaterbubble.startAnimation(animation)
 
-                binding.textMessageReceivedWaterbubble.visibility = View.GONE
-                binding.imageReceivedMessageWaterbubble.visibility = View.GONE
+                binding.recievedMessageWaterbubble.visibility = View.GONE
             }else{
 
                 binding.textMessageReceivedWaterbubble.text = message.text
-                binding.textMessageReceivedWaterbubble.visibility = View.VISIBLE
-                binding.imageReceivedMessageWaterbubble.visibility = View.VISIBLE
+                binding.recievedMessageWaterbubble.visibility = View.VISIBLE
 
                 binding.imageReceivedMessageWaterbubble.startAnimation(animation)
 
-
-                binding.textMessageSentWaterbubble.visibility = View.GONE
-                binding.imageSentMessageWaterbubble.visibility = View.GONE
-
-
+                binding.sentMessageWaterbubble.visibility = View.GONE
             }
 
         }

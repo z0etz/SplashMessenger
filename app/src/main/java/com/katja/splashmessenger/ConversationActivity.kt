@@ -9,14 +9,14 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.katja.splashmessenger.databinding.ActivityConversationBinding
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.util.Date
 import java.util.UUID
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.ListenerRegistration
-
 
 
 class ConversationActivity : AppCompatActivity() {
@@ -25,6 +25,9 @@ class ConversationActivity : AppCompatActivity() {
     lateinit var adapter: MessageAdapter
     lateinit var auth: FirebaseAuth
     private val dao = messageDao()
+    var optionsVisible = false
+    var recyclerViewVisible = false
+    var listViewVisible = false
     private val spLocal = MessageLocal(this)
     private lateinit var listenerRegistration: ListenerRegistration
 
@@ -61,9 +64,9 @@ class ConversationActivity : AppCompatActivity() {
 
         // here start the firestore changeListner
 
-       val firestore = FirebaseFirestore.getInstance()
+        val firestore = FirebaseFirestore.getInstance()
 
-         listenerRegistration = firestore.collection("messages/${conversationIdUser1}")
+        listenerRegistration = firestore.collection("messages/${conversationIdUser1}")
             .addSnapshotListener { snapshots, e ->
                 if (e != null) {
                     Log.w(TAG, "Listen failed.", e)
@@ -75,7 +78,7 @@ class ConversationActivity : AppCompatActivity() {
                         DocumentChange.Type.ADDED -> {
 
                             // A new message has been added
-                           getConversation(conversationIdUser1)
+                            getConversation(conversationIdUser1)
 
                             val recyclerView = binding.messagesRecyclerView
 
@@ -90,8 +93,7 @@ class ConversationActivity : AppCompatActivity() {
                                         // The layout has not been scrolled up, perform immediate scroll
                                         recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
                                     }
-                                }
-                                else{
+                                } else {
                                     println("avoided a crash")
                                 }
                             }
@@ -100,6 +102,7 @@ class ConversationActivity : AppCompatActivity() {
                         DocumentChange.Type.MODIFIED -> {
                             // Handle modified documents
                         }
+
                         DocumentChange.Type.REMOVED -> {
                             // Handle removed documents
                         }
@@ -108,36 +111,52 @@ class ConversationActivity : AppCompatActivity() {
             }
 
 
-
-
-
-
-
-
         // Here ends the firestore ChangeListener
 
 
+        val options = arrayOf("Bottle", "Bubble", "Drop", "Splash", "Message")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, options)
+        binding.listView.adapter = adapter
 
+        binding.listView.onItemClickListener =
+            AdapterView.OnItemClickListener { _, _, position, _ ->
+                when (position) {
+                    0 -> onOptionBottleClicked()
+                    1 -> onOptionBubbleClicked()
+                    2 -> optioSplashsClicked()
+                    3 -> onOptionDropClicked()
+                    4 -> onOptionMessageClicked()
+                }
+            }
 
-
-
-
-
-
-
-
-
+        binding.themeButton.setOnClickListener {
+            onShowOptionsClicked()
+        }
         binding.sendButton.setOnClickListener {
 
 
-            val messageText= binding.messageEditText.text.toString()
+            val messageText = binding.messageEditText.text.toString()
             val senderId = user?.uid
             val messageID = UUID.randomUUID().toString()
             val currentDate = System.currentTimeMillis()
-            val newMessageSender = Message(messageID,conversationIdUser1,senderId, MessageType.NORMAL_VIEW_TYPE, messageText, currentDate)
+            val newMessageSender = Message(
+                messageID,
+                conversationIdUser1,
+                senderId,
+                MessageType.NORMAL_VIEW_TYPE,
+                messageText,
+                currentDate
+            )
             dao.addMessage(newMessageSender)
 
-            val newMessageReceiver = Message(messageID,conversationIdUser2,senderId, MessageType.NORMAL_VIEW_TYPE, messageText, currentDate)
+            val newMessageReceiver = Message(
+                messageID,
+                conversationIdUser2,
+                senderId,
+                MessageType.NORMAL_VIEW_TYPE,
+                messageText,
+                currentDate
+            )
             dao.addMessage(newMessageReceiver)
 
 
@@ -154,9 +173,9 @@ class ConversationActivity : AppCompatActivity() {
             dao.getConversation(conversationId) { conversation ->
 
 
-                if(!conversation.isEmpty()) {
+                if (!conversation.isEmpty()) {
 
-                   val conversationSorted = sortMessages(conversation)
+                    val conversationSorted = sortMessages(conversation)
 
                     adapter.messageList = conversationSorted
                     adapter.notifyDataSetChanged()
@@ -167,34 +186,67 @@ class ConversationActivity : AppCompatActivity() {
 //                }
             }
         }
-
-
     }
 
     // should be moved to a DataManager
-    fun sortMessages(messages: MutableList<Message>): List<Message>{
+    fun sortMessages(messages: MutableList<Message>): List<Message> {
 
-        val range = messages.size -2
+        val range = messages.size - 2
 
-        for( i in 0..range){
+        for (i in 0..range) {
 
-            for (j in 0..range){
+            for (j in 0..range) {
 
-                if (messages[j].timestamp!! > messages[j+1].timestamp!! ){
+                if (messages[j].timestamp!! > messages[j + 1].timestamp!!) {
                     val swapMessage: Message = messages[j]
-                    messages[j] = messages[j + 1 ]
-                    messages[j+1] = swapMessage
+                    messages[j] = messages[j + 1]
+                    messages[j + 1] = swapMessage
                 }
             }
         }
 
-
-
         return messages
     }
+
     override fun onDestroy() {
         super.onDestroy()
         listenerRegistration.remove()
+    }
+
+    fun onShowOptionsClicked() {
+        recyclerViewVisible = false
+        listViewVisible = !listViewVisible
+        updateViewVisibility()
+    }
+
+    fun onOptionBottleClicked() {
+
+        Toast.makeText(this, "Bottle message", Toast.LENGTH_SHORT).show()
+    }
+
+    fun onOptionBubbleClicked() {
+
+        Toast.makeText(this, "Bubble message", Toast.LENGTH_SHORT).show()
+    }
+
+    fun onOptionMessageClicked() {
+
+        Toast.makeText(this, "Message", Toast.LENGTH_SHORT).show()
+    }
+
+    fun onOptionDropClicked() {
+
+        Toast.makeText(this, "Drop message", Toast.LENGTH_SHORT).show()
+    }
+
+    fun optioSplashsClicked() {
+        Toast.makeText(this, "Splash message", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun updateViewVisibility() {
+        binding.listView.visibility = if (listViewVisible) View.VISIBLE else View.GONE
+        binding.messagesRecyclerView.visibility =
+            if (recyclerViewVisible) View.VISIBLE else View.GONE
     }
 }
 

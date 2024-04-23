@@ -1,9 +1,17 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/extra_small_margin_top"
-    android:background="@color/gray">
+    android:background="@color/gray"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sent_message_waterbubble">
 
     <!-- Sent Waterbubble-->
 
@@ -49,15 +57,6 @@
     <!-- Received Waterbubble-->
 
     <ImageView
-        android:id="@+id/imageProfileWaterbubble"
-        android:layout_width="@dimen/margin_large"
-        android:layout_height="@dimen/margin_large"
-        android:src="@drawable/waterbubble_image"
-        android:contentDescription="@string/waterballoon_image_profile_description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMessageReceivedWaterbubble" />
-
-    <ImageView
         android:id="@+id/imageReceivedMessageWaterbubble"
         android:layout_width="@dimen/medium_width"
         android:layout_height="@dimen/small_height"
@@ -68,21 +67,20 @@
         app:layout_constraintHorizontal_bias="0.579"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textMessageReceivedWaterbubble"
-        android:layout_width="@dimen/view_bottom_height_sign_up"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/extra_small_margin_top"
-        android:layout_marginTop="@dimen/extra_large_margin_top"
-        android:background="@drawable/background_received_message"
-        android:padding="@dimen/small_padding"
-        android:textColor="@color/blue"
-        android:textSize="@dimen/medium_text_size"
-        android:minHeight="@dimen/button_search"
-        app:layout_constraintStart_toEndOf="@+id/imageProfileWaterbubble"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/imageReceivedMessageWaterbubble"
-        app:layout_constraintWidth_percent="0.75" />
+        <TextView
+            android:id="@+id/textMessageReceivedWaterbubble"
+            android:layout_width="@dimen/view_bottom_height_sign_up"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/extra_large_margin_top"
+            android:background="@drawable/background_received_message"
+            android:minHeight="@dimen/button_search"
+            android:padding="@dimen/small_padding"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/medium_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/imageReceivedMessageWaterbubble"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.75" />
 
     <TextView
         android:id="@+id/textDateTimeReceivedWaterbubble"
@@ -95,3 +93,4 @@
         app:layout_constraintTop_toBottomOf="@+id/textMessageReceivedWaterbubble" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -17,7 +17,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.katja.splashmessenger.databinding.ItemMessageBinding
 import com.katja.splashmessenger.databinding.ItemMessageBasicBinding
-import com.katja.splashmessenger.databinding.ItemMessageBinding
 import com.katja.splashmessenger.databinding.ItemMessageTextBinding
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -157,13 +156,13 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
                 }
                 is ItemMessageInBottleBinding -> {
                     if (user?.uid == senderId) {
-                        binding.textMessageSentBottle.text = message.text
-                        binding.textMessageSentBottle.visibility = View.VISIBLE
-                        binding.textMessageReceivedBottle.visibility = View.GONE
+                        binding.textMessageSentWaterbottle.text = message.text
+                        binding.textMessageSentWaterbottle.visibility = View.VISIBLE
+                        binding.textMessageReceivedWaterbottle.visibility = View.GONE
                     } else {
-                        binding.textMessageReceivedBottle.text = message.text
-                        binding.textMessageReceivedBottle.visibility = View.VISIBLE
-                        binding.textMessageSentBottle.visibility = View.GONE
+                        binding.textMessageReceivedWaterbottle.text = message.text
+                        binding.textMessageReceivedWaterbottle.visibility = View.VISIBLE
+                        binding.textMessageSentWaterbottle.visibility = View.GONE
                     }
                 }
                 is ItemWaterbubbleBinding -> {

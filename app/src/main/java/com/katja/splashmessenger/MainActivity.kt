@@ -21,19 +21,15 @@ class MainActivity : AppCompatActivity() {
         val buttonSignUp = binding.buttonSignUp
         val buttonLogin = binding.buttonLogin
         buttonSignUp.setOnClickListener {
-            // Start SignUpActivity
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
 
-        // Set onClickListener for Login button
         buttonLogin.setOnClickListener {
-            // Start LoginActivity
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
         if (auth.currentUser != null) {
-            // Användaren är inloggad, omdirigera till huvudaktiviteten
             val intent = Intent(this, UserConversationActivity::class.java)
             startActivity(intent)
             finish()

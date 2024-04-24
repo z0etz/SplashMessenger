@@ -9,7 +9,6 @@ import com.katja.splashmessenger.databinding.ItemUserNameBinding
 interface OnItemClickListener {
     fun onItemClick(userArray: ArrayList<String?>)
 }
-
 class UserConversationAdapter(private val listener: OnItemClickListener) :
     RecyclerView.Adapter<UserConversationAdapter.ConversationViewHolder>() {
 
@@ -56,11 +55,6 @@ class UserConversationAdapter(private val listener: OnItemClickListener) :
             conversationList.removeAt(position)
             notifyDataSetChanged()
         }
-
-    }
-
-    private fun getItem(position: Int): Conversation {
-        return conversationList[position]
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConversationViewHolder {
@@ -75,23 +69,5 @@ class UserConversationAdapter(private val listener: OnItemClickListener) :
 
     override fun getItemCount(): Int {
         return conversationList.size
-    }
-
-
-    fun updateList(newList: List<Conversation>) {
-        conversationList.clear()
-        conversationList.addAll(newList)
-        notifyDataSetChanged()
-    }
-
-    fun fetchUserConversations() {
-        if (currentUserId != null) {
-            conversationDao.fetchConversationsForUser(currentUserId) { conversations ->
-                conversationList.clear()
-                conversationList.addAll(conversations)
-                notifyDataSetChanged()
-                println(conversations)
-            }
-        }
     }
 }

@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
         if (auth.currentUser != null) {
             // Användaren är redan inloggad, omdirigera till UserConversationActivity
             startActivity(Intent(this, UserConversationActivity::class.java))
-            finish() // Avsluta LoginActivity om användaren är inloggad
+            finish()
         }
 
         binding.logInButton.setOnClickListener {
@@ -45,12 +45,20 @@ class LoginActivity : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener { authResult ->
                     val user = auth.currentUser
-                    Toast.makeText(this, "Welcome: ${user?.displayName ?: user?.email}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "Welcome: ${user?.displayName ?: user?.email}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     startActivity(Intent(this, UserConversationActivity::class.java))
-                    finish() // Avsluta LoginActivity efter att användaren har loggat in
+                    finish()
                 }
                 .addOnFailureListener { exception ->
-                    Toast.makeText(this, "Failed to log in: ${exception.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "Failed to log in: ${exception.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
         } else {
             Toast.makeText(this, "Please enter both email and password", Toast.LENGTH_SHORT).show()
@@ -61,7 +69,6 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // Rensa inloggningsuppgifterna
         binding.edUsername.text = null
         binding.edPassword.text = null
     }

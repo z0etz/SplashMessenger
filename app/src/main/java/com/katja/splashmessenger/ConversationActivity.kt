@@ -223,10 +223,10 @@ class ConversationActivity : AppCompatActivity() {
                     adapter.messageList = conversationSorted
                     adapter.notifyDataSetChanged()
                 }
-             else{
-                   adapter.messageList = spLocal.loadConversation(conversationId)
-                    adapter.notifyDataSetChanged()
-               }
+//             else{
+//                   adapter.messageList = spLocal.loadConversation(conversationId)
+//                    adapter.notifyDataSetChanged()
+//               }
             }
         }
     }

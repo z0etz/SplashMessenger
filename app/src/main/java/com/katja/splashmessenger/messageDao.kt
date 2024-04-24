@@ -1,9 +1,7 @@
 package com.katja.splashmessenger
 
-import android.content.Context
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
-import java.time.LocalDateTime
 
 class messageDao {
 
@@ -26,47 +24,42 @@ class messageDao {
 
         FirebaseFirestore
             .getInstance()
-            // it was crashing because firebase wants to get even number of segments in the document path so I added 0
             .document("messages/${message.conversationId}/${message.id}")
             .set(dataToStore)
-            .addOnSuccessListener { Log.i("SUCCESS", "Added message to Firestore with id: ${message.id}") }
-            .addOnFailureListener { Log.i("ERROR", "Failed adding message to Firestore")}
-
-
-
-
-
+            .addOnSuccessListener {
+                Log.i(
+                    "SUCCESS",
+                    "Added message to Firestore with id: ${message.id}"
+                )
+            }
+            .addOnFailureListener { Log.i("ERROR", "Failed adding message to Firestore") }
     }
-
 
     fun getConversation(conversationId: String, callback: (MutableList<Message>) -> Unit) {
         val messageList: MutableList<Message> = mutableListOf()
-
         FirebaseFirestore
             .getInstance()
             .collection("messages/$conversationId")
-
             .get()
-            .addOnSuccessListener { result -> for (document in result) {
-                val id = document.getString(KEY_ID)
-                val conversationId = document.getString(KEY_CONVERSATION_ID)
-                val senderId = document.getString(KEY_SENDER_ID)
-                val typeString = document.getString(KEY_TYPE)
-                val type = when (typeString) {
-                    "WATERDROP" -> MessageType.WATERDROP
-                    "WATERSPLASH" -> MessageType.WATERSPLASH
-                    "MESSAGE_IN_BOTTLE" -> MessageType.MESSAGE_IN_BOTTLE
-                    "WATERBUBBLE" -> MessageType.WATERBUBBLE
-                    "NORMAL_VIEW_TYPE" -> MessageType.NORMAL_VIEW_TYPE
-                    else -> MessageType.WATERBUBBLE
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    val id = document.getString(KEY_ID)
+                    val conversationId = document.getString(KEY_CONVERSATION_ID)
+                    val senderId = document.getString(KEY_SENDER_ID)
+                    val typeString = document.getString(KEY_TYPE)
+                    val type = when (typeString) {
+                        "WATERDROP" -> MessageType.WATERDROP
+                        "WATERSPLASH" -> MessageType.WATERSPLASH
+                        "MESSAGE_IN_BOTTLE" -> MessageType.MESSAGE_IN_BOTTLE
+                        "WATERBUBBLE" -> MessageType.WATERBUBBLE
+                        "NORMAL_VIEW_TYPE" -> MessageType.NORMAL_VIEW_TYPE
+                        else -> MessageType.WATERBUBBLE
+                    }
+                    val text = document.getString(KEY_TEXT)
+                    val timestamp = document.getLong(KEY_TIMESTAMP)
+                    val message = Message(id, conversationId, senderId, type, text, timestamp!!)
+                    messageList.add(message)
                 }
-                val text = document.getString(KEY_TEXT)
-                val timestamp = document.getLong(KEY_TIMESTAMP)
-                //val timestamp = LocalDateTime.now()
-
-                val message = Message(id, conversationId, senderId, type, text, timestamp!!)
-                messageList.add(message)
-            }
                 Log.i("SUCCESS", "Successfully fetched conversation from Firestore")
                 callback(messageList)
             }
@@ -74,23 +67,5 @@ class messageDao {
                 Log.e("ERROR", "Failed to fetch conversation")
                 callback(mutableListOf())
             }
-
     }
-
-    fun deleteMessage(selectedMessage: Message) {
-
-        FirebaseFirestore
-            .getInstance()
-            .document("users/${selectedMessage.conversationId}/${selectedMessage.id}")
-            .delete()
-            .addOnSuccessListener {
-                Log.i("SUCCESS", "Message deleted from Firebase")
-            }
-            .addOnFailureListener {
-                Log.e("ERROR", "Failed to delete message from Firestore")
-            }
-
-    }
-
-
 }

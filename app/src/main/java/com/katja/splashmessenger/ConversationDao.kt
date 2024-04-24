@@ -10,7 +10,7 @@ class ConversationDao {
     private val TAG = "ConversationDao"
 
 
-    fun addConversation(conversation: Conversation, userId: String?){
+    fun addConversation(conversation: Conversation, userId: String?) {
         val dataToStore = HashMap<String, Any>()
         dataToStore[KEY_ID] = conversation.id as Any
         dataToStore[KEY_SENDER_IDS] = conversation.senderIds as Any
@@ -18,16 +18,19 @@ class ConversationDao {
             .getInstance()
             .document("conversations/${userId}/${conversation.id}")
             .set(dataToStore)
-            .addOnSuccessListener { Log.i("SUCCESS", "Added a new conversation to Firestore with id: ${conversation.id}") }
-            .addOnFailureListener { Log.i("ERROR", "Failed adding the conversation to Firestore")}
-
-
+            .addOnSuccessListener {
+                Log.i(
+                    "SUCCESS",
+                    "Added a new conversation to Firestore with id: ${conversation.id}"
+                )
+            }
+            .addOnFailureListener { Log.i("ERROR", "Failed adding the conversation to Firestore") }
 
     }
+
     fun fetchConversationsForUser(userId: String, callback: (List<Conversation>) -> Unit) {
         FirebaseFirestore.getInstance()
             .collection("conversations/${userId}/${userId}")
-            //.whereArrayContains(KEY_SENDER_IDS, userId)
             .get()
             .addOnSuccessListener { result ->
                 val conversationList = mutableListOf<Conversation>()
@@ -36,7 +39,6 @@ class ConversationDao {
                     val senderIds = document.get(KEY_SENDER_IDS) as? List<String> ?: emptyList()
                     val conversation = Conversation(id, senderIds.toMutableList())
                     conversationList.add(conversation)
-
                 }
                 callback(conversationList)
             }
@@ -46,12 +48,11 @@ class ConversationDao {
             }
     }
 
-
-
-
-    // Other conversation-related operations can be added here
-
-    fun checkIfConversationExists(conversationId: String?, currentUserId:String?,  callback: (Boolean) -> Unit) {
+    fun checkIfConversationExists(
+        conversationId: String?,
+        currentUserId: String?,
+        callback: (Boolean) -> Unit
+    ) {
 
         FirebaseFirestore.getInstance()
             .document("conversations/${currentUserId}/${conversationId}")
@@ -64,36 +65,38 @@ class ConversationDao {
                 Log.e(TAG, "Failed to check conversation existence", exception)
                 callback(false)
             }
-
-
     }
 
-    fun deleteConversation(userId: String?, conversationId: String?){
+    fun deleteConversation(userId: String?, conversationId: String?) {
         FirebaseFirestore.getInstance()
             .document("conversations/${userId}/${conversationId}")
             .delete()
-            .addOnSuccessListener{  Log.i("SUCCESS", "Conversation deleted from Firestore with id: $conversationId")
+            .addOnSuccessListener {
+                Log.i("SUCCESS", "Conversation deleted from Firestore with id: $conversationId")
             }
 
             .addOnFailureListener { e ->
-                Log.e("ERROR", "Failed to delete conversation from Firestore with id: $conversationId", e)
+                Log.e(
+                    "ERROR",
+                    "Failed to delete conversation from Firestore with id: $conversationId",
+                    e
+                )
             }
 
-
-        // Needs to be moved to messageDao as soon as possible
         FirebaseFirestore.getInstance()
             .collection("messages/${conversationId}")
             .get()
-
-            // still working on deleting the messages from the message/conversationId
-            .addOnSuccessListener{results ->
-                for(doument in results.documents){
-                   doument.reference.delete()
+            .addOnSuccessListener { results ->
+                for (doument in results.documents) {
+                    doument.reference.delete()
                 }
             }
-
             .addOnFailureListener { e ->
-                Log.e("ERROR", "Failed to delete messages in conversation from Firestore with id: $conversationId", e)
+                Log.e(
+                    "ERROR",
+                    "Failed to delete messages in conversation from Firestore with id: $conversationId",
+                    e
+                )
             }
 
     }

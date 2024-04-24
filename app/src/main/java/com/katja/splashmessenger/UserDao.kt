@@ -16,7 +16,6 @@ class UserDao {
         dataToStore.put(ID_KEY, user.id as Object)
         dataToStore.put(FULL_NAME_KEY, user.fullName as Object)
         dataToStore.put(EMAIL_KEY, user.fullName as Object)
-        dataToStore.put(PASSWORD_KEY, user.password as Object)
 
         FirebaseFirestore
             .getInstance()
@@ -38,8 +37,7 @@ class UserDao {
                     val id = document.getString(ID_KEY) ?: ""
                     val fullName = document.getString(FULL_NAME_KEY) ?: ""
                     val email = document.getString(EMAIL_KEY) ?: ""
-                    val password = document.getString(PASSWORD_KEY) ?: ""
-                    val user = User(id, fullName, email, password)
+                    val user = User(id, fullName, email)
                     userList.add(user)
                 }
                 completion(userList)
@@ -59,8 +57,7 @@ class UserDao {
                 val id = documentSnapshot.getString(ID_KEY) ?: ""
                 val fullName = documentSnapshot.getString(FULL_NAME_KEY) ?: ""
                 val email = documentSnapshot.getString(EMAIL_KEY) ?: ""
-                val password = documentSnapshot.getString(PASSWORD_KEY) ?: ""
-                val user = User(id, fullName, email, password)
+                val user = User(id, fullName, email)
                // val user = documentSnapshot.toObject(User::class.java)
                 completion(user)
             }

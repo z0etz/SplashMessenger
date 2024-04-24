@@ -26,7 +26,6 @@ class ConversationActivity : AppCompatActivity() {
     private val dao = messageDao()
     var recyclerViewVisible = false
     var listViewVisible = false
-    private val spLocal = MessageLocal(this)
     private val conversationDao = ConversationDao()
     private lateinit var listenerRegistration: ListenerRegistration
     private var selectedMessageType: MessageType = MessageType.NORMAL_VIEW_TYPE
@@ -174,7 +173,6 @@ class ConversationActivity : AppCompatActivity() {
                 currentDate
             )
             dao.addMessage(newMessageSender)
-            spLocal.addMessage(newMessageSender, conversationIdUser1)
 
             val newMessageReceiver = Message(
                 messageID,
@@ -186,7 +184,6 @@ class ConversationActivity : AppCompatActivity() {
             )
 
             dao.addMessage(newMessageReceiver)
-            spLocal.addMessage(newMessageReceiver, conversationIdUser2)
             binding.messageEditText.text.clear()
         }
     }

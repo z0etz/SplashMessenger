@@ -31,7 +31,7 @@
         android:id="@+id/searchEditText"
         android:layout_width="@dimen/edit_search_width"
         android:layout_height="@dimen/buttons_sign_up_height"
-        android:autofillHints="search"
+        android:autofillHints="@string/search"
         android:background="@drawable/rounded_edittext_gray_background"
         android:hint="@string/search"
         android:importantForAutofill="yes"

@@ -20,11 +20,7 @@ import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.ktx.Firebase
 import com.katja.splashmessenger.databinding.ActivityUserConversationBinding
 
-
-//        android:onClick="showRecyclerView"
-// raderat från xml
-class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
-
+class UserConversationActivity : AppCompatActivity(), OnItemClickListener {
 
     private lateinit var binding: ActivityUserConversationBinding
     private lateinit var recyclerView: RecyclerView
@@ -39,7 +35,6 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
     private val conversationDao = ConversationDao()
     private lateinit var listenerRegistration: ListenerRegistration
     private var thereIsNoConversations: Boolean = false
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,70 +63,58 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
             startActivity(intent)
         }
 
-
-
         getAllUsers()
-
 
         auth = Firebase.auth
         val currentUser = auth.currentUser
         val currentUserId = currentUser?.uid
 
-        userAdapter = UserConversationAdapter( this)
+        userAdapter = UserConversationAdapter(this)
         recyclerView.adapter = userAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-       getConversations(currentUserId)
+        getConversations(currentUserId)
 
+        if (thereIsNoConversations) {
+            binding.startConversationTextView.visibility = View.VISIBLE
+            binding.noMessageTextView.visibility = View.VISIBLE
+            binding.messageImageView.visibility = View.VISIBLE
+            binding.dropletImageView.visibility = View.VISIBLE
+            binding.recyclerViewUserName.visibility = View.GONE
+        } else {
+            binding.startConversationTextView.visibility = View.GONE
+            binding.noMessageTextView.visibility = View.GONE
+            binding.messageImageView.visibility = View.GONE
+            binding.dropletImageView.visibility = View.GONE
+            binding.recyclerViewUserName.visibility = View.VISIBLE
+        }
 
-        // needs to be initilized
+        listenerRegistration =
+            firestore.collection("conversations/${currentUserId}/${currentUserId}")
+                .addSnapshotListener { snapshots, e ->
+                    if (e != null) {
+                        Log.w(TAG, "Listen failed.", e)
+                        return@addSnapshotListener
+                    }
 
-        if(thereIsNoConversations) {
-                    binding.startConversationTextView.visibility = View.VISIBLE
-                    binding.noMessageTextView.visibility = View.VISIBLE
-                    binding.messageImageView.visibility = View.VISIBLE
-                    binding.dropletImageView.visibility = View.VISIBLE
-                    binding.recyclerViewUserName.visibility = View.GONE
-              } else {
-                    binding.startConversationTextView.visibility = View.GONE
-                    binding.noMessageTextView.visibility = View.GONE
-                    binding.messageImageView.visibility = View.GONE
-                    binding.dropletImageView.visibility = View.GONE
-                    binding.recyclerViewUserName.visibility = View.VISIBLE
-               }
+                    for (dc in snapshots?.documentChanges!!) {
+                        when (dc.type) {
+                            DocumentChange.Type.ADDED -> {
 
+                                // A new message has been added
+                                getConversations(currentUserId)
+                            }
 
-       // on change listener should be added here
-        listenerRegistration = firestore.collection("conversations/${currentUserId}/${currentUserId}")
-            .addSnapshotListener { snapshots, e ->
-                if (e != null) {
-                    Log.w(TAG, "Listen failed.", e)
-                    return@addSnapshotListener
-                }
+                            DocumentChange.Type.MODIFIED -> {
+                                // Handle modified documents
+                            }
 
-
-                for (dc in snapshots?.documentChanges!!) {
-                    when (dc.type) {
-                        DocumentChange.Type.ADDED -> {
-
-                            // A new message has been added
-                            getConversations(currentUserId)
-
-                        }
-
-                        DocumentChange.Type.MODIFIED -> {
-                            // Handle modified documents
-                        }
-                        DocumentChange.Type.REMOVED -> {
-                            // Handle removed documents
+                            DocumentChange.Type.REMOVED -> {
+                                // Handle removed documents
+                            }
                         }
                     }
                 }
-            }
-
-        // on change listener should be added here
-
-
 
         val bottomNavigationView = binding.bottomNavigation
 
@@ -139,29 +122,28 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
         bottomNavigationView.selectedItemId = R.id.item_1
 
         bottomNavigationView.setOnItemSelectedListener { item ->
-            when(item.itemId) {
+            when (item.itemId) {
                 R.id.item_1 -> {
-                    // MessagesActivity
                     startActivityIfNeeded(Intent(this, UserConversationActivity::class.java), 0)
                     true
                 }
+
                 R.id.item_2 -> {
-                    // ProfileActivity
                     startActivityIfNeeded(Intent(this, ProfilePageActivity::class.java), 0)
                     true
                 }
+
                 else -> false
             }
         }
-
-
-
     }
+
     override fun onItemClick(userArray: ArrayList<String?>) {
         val intent = Intent(this, ConversationActivity::class.java)
         intent.putExtra("userArray", userArray)
         startActivity(intent)
     }
+
     override fun onResume() {
         super.onResume()
         // Rensa sökfältet
@@ -187,10 +169,13 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
                 showUsers(usersList)
             }
             .addOnFailureListener { exception ->
-                Toast.makeText(this, "Failed to fetch users: ${exception.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "Failed to fetch users: ${exception.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
     }
-
 
     private fun showUsers(usersList: List<String>) {
         adapter.clear()
@@ -198,14 +183,7 @@ class UserConversationActivity : AppCompatActivity(), OnItemClickListener{
         adapter.notifyDataSetChanged()
     }
 
-    private fun filterUsers(query: String) {
-        val filteredList = originalList.filter { it.contains(query, ignoreCase = true) }
-        showUsers(filteredList)
-    }
-
-    //Added the fetch thing here to test
-
-    fun getConversations(userId: String?){
+    fun getConversations(userId: String?) {
         if (userId != null) {
             conversationDao.fetchConversationsForUser(userId) { conversations ->
                 userAdapter.conversationList.clear()

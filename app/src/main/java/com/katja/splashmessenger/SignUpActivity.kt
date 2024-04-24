@@ -1,4 +1,5 @@
 package com.katja.splashmessenger
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -8,6 +9,7 @@ import com.katja.splashmessenger.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
     private lateinit var auth: FirebaseAuth
@@ -50,10 +52,14 @@ class SignUpActivity : AppCompatActivity() {
             }
             user?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    var newUser = createUser(user.uid.toString(),username, email)
+                    var newUser = createUser(user.uid.toString(), username, email)
                     userDao.addUser(newUser)
 
-                    Toast.makeText(this, "Welcome: ${user.displayName ?: user.email}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "Welcome: ${user.displayName ?: user.email}",
+                        Toast.LENGTH_SHORT
+                    ).show()
 
                     val intent = Intent(this, UserConversationActivity::class.java)
                     startActivity(intent)
@@ -63,14 +69,15 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
         }.addOnFailureListener { exception ->
-            Toast.makeText(this, "Failed to sign up: ${exception.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Failed to sign up: ${exception.message}", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 
 
-    // made a small change so that the user id is the same in auth and in the firestore
-    private fun createUser(userId: String , username: String, email: String): User {
-        val user = User( userId,username, email)
+    //user id is the same in auth and in the firestore
+    private fun createUser(userId: String, username: String, email: String): User {
+        val user = User(userId, username, email)
         return user
     }
 }

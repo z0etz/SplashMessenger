@@ -173,6 +173,8 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
                     if (user?.uid == senderId) {
                         binding.textMessageSentWaterbottle.text = message.text
                         binding.sentMessageBottle.visibility = View.VISIBLE
+                        animation?.let { binding.imageSentMessageWaterBottle.startAnimation(it)
+                        }
 
                         binding.textDateTimeSentWaterbottle.text = getMessageDate(message.timestamp)
 
@@ -181,6 +183,8 @@ class MessageAdapter(internal var messageList: List<Message>) : RecyclerView.Ada
                     } else {
                         binding.textMessageReceivedWaterbottle.text = message.text
                         binding.recivedMessageBottle.visibility = View.VISIBLE
+                        animation?.let { binding.imageReceivedMessageWaterbottle.startAnimation(it)
+                        }
 
                         binding.textDateTimeReceivedWaterbottle.text = getMessageDate(message.timestamp)
 

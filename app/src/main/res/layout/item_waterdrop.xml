@@ -52,7 +52,7 @@
             android:text="@string/date_time"
             android:textColor="@color/white"
             android:textSize="@dimen/small_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textMessageSentWaterdrop"
             app:layout_constraintTop_toBottomOf="@+id/textMessageSentWaterdrop" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

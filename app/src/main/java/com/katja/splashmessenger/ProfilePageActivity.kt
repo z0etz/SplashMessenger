@@ -14,7 +14,6 @@ class ProfilePageActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityProfilePageBinding
     lateinit var auth: FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -32,7 +31,6 @@ class ProfilePageActivity : AppCompatActivity() {
             finish()
         }
 
-
         binding.profileUserName.text = user?.displayName ?: "No name available"
         binding.profileUserMail.text = user?.email ?: "No email available"
 
@@ -45,12 +43,20 @@ class ProfilePageActivity : AppCompatActivity() {
                     user?.delete()
                         ?.addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                                Toast.makeText(this, "Account deleted successfully", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this,
+                                    "Account deleted successfully",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                                 auth.signOut() // Log out the user after deleting the account
                                 startActivity(Intent(this, LoginActivity::class.java))
                                 finish()
                             } else {
-                                Toast.makeText(this, "Failed to delete account: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this,
+                                    "Failed to delete account: ${task.exception?.message}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                 }
@@ -61,26 +67,22 @@ class ProfilePageActivity : AppCompatActivity() {
         }
 
         val bottomNavigationView = binding.bottomNavigation
-
-        // Set the selected item to profile by default
         bottomNavigationView.selectedItemId = R.id.item_2
-
         bottomNavigationView.setOnItemSelectedListener { item ->
-            when(item.itemId) {
+            when (item.itemId) {
                 R.id.item_1 -> {
-                    // MessagesActivity
                     startActivityIfNeeded(Intent(this, UserConversationActivity::class.java), 0)
                     true
                 }
+
                 R.id.item_2 -> {
-                    // ProfileActivity
                     startActivityIfNeeded(Intent(this, ProfilePageActivity::class.java), 0)
                     true
                 }
+
                 else -> false
             }
         }
 
     }
-
 }
